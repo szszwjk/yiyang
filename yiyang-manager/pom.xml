@@ -27,6 +27,7 @@
     </build>
     <modules>
         <module>yiyang-manager-dao</module>
+        <module>yiyang-manager-pojo</module>
     </modules>
 
 </project>
