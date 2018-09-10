@@ -2,6 +2,7 @@ package com.manager.mapper;
 
 public class test {
     private String name;
+
 public  String ane;
 
     public String getAne() {
@@ -12,11 +13,22 @@ public  String ane;
         this.ane = ane;
     }
 
+
+    private String sex;
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }
