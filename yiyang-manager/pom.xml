@@ -12,6 +12,7 @@
 
     <artifactId>yiyang-manager</artifactId>
     <packaging>pom</packaging>
+
     <dependencies>
 
         <dependency>
@@ -20,6 +21,7 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
     <!-- 配置tomcat插件 -->
     <build>
         <plugins>
@@ -36,8 +38,10 @@
     <modules>
         <module>yiyang-manager-dao</module>
         <module>yiyang-manager-pojo</module>
+
         <module>yiyang-manager-service</module>
         <module>yiyang-manager-interface</module>
+
     </modules>
 
 </project>
