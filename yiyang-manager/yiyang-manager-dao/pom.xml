@@ -16,7 +16,9 @@
             <artifactId>yiyang-manager-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-    <!-- Mybatis -->
+
+
+        <!-- Mybatis -->
 
         <dependency>
         <groupId>org.mybatis</groupId>
