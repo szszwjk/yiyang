@@ -11,6 +11,7 @@
         <module>../yiyang-manager</module>
 
         <module>../yiyang-common</module>
+        <module>../yiyang-sso-web</module>
 
     </modules>
     <packaging>pom</packaging>

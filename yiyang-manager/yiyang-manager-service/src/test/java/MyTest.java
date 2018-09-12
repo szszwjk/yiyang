@@ -1,7 +1,7 @@
 import com.yiyang.pojo.TDoctor;
 import com.yiyang.pojo.TLocalinfo;
 import com.yiyang.service.doctor.DoctorService;
-import com.yiyang.service.user.locationService;
+import com.yiyang.service.user.LocationService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -28,7 +28,7 @@ public class MyTest {
         @Test
         public  void demo2(){
             ApplicationContext ac = new ClassPathXmlApplicationContext( "applicationContext.xml" );
-            locationService locationService = (locationService) ac.getBean( "DoctorServiceImpl" );
+            LocationService locationService = (LocationService) ac.getBean( "locationServiceImpl" );
             TLocalinfo tLocalinfo = new TLocalinfo();
             tLocalinfo.setlDate( new Date(  ) );
             tLocalinfo.setlLocalx( "111,120.135'23" );
@@ -40,7 +40,7 @@ public class MyTest {
     public void demo3() {
         ApplicationContext ac = new ClassPathXmlApplicationContext( "applicationContext.xml" );
         DoctorService doctorService = (DoctorService) ac.getBean( "doctorServiceImpl" );
-        TDoctor doctor = doctorService.findDoctorByName( "zhang" );
+        TDoctor doctor = doctorService.findDoctorByName( "zhangsan" );
         System.out.println(doctor);
 
     }

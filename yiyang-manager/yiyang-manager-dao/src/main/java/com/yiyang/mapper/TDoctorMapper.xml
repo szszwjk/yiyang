@@ -16,7 +16,7 @@
 
 </insert>
 
-	<select id="findDoctorByName" parameterType="String" resultType="com.yiyang.pojo.TDoctor">
+	<select id="findDoctorByName" parameterType="string" resultType="com.yiyang.pojo.TDoctor">
 
 		SELECT  * from t_doctor WHERE d_user = #{dUser}
 	</select>

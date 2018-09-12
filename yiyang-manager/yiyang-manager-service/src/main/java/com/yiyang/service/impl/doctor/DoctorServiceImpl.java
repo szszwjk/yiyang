@@ -19,10 +19,10 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public TDoctor findDoctorByName(String name) {
-        TDoctor doctor = tDoctorMapper.findDoctorByName(name);
+        TDoctor tDoctor = tDoctorMapper.findDoctorByName(name);
         System.out.println(tDoctorMapper);
 
-        System.out.println(doctor);
-        return doctor;
+        System.out.println(tDoctor);
+        return tDoctor;
     }
 }
