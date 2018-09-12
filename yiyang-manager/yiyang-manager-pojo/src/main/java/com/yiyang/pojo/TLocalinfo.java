@@ -52,4 +52,15 @@ public class TLocalinfo {
     public void setlLocaly(String lLocaly) {
         this.lLocaly = lLocaly == null ? null : lLocaly.trim();
     }
+
+    @Override
+    public String toString() {
+        return "TLocalinfo{" +
+                "lId=" + lId +
+                ", lUser='" + lUser + '\'' +
+                ", lDate=" + lDate +
+                ", lLocalx='" + lLocalx + '\'' +
+                ", lLocaly='" + lLocaly + '\'' +
+                '}';
+    }
 }

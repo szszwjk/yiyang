@@ -16,7 +16,7 @@ public class TDoctor {
     }
 
     public void setdUser(String dUser) {
-        this.dUser = dUser == null ? null : dUser.trim();
+        this.dUser = dUser;
     }
 
     public String getdHname() {
@@ -24,7 +24,7 @@ public class TDoctor {
     }
 
     public void setdHname(String dHname) {
-        this.dHname = dHname == null ? null : dHname.trim();
+        this.dHname = dHname ;
     }
 
     public String getdCnum() {
@@ -32,7 +32,7 @@ public class TDoctor {
     }
 
     public void setdCnum(String dCnum) {
-        this.dCnum = dCnum == null ? null : dCnum.trim();
+        this.dCnum = dCnum ;
     }
 
     public String getdInfo1() {
@@ -40,7 +40,7 @@ public class TDoctor {
     }
 
     public void setdInfo1(String dInfo1) {
-        this.dInfo1 = dInfo1 == null ? null : dInfo1.trim();
+        this.dInfo1 = dInfo1 ;
     }
 
     public String getdAddress() {
@@ -48,6 +48,17 @@ public class TDoctor {
     }
 
     public void setdAddress(String dAddress) {
-        this.dAddress = dAddress == null ? null : dAddress.trim();
+        this.dAddress = dAddress ;
+    }
+
+    @Override
+    public String toString() {
+        return "TDoctor{" +
+                "dUser='" + dUser + '\'' +
+                ", dHname='" + dHname + '\'' +
+                ", dCnum='" + dCnum + '\'' +
+                ", dInfo1='" + dInfo1 + '\'' +
+                ", dAddress='" + dAddress + '\'' +
+                '}';
     }
 }

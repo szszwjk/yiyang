@@ -1,8 +1,13 @@
 package com.yiyang.mapper;
 
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+
+import com.yiyang.pojo.TDoctor;
+
+
+
 
 public interface TDoctorMapper {
-   }
+   void insertDoctor(TDoctor doctor);
+   TDoctor findDoctorByName(String Name);
+}
