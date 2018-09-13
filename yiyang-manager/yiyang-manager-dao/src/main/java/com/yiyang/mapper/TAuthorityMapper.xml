@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TAuthorityMapper" >
-
+    <select id="loginByUser" parameterType="com.yiyang.pojo.TUser" resultType="com.yiyang.pojo.TUser">
+        SELECT
+          a.username,b.authorityGroup,b.authorityCon
+        FROM
+          userauthority a
+        LEFT JOIN
+          tauthority b
+        ON
+        a.authorityGroup=b.authorityGroup
+        WHERE
+        a.username=#{username}
+        and
+        a.authorityGroup=#{authorityGroup}
+    </select>
 </mapper>

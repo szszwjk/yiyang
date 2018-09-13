@@ -1,0 +1,54 @@
+/* 
+公共样式
+
+ */
+body {
+
+  font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+
+}
+#header{
+  background-color: #ff0;
+}
+#header > .container>.row{
+  height: 69px;
+
+
+}
+#header > .container>.row > div{
+  height: 69px;
+  background-color: #0ff;
+  border: 2px solid #f5f5f5;
+
+
+}
+#content >.container>.row >div{
+  height: 598px;
+  background-color:#FFF;
+  border: 2px solid #f5f5f5;
+}
+#content >.container>.row  img{
+  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  margin-top: -197px;
+  left:50%;
+  margin-left: -300px
+}
+#content {
+  background: url(../img/loginbg.jpg) no-repeat center top;
+}
+#content >.container>.row >div {
+  background-color:transparent;
+}
+#content .lable1{
+  padding-right: 0px;
+  padding-left: 0px;
+}
+#content .myform{
+  margin-top: 100px;
+}
+#content .myform .mybtn{
+  width: 100%;
+  color: white;
+}

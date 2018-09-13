@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TUserMapper" >
     <insert id="insertUser" parameterType="com.yiyang.pojo.TUser">
-        INSERT INTO t_user(username, password) VALUES (#{username},#{password})
+        INSERT INTO tuser(username, password) VALUES (#{username},#{password})
     </insert>
+    <select id="selectUserByUser" parameterType="com.yiyang.pojo.TUser" resultType="com.yiyang.pojo.TUser">
+        SELECT * FROM tuser WHERE username=#{username} AND password=#{password};
+    </select>
+
 </mapper>
