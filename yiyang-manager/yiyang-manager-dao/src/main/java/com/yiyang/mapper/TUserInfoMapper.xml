@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TUserInfoMapper" >
-
+    <insert id="insertTUserInfo" parameterType="com.yiyang.pojo.TUserInfo">
+        INSERT INTO  tuserinfo(infoSex, infoTel, infoAge, infoName, infoUser, infoNation, infoMarriage)
+        VALUES (#{infoSex},#{infoTel},#{infoAge},#{infoName},#{infoUser},#{infoNation},#{infoMarriage})
+    </insert>
+    <select id="selectTUserInfoByTelnumber" parameterType="string" resultType="com.yiyang.pojo.TUserInfo">
+        SELECT * FROM tuserinfo WHERE infoTel=#{telnumber};
+    </select>
 </mapper>

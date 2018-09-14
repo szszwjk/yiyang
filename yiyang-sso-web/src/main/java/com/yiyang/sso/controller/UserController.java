@@ -35,4 +35,11 @@ public class UserController {
         return yiyangResult;
 
     }
+    @RequestMapping("/user/regist")
+    @ResponseBody
+    public YiyangResult userRegister(TUser tUser,String telnumber)
+    {
+        YiyangResult yiyangResult = userService.registerUser(tUser, telnumber);
+       return yiyangResult;
+    }
 }

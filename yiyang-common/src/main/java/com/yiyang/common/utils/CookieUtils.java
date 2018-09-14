@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 public final class CookieUtils {
 
     /**
-     * 得到Cookie的值, 不编码
+     * 得到Cookie的nnndd值, 不编码
      * 
      * @param request
      * @param cookieName

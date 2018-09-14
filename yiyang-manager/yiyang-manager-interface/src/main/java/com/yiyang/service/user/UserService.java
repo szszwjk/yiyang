@@ -17,4 +17,5 @@ public interface UserService {
      * @return
      */
     TUser selectAuthorityByUser(TUser tUser);
+    YiyangResult registerUser(TUser tUser,String telnumber);
 }

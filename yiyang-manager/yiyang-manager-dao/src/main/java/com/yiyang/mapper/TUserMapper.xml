@@ -7,5 +7,7 @@
     <select id="selectUserByUser" parameterType="com.yiyang.pojo.TUser" resultType="com.yiyang.pojo.TUser">
         SELECT * FROM tuser WHERE username=#{username} AND password=#{password};
     </select>
-
+    <select id="selectUserByUsername" parameterType="string" resultType="com.yiyang.pojo.TUser">
+        SELECT  * FROM  tuser WHERE username=#{username};
+    </select>
 </mapper>
