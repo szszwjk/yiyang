@@ -20,18 +20,18 @@
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close">
-		<!--<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 		<property name="maxActive" value="10" />
-		<property name="minIdle" value="5" />-->
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="minIdle" value="5" />
+		<!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/yiyang?characterEncoding=utf-8" />
 		<property name="username" value="root" />
 		<property name="password" value="123456" />
 		<property name="maxActive" value="10" />
-		<property name="minIdle" value="5" />
+		<property name="minIdle" value="5" />-->
 	</bean>
 	<!-- 让spring管理sqlsessionfactory 使用mybatis和spring整合包中的 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -115,10 +115,11 @@
 	<!-- 使用dubbo发布服务 -->
 	<!-- 提供方应用信息，用于计算依赖关系 -->
 	<dubbo:application name="yiyang-manager" />
-	<dubbo:registry protocol="zookeeper" address="192.168.25.122:2181"/>
+	<dubbo:registry protocol="zookeeper" address="192.168.25.167:2181"/>
 	<!-- 用dubbo协议在20880端口暴露服务 -->
 	<dubbo:protocol name="dubbo" port="20880" />
 	<!-- 声明需要暴露的服务接口 -->
 	<dubbo:service interface="com.yiyang.service.user.UserService" ref="userServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.tservice.Tpreservice" ref="tpreserviceImpl" timeout="30000"/>
 
 </beans>

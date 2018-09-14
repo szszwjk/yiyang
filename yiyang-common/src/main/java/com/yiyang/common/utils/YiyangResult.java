@@ -9,7 +9,7 @@ import java.util.List;
 /**
  *
  */
-public class YiyangResult implements Serializable{
+public class        YiyangResult implements Serializable{
 
     // 定义jackson对象
     private static final ObjectMapper MAPPER = new ObjectMapper();

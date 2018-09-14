@@ -12,6 +12,7 @@
 
     <artifactId>yiyang-common</artifactId>
     <packaging>jar</packaging>
+
     <dependencies>
         <!-- 时间操作组件 -->
         <dependency>
