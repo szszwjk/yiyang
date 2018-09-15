@@ -1,9 +1,9 @@
 package com.yiyang.service.tservice;
 
-import com.yiyang.common.utils.EasyUIDataGridResult;
+import com.yiyang.common.utils.YiyangPageResult;
 
 
 public interface Tpreservice {
 
-    EasyUIDataGridResult getTPreservice(int page, int rows);
+    YiyangPageResult getTPreservice(int page, int rows);
    }

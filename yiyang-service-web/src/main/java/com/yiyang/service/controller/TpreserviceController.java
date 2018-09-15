@@ -1,6 +1,6 @@
 package com.yiyang.service.controller;
 
-import com.yiyang.common.utils.EasyUIDataGridResult;
+import com.yiyang.common.utils.YiyangPageResult;
 import com.yiyang.service.tservice.Tpreservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +12,8 @@ public class TpreserviceController {
     @Autowired
     private Tpreservice tpreservice;
     @RequestMapping("/tpreservice/list")
-    public EasyUIDataGridResult getTpreservice(Integer page,Integer rows){
-           EasyUIDataGridResult result=tpreservice.getTPreservice(page,rows);
+    public YiyangPageResult getTpreservice(Integer page, Integer rows){
+           YiyangPageResult result=tpreservice.getTPreservice(page,rows);
            return  result;
     }
 }

@@ -13,6 +13,7 @@
         <module>../yiyang-common</module>
         <module>../yiyang-sso-web</module>
         <module>../yiyang-service-web</module>
+        <module>../yiyang-parent-web</module>
 
     </modules>
     <packaging>pom</packaging>

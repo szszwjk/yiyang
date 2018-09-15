@@ -3,7 +3,7 @@ package com.yiyang.common.utils;
 import java.io.Serializable;
 import java.util.List;
 
-public class EasyUIDataGridResult implements Serializable{
+public class YiyangPageResult implements Serializable{
 
     private long total;
 

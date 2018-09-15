@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TServiceitem {
+import java.io.Serializable;
+
+public class TServiceitem implements Serializable{
     private Integer siId;
 
     private String siUser;
