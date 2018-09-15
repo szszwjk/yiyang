@@ -2,8 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TPreserviceMapper" >
 
-    <select id="findAll"  resultType="com.yiyang.pojo.TPreservice" >
-        SELECT  psNumber,psAddres,psTime,psTotime,psUname,psTelnumber FROM  tpreservice ;
+    <select id="findDCL"  parameterType="com.yiyang.pojo.TPreservice" resultType="com.yiyang.pojo.TPreservice" >
+    SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psFlag FROM  tpreservice where 1=1
+    <if test="psUname!=null and psUname!=''" >
+        and psUname LIKE '%${psUname}%'
+    </if>
+    <if test="psTelnumber!=null and psTelnumber!=''" >
+        and psTelnumber=#{psTelnumber}
+    </if>
+</select>
+    <select id="findYJD"  parameterType="com.yiyang.pojo.TPreservice"  resultType="com.yiyang.pojo.TPreservice" >
+        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psPeople,psFlag FROM  tpreservice where 1=1
+        <if test="psUname!=null and psUname!=''" >
+            and psUname LIKE '%${psUname}%'
+        </if>
+        <if test="psTelnumber!=null and psTelnumber!=''" >
+            and psTelnumber=#{psTelnumber}
+        </if>
+    </select>
+    <select id="findYWC" parameterType="com.yiyang.pojo.TPreservice" resultType="com.yiyang.pojo.TPreservice" >
+        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psPeople,psFinishTime,psFlag FROM  tpreservice where 1=1
+        <if test="psUname!=null and psUname!=''" >
+            and psUname LIKE '%${psUname}%'
+        </if>
+        <if test="psTelnumber!=null and psTelnumber!=''" >
+            and psTelnumber=#{psTelnumber}
+        </if>
     </select>
 
 </mapper>

@@ -2,4 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TServiceMapper" >
 
+    <select id="findAll" parameterType="String" resultType="com.yiyang.pojo.TService">
+        SELECT  * from tservice where sUser=#{sUser}
+    </select>
+
+   <update id="updateTservice" parameterType="com.yiyang.pojo.TService">
+       UPDATE  tservice
+       <set>
+         <if test="sName!=null">
+             sName=#{sName},
+         </if>
+       <if test="sNumber!=null">
+           sNumber=#{sNumber},
+       </if>
+       <if test="sCnum!=null">
+           sCnum=#{sCnum},
+       </if>
+       <if test="sDescribe!=null">
+           sDescribe=#{sDescribe},
+       </if>
+       <if test="sInfo2!=null">
+           sInfo2=#{sInfo2},
+       </if>
+       <if test="sInfo3!=null">
+           sInfo3=#{sInfo3},
+       </if>
+       <if test="sAddress!=null">
+           sAddress=#{sAddress},
+       </if>
+       <if test="sFlag!=null">
+           sFlag=#{sFlag},
+       </if>
+       </set>
+      where
+         sUser=#{sUser}
+   </update>
+
 </mapper>

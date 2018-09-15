@@ -1,9 +1,8 @@
 package com.yiyang.service.tservice;
-
 import com.yiyang.common.utils.YiyangPageResult;
 
 
-public interface Tpreservice {
+public interface TpreService {
+    YiyangPageResult getTPreService(int page, int rows);
 
-    YiyangPageResult getTPreservice(int page, int rows);
    }

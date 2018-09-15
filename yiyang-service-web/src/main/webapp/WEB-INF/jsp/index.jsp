@@ -64,7 +64,7 @@
                     <div role="tabpanel" class="tab-pane active" id="home">
                         <table class="table" id="" title="待处理工单">
                             <thead id="thead">
-                            <tr><th ><input type="checkbox"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th >收费方式</th><th >操作</th></tr>
+                            <tr><th ><input type="checkbox"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务状态</th><th >操作</th></tr>
                             </thead>
                             <%--<c:forEach items="${result.roes}" var="item">
                                 <tr>

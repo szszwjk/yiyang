@@ -1,13 +1,12 @@
 package com.yiyang.service.tservice;
 
+import com.yiyang.common.utils.YiyangResult;
 import com.yiyang.pojo.TService;
 
 public interface TServiceService {
 
- /*  void addTService(TService tService);
-
    TService getTServiceByUser(String sUser);
 
-   void updateTService(TService tService);*/
+    YiyangResult updateTService(TService tService);
 
 }

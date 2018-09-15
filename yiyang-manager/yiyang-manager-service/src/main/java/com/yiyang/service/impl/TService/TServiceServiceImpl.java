@@ -1,5 +1,6 @@
 package com.yiyang.service.impl.TService;
 
+import com.yiyang.common.utils.YiyangResult;
 import com.yiyang.mapper.TServiceMapper;
 
 import com.yiyang.pojo.TService;
@@ -9,24 +10,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TServiceServiceImpl implements TServiceService {
-   /* @Autowired
+   @Autowired
     private TServiceMapper tServiceMapper;
 
     @Override
-    public void addTService(TService tService) {
-       tServiceMapper.insertTService(tService);
-    }
-
-    @Override
     public TService getTServiceByUser(String sUser) {
-        TService tService=tServiceMapper.findTServiceByUser(sUser);
-        System.out.println(sUser);
-        System.out.println(tService);
+        TService tService=tServiceMapper.findAll(sUser);
         return tService;
     }
 
     @Override
-    public void updateTService(TService tService) {
+    public YiyangResult updateTService(TService tService) {
         TService tService1=new TService();
         tService1.setsName(tService.getsName());
         tService1.setsNumber(tService.getsNumber());
@@ -37,6 +31,7 @@ public class TServiceServiceImpl implements TServiceService {
         tService1.setsAddress(tService.getsAddress());
         tService1.setsFlag(tService.getsFlag());
         tService.setsUser(tService.getsUser());
-        tServiceMapper.updateTService(tService1);
-    }*/
+        tServiceMapper.updateTservice(tService1);
+        return YiyangResult.ok();
+    }
 }

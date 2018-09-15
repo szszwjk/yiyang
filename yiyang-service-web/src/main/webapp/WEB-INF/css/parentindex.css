@@ -1,0 +1,45 @@
+body {
+
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+
+}
+header div{
+    height: 70px;
+    border: 2px solid #f5f5f5;
+}
+section {
+    margin-top:15px;
+}
+section > div{
+    height: 700px;
+    border: 2px solid #f5f5f5;
+}
+.content .col-md-10{
+  padding-left: 0px;
+   
+}
+.content>.col-md-2>.tabTip
+{
+    box-shadow: darkgrey 0px 0px 30px 5px ;/* 边框阴影 */
+    border-radius: 5px;/* 圆角矩形 */
+    border: 2px solid #f5f5f5;
+   margin-top: 20px;
+    padding:10px; 
+   height: 660px;
+}
+.tabContent{
+    box-shadow: darkgrey 0px 0px 30px 5px ;/* 边框阴影 */
+    border-radius: 5px;/* 圆角矩形 */
+    border: 2px solid #f5f5f5;
+     margin-top: 20px; 
+   
+    height: 660px;
+}
+.tabTip a{
+    color: #333;
+    text-decoration: none;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #46b8da;
+}

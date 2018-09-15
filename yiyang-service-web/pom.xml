@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.yiyang</groupId>
-    <artifactId>yyiyang-service-web</artifactId>
+    <artifactId>yiyang-service-web</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 

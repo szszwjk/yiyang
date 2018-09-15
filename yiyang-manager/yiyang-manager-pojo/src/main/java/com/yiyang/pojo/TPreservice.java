@@ -27,6 +27,26 @@ public class TPreservice {
 
     private String psDesc;
 
+    private String psPeople;
+
+    private Date finishTime;
+
+    public String getPsPeople() {
+        return psPeople;
+    }
+
+    public void setPsPeople(String psPeople) {
+        this.psPeople = psPeople;
+    }
+
+    public Date getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(Date finishTime) {
+        this.finishTime = finishTime;
+    }
+
     public Integer getPsId() {
         return psId;
     }
@@ -121,5 +141,25 @@ public class TPreservice {
 
     public void setPsDesc(String psDesc) {
         this.psDesc = psDesc == null ? null : psDesc.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TPreservice{" +
+                "psId=" + psId +
+                ", psUser='" + psUser + '\'' +
+                ", psNumber='" + psNumber + '\'' +
+                ", psUname='" + psUname + '\'' +
+                ", psItem='" + psItem + '\'' +
+                ", psPrice=" + psPrice +
+                ", psTime=" + psTime +
+                ", psTotime=" + psTotime +
+                ", psFlag='" + psFlag + '\'' +
+                ", psTelnumber='" + psTelnumber + '\'' +
+                ", psAddres='" + psAddres + '\'' +
+                ", psDesc='" + psDesc + '\'' +
+                ", psPeople='" + psPeople + '\'' +
+                ", finishTime=" + finishTime +
+                '}';
     }
 }

@@ -1,18 +1,22 @@
-import com.yiyang.pojo.TDoctor;
-import com.yiyang.pojo.TLocalinfo;
-import com.yiyang.service.doctor.DoctorService;
-import com.yiyang.service.user.LocationService;
+import com.yiyang.pojo.TPreservice;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.IOException;
-import java.util.Date;
-
+import java.util.List;
 
 
 public class MyTest {
+  /*  @Test
+    public void demo1() {
+        ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
+        Tpreservice service = (Tpreservice) ac.getBean("TpreserviceImpl");
+        List<TPreservice> list =service.getDCL();
+        System.out.println(list);
+    }*/
 
-    }
+
+}
 
 
