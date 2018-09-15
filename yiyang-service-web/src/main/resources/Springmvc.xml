@@ -59,5 +59,4 @@
 	<dubbo:registry protocol="zookeeper" address="192.168.25.167:2181"/>
 
 	<dubbo:reference interface="com.yiyang.service.tservice.TpreService" id="tpreService"/>
-	<dubbo:reference interface="com.yiyang.service.tservice.TServiceService" id="tServiceService" />
-</beans>
+	</beans>

@@ -18,11 +18,11 @@ public class TpreServiceImpl implements TpreService {
     private TPreserviceMapper tPreserviceMapper;
 
     @Override
-    public YiyangPageResult getTPreService(int page, int rows) {
+    public YiyangPageResult getTpreService(int page, int rows) {
         //设置分页信息
         PageHelper.startPage(page, rows);
         //得到所有工单信息
-        List<TPreservice> list=tPreserviceMapper.findDCL();
+        List<TPreservice> list=tPreserviceMapper.findAll();
         //取分页信息
         PageInfo<TPreservice> pageInfo = new PageInfo<>(list);
         //创建返回结果对象

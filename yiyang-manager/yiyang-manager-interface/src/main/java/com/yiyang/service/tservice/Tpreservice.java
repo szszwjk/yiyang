@@ -3,6 +3,6 @@ import com.yiyang.common.utils.YiyangPageResult;
 
 
 public interface TpreService {
-    YiyangPageResult getTPreService(int page, int rows);
+    YiyangPageResult getTpreService(int page, int rows);
 
    }

@@ -29,5 +29,8 @@
             and psTelnumber=#{psTelnumber}
         </if>
     </select>
+    <select id="findAll" resultType="com.yiyang.pojo.TPreservice">
+        SELECT  psId,psNumber,psUname,psTime,psTotime,psAddres,psFlag from tpreservice
+    </select>
 
 </mapper>

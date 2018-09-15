@@ -16,7 +16,7 @@ public class TpreserviceController {
     @RequestMapping("/tpreservice/list")
     @ResponseBody
     public YiyangPageResult getTpreservice(Integer page, Integer rows){
-           YiyangPageResult result=tpreService.getTPreService(page,rows);
+           YiyangPageResult result=tpreService.getTpreService(page,rows);
            return  result;
     }
     @RequestMapping("/")

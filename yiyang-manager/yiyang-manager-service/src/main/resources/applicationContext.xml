@@ -124,6 +124,5 @@
 	<dubbo:service interface="com.yiyang.service.user.UserService" ref="userServiceImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.tservice.TpreService" ref="tpreServiceImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.parent.ParentService" ref="parentServiceImpl" timeout="30000"/>
-	<dubbo:service interface="com.yiyang.service.tservice.TServiceService" ref="tServiceServiceImpl" timeout="30000"/>
 
 </beans>

@@ -19,4 +19,6 @@ public interface TPreserviceMapper {
     */
    List<TPreservice> findYWC(TPreservice tPreservice);
 
+
+   List<TPreservice> findAll();
    }

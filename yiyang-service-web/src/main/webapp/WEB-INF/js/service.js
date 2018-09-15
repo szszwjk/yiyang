@@ -1,4 +1,3 @@
-
 var $tale
 var $thead
 $(function () {
