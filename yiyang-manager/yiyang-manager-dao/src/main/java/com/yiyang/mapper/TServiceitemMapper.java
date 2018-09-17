@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Param;
 
 public interface TServiceitemMapper {
     List<TServiceitem> selectAll();
+    void insertServiceItem(TServiceitem tServiceitem);
     }

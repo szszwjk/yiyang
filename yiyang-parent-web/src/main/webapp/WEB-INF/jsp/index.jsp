@@ -62,10 +62,10 @@
                 <!-- 面板区 -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="home">
-                        <table class="table" id="" title="待处理工单">
-                            <thead id="thead">
-                            <tr><th ><input type="checkbox"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th >收费方式</th><th >操作</th></tr>
-                            </thead>
+                        <%--<table class="table" id="" title="待处理工单">--%>
+                            <%--<thead id="thead">--%>
+                            <%--<tr><th ><input type="checkbox"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th >收费方式</th><th >操作</th></tr>--%>
+                            <%--</thead>--%>
                             <%--<c:forEach items="${result.roes}" var="item">
                                 <tr>
                                     <th ><input type="checkbox"></th>
@@ -78,7 +78,8 @@
                                     <td><a href="#">查看详情</a> <a href="#">预定</a></td>
                                     </tr>
                             </c:forEach>--%>
-                        </table>
+                        <%--</table>--%>
+
                     </div>
                     <div role="tabpanel" class="tab-pane" id="profile">2</div>
                     <div role="tabpanel" class="tab-pane" id="messages">3</div>
@@ -94,6 +95,6 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/service.js"></script>
+    <script src="../js/parent.js"></script>
     </body>
 </html>

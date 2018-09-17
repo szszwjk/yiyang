@@ -17,9 +17,9 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService{
-    @Value("${USER_INFO}")
+   @Value("${USER_INFO}")
     private String USER_INFO;
-    @Value("${SESSION_EXPIRE}")
+   @Value("${SESSION_EXPIRE}")
     private int SESSION_EXPIRE;
     @Autowired
     private TUserInfoMapper tUserInfoMapper;
