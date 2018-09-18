@@ -47,8 +47,8 @@
         <div class="col-md-2">
             <div class="tabTip">
                 <ul class="nav nav-pills nav-stacked" role="tablist">
-                    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="showlist">Home</a></li>
-                    <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
+                    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="showlist">预警信息</a></li>
+                    <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">个人信息</a></li>
                     <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
                     <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
                 </ul>

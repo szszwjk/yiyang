@@ -1,19 +1,46 @@
 
-var $tale;
+var $selectlist;
 var $thead;
 var total;
 var pagenum;
 var nowpage=1;
 var tlength=null;
+var $hlist;
+var $showlist;
+var $largelist;
+var $littlelist;
 $(function () {
-    $tale=$("#showlist");
     $home=$("#home");
-
-    $tale.click(function () {
+    $largelist=$("#largelist");
+    //搜索条件切换 页数归一
+    $largelist.change(function () {
+        nowpage=1;
+    });
+    $littlelist=$("#littlelist");
+    $littlelist.change(function () {
+        nowpage=1;
+    })
+    //换页显示
+    $showlist=$("#showlist");
+    $showlist.click(function () {
+        $("#mytable").css("display","");
+        $("#pt").css("display","");
+    });
+    $selectlist=$("#selectlist");
+    $hlist=$("#hlist");
+    //换页隐藏
+    $hlist.click(function () {
+        $("#mytable").css("display","none");
+        $("#pt").css("display","none");
+    });
+    $selectlist.click(function () {
+        nowpage=1;
+        var largeval=$largelist.val();
+        var littleval=$littlelist.val();
         $("#mytable").remove();
         $("#pt").remove();
 
-        $.post("/item/list",{page:nowpage,rows:14},function(data){
+        $.post("/item/list",{page:nowpage,rows:14,siLarge:largeval,siLittle:littleval},function(data){
             total=data.total;
             pagenum=total%14==0?total/14:Math.floor(total/14)+1;
             if((pagenum-nowpage)>10)
@@ -62,6 +89,7 @@ $(function () {
 });
 
 
+
 function pageclick(obj) {
     var flag =$(obj).text();
     if(nowpage==flag)
@@ -91,7 +119,7 @@ function pageclick(obj) {
     }
     $("#mytable").remove();
 
-    $.post("/item/list",{page:nowpage,rows:14},function(data){
+    $.post("/item/list",{page:nowpage,rows:14,siLarge:largeval,siLittle:littleval},function(data){
 
 
         var string=" <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"待处理工单\">" +
@@ -115,8 +143,7 @@ function pageclick(obj) {
         }
         string+="</table>";
         $home.after(string);
-        if(nowpage%10==0)
-        {
+
             if((pagenum-nowpage)>10)
             {
                 tlength=10;
@@ -135,10 +162,14 @@ function pageclick(obj) {
                var t=Number(nowpage)+Number(i);
                 pagebt+="<li><a  onclick=\"pageclick(this)\">"+t+"</a></li>"
             }
-            pagebt+="<li><a  >...</a></li>" + "<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
+            if(tlength==10)
+            {
+                pagebt+="<li><a  >...</a></li>";
+            }
+            pagebt+="<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
                 ">>" + "</a>" + "</li>" + "</ul>" + "</nav>"
             $("#mytable").after(pagebt)
-        }
+
 
     });
 

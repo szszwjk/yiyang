@@ -8,4 +8,15 @@
         INSERT  INTO tserviceitem(siUser, siName, siLarge, siLittle, siItem, siPrice, siDesc, siType) VALUES
         (#{siUser},#{siName},#{siLarge},#{siLittle},#{siItem},#{siPrice},#{siDesc},#{siType})
     </insert>
+    <select id="selectByLargeAndLittle" parameterType="com.yiyang.pojo.TServiceitem" resultType="com.yiyang.pojo.TServiceitem">
+        SELECT * from tserviceitem
+        <where>
+            <if test="siLarge!=null">
+                and siLarge=#{siLarge}
+            </if>
+            <if test="siLittle!=null">
+                and siLittle=#{siLittle}
+            </if>
+        </where>
+    </select>
 </mapper>

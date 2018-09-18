@@ -92,4 +92,19 @@ public class TServiceitem implements Serializable{
     public void setSiDesc(String siDesc) {
         this.siDesc = siDesc == null ? null : siDesc.trim();
     }
+
+    @Override
+    public String toString() {
+        return "TServiceitem{" +
+                "siId=" + siId +
+                ", siUser='" + siUser + '\'' +
+                ", siName='" + siName + '\'' +
+                ", siLarge='" + siLarge + '\'' +
+                ", siLittle='" + siLittle + '\'' +
+                ", siItem='" + siItem + '\'' +
+                ", siPrice='" + siPrice + '\'' +
+                ", siType='" + siType + '\'' +
+                ", siDesc='" + siDesc + '\'' +
+                '}';
+    }
 }

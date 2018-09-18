@@ -30,4 +30,22 @@ public class ParentServiceImpl implements ParentService{
 
         return result;
     }
+
+    @Override
+    public YiyangPageResult getItemByLargeAndLittle(int page, int rows, TServiceitem tServiceitem) {
+        //设置分页信息
+        PageHelper.startPage(page, rows);
+        //执行查询
+        List<TServiceitem> list = tServiceitemMapper.selectByLargeAndLittle(tServiceitem);
+        //取分页信息
+        PageInfo<TServiceitem> pageInfo = new PageInfo<>(list);
+
+        //创建返回结果对象
+        YiyangPageResult result = new YiyangPageResult();
+        result.setTotal(pageInfo.getTotal());
+        result.setRows(list);
+        return result;
+    }
+
+
 }

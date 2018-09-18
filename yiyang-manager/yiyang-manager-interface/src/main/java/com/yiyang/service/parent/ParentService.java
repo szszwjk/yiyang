@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ParentService {
     public YiyangPageResult getTserviceItem(int page, int rows);
+    public YiyangPageResult getItemByLargeAndLittle(int page, int rows,TServiceitem tServiceitem);
 }
