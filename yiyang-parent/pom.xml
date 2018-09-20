@@ -14,6 +14,7 @@
         <module>../yiyang-sso-web</module>
         <module>../yiyang-service-web</module>
         <module>../yiyang-parent-web</module>
+        <module>../yiyang-social-web</module>
 
     </modules>
     <packaging>pom</packaging>

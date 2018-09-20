@@ -17,10 +17,10 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService{
-   @Value("${USER_INFO}")
-    private String USER_INFO;
-   @Value("${SESSION_EXPIRE}")
-    private int SESSION_EXPIRE;
+
+    private String USER_INFO="253";
+
+    private int SESSION_EXPIRE=2;
     @Autowired
     private TUserInfoMapper tUserInfoMapper;
     @Autowired

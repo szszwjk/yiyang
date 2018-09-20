@@ -32,5 +32,7 @@
     <select id="findAll" resultType="com.yiyang.pojo.TPreservice">
         SELECT  psId,psNumber,psUname,psTime,psTotime,psAddres,psFlag from tpreservice
     </select>
-
+    <select id="findType" parameterType="int" resultType="int">
+        select count(*) from tpreservice WHERE psFlag = #{psFlag}
+    </select>
 </mapper>

@@ -20,5 +20,7 @@ public interface TPreserviceMapper {
    List<TPreservice> findYWC(TPreservice tPreservice);
 
 
-   List<TPreservice> findAll();
+    List<TPreservice> findAll();
+
+   int findType(int type);
    }
