@@ -1,7 +1,9 @@
 package com.yiyang.service.user;
 
 import com.yiyang.common.utils.YiyangResult;
+import com.yiyang.pojo.TAuthority;
 import com.yiyang.pojo.TUser;
+import com.yiyang.pojo.UserAuthorityKey;
 
 public interface UserService {
     /**
@@ -17,5 +19,13 @@ public interface UserService {
      * @return
      */
     TUser selectAuthorityByUser(TUser tUser);
+
+    /**
+     * 用户注册
+     * @param tUser
+     * @param telnumber
+     * @return
+     */
     YiyangResult registerUser(TUser tUser,String telnumber);
+    UserAuthorityKey selectAuthorityByUser(String username);
 }

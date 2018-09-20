@@ -1,8 +1,9 @@
 package com.yiyang.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TOperation {
+public class TOperation implements Serializable {
     private Integer opId;
 
     private String opUser;

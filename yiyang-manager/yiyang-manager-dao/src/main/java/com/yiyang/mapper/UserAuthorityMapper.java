@@ -9,4 +9,5 @@ import com.yiyang.pojo.UserAuthorityKey;
 
 public interface UserAuthorityMapper {
     public void insertAuthority(UserAuthorityKey userAuthorityKey);
+    public UserAuthorityKey selectAuthorityByUser(String username);
     }

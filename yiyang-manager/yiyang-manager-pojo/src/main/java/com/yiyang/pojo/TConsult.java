@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TConsult {
+import java.io.Serializable;
+
+public class TConsult implements Serializable {
     private Integer cId;
 
     private String cUser;

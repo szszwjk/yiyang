@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TDoctor {
+import java.io.Serializable;
+
+public class TDoctor implements Serializable {
     private String dUser;
 
     private String dHname;

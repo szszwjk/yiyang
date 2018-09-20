@@ -1,8 +1,9 @@
 package com.yiyang.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TLocalinfo {
+public class TLocalinfo implements Serializable {
     private Integer lId;
 
     private String lUser;

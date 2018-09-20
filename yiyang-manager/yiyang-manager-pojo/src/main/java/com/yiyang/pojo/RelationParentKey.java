@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class RelationParentKey {
+import java.io.Serializable;
+
+public class RelationParentKey implements Serializable {
     private String rUser;
 
     private String pUser;

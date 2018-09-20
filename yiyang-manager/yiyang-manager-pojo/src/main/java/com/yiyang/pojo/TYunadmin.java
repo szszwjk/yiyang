@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TYunadmin {
+import java.io.Serializable;
+
+public class TYunadmin implements Serializable {
     private Integer yId;
 
     private String yUser;

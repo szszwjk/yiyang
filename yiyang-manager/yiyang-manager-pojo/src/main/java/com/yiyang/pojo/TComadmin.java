@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TComadmin {
+import java.io.Serializable;
+
+public class TComadmin implements Serializable {
     private Integer caId;
 
     private String caUser;

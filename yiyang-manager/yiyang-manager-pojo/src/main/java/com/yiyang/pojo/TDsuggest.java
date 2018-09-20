@@ -1,8 +1,9 @@
 package com.yiyang.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TDsuggest {
+public class TDsuggest implements Serializable {
     private Integer dsId;
 
     private String dsDuser;

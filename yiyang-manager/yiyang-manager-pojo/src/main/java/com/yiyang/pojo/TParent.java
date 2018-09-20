@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TParent {
+import java.io.Serializable;
+
+public class TParent implements Serializable {
     private String pUser;
 
     private String pIdnum;

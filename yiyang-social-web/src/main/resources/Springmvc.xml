@@ -56,7 +56,7 @@
 	
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="yiyang-sso-web"/>
-	<dubbo:registry protocol="zookeeper" address="192.168.25.167:2181"/>
+	<dubbo:registry protocol="zookeeper" address="192.168.25.122:2181"/>
 	<dubbo:reference interface="com.yiyang.service.user.UserService" id="userService" />
     <dubbo:reference interface="com.yiyang.service.social.FindTypeService" id="findTypeService "/>
 </beans>

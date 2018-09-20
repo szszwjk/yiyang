@@ -4,4 +4,18 @@
     <insert id="insertAuthority" parameterType="com.yiyang.pojo.UserAuthorityKey" >
         INSERT INTO userauthority(username, authorityGroup) VALUES (#{username},#{authorityGroup})
     </insert>
+<resultMap id="authoritylist" type="com.yiyang.pojo.UserAuthorityKey">
+    <result column="username" property="username"></result>
+    <collection property="authorityList" ofType="com.yiyang.pojo.TAuthority">
+        <result property="authorityGroup" column="authorityGroup"></result>
+        <result property="authorityCon" column="authorityCon"></result>
+    </collection>
+</resultMap>
+    <select id="selectAuthorityByUser" parameterType="string" resultMap="authoritylist">
+       SELECT a.username,b.authorityGroup,b.authorityCon 
+       FROM userauthority a 
+       LEFT JOIN tauthority b 
+       ON a.authorityGroup=b.authorityGroup 
+       where username=#{username};
+    </select>
 </mapper>

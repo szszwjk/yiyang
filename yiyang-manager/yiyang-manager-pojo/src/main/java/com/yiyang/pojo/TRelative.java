@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TRelative {
+import java.io.Serializable;
+
+public class TRelative implements Serializable {
     private String rUser;
 
     private String rAddress;

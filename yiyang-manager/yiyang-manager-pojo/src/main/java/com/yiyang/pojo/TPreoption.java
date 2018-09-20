@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TPreoption {
+import java.io.Serializable;
+
+public class TPreoption implements Serializable {
     private Integer poId;
 
     private String poUser;

@@ -32,9 +32,5 @@ public class ParentController {
             return result;
         }
     }
-    @RequestMapping("/")
-    public String index()
-    {
-        return "parentservice";
-    }
+
 }

@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class DoctorParentKey {
+import java.io.Serializable;
+
+public class DoctorParentKey implements Serializable{
     private String pUser;
 
     private String dUser;

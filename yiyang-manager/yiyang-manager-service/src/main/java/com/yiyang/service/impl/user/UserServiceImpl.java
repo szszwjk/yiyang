@@ -5,6 +5,7 @@ import com.yiyang.common.utils.JsonUtils;
 import com.yiyang.common.utils.YiyangResult;
 import com.yiyang.mapper.*;
 
+import com.yiyang.pojo.TAuthority;
 import com.yiyang.pojo.TUser;
 import com.yiyang.pojo.TUserInfo;
 import com.yiyang.pojo.UserAuthorityKey;
@@ -17,10 +18,10 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService{
-
-    private String USER_INFO="253";
-
-    private int SESSION_EXPIRE=2;
+    @Value("${USER_INFO}")
+    private String USER_INFO;
+    @Value("${SESSION_EXPIRE}")
+    private int SESSION_EXPIRE;
     @Autowired
     private TUserInfoMapper tUserInfoMapper;
     @Autowired
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService{
                 YiyangResult yiyangResult=new YiyangResult();
                 yiyangResult.setStatus(200);
                 yiyangResult.setMsg(token);
-                yiyangResult.setData(user.getAuthorityCon());
+                yiyangResult.setData("http://localhost:8088/");
                 jedisClient.set(USER_INFO+":"+token,JsonUtils.objectToJson(user));
                 jedisClient.expire(USER_INFO + ":" + token, SESSION_EXPIRE);
                 return yiyangResult;
@@ -106,5 +107,11 @@ public class UserServiceImpl implements UserService{
 
         }
         return YiyangResult.build(500,"数据错误");
+    }
+
+    @Override
+    public UserAuthorityKey selectAuthorityByUser(String username) {
+        UserAuthorityKey result = userAuthorityMapper.selectAuthorityByUser(username);
+        return result;
     }
 }

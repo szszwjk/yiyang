@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TCommunity {
+import java.io.Serializable;
+
+public class TCommunity implements Serializable {
     private Integer cId;
 
     private String cNum;

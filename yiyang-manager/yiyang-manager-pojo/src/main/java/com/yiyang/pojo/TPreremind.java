@@ -1,8 +1,9 @@
 package com.yiyang.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TPreremind {
+public class TPreremind implements Serializable {
     private Integer prId;
 
     private String prUser;

@@ -1,8 +1,9 @@
 package com.yiyang.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TMedical {
+public class TMedical implements Serializable {
     private Integer mId;
 
     private String mUser;

@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TInspection {
+import java.io.Serializable;
+
+public class TInspection implements Serializable {
     private Integer iId;
 
     private String iUser;

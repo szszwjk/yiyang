@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class Stype {
+import java.io.Serializable;
+
+public class Stype implements Serializable {
     private  String  type;
     private  int flag;
 

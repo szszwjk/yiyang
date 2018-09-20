@@ -1,8 +1,9 @@
 package com.yiyang.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TUserInfo {
+public class TUserInfo implements Serializable {
     private Integer infoId;
 
     private String infoSex;

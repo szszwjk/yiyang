@@ -1,6 +1,8 @@
 package com.yiyang.pojo;
 
-public class TAuthority {
+import java.io.Serializable;
+
+public class TAuthority implements Serializable {
     private String authorityGroup;
 
     private String authorityCon;
