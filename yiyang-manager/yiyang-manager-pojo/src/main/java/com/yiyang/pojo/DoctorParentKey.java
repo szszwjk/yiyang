@@ -2,7 +2,10 @@ package com.yiyang.pojo;
 
 import java.io.Serializable;
 
+
 public class DoctorParentKey implements Serializable{
+
+
     private String pUser;
 
     private String dUser;

@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TServiceMapper" >
+<!--
+    <select id="findInfoByUser" parameterType="String" resultType="">
+        SELECT a.sName,a.sInfo2,a.sUser,a.sInfo3,a.sNumber,b.infoTel,a.sAddress,a.sDescribe
+        from tservice a LEFT JOIN tuserinfo b on a.sUser=b.infoUser
+        where a.sUser=#{sUser}
+    </select>
 
+    <update id="updateByUser" parameterType="com.yiyang.pojo.TService">
+        UPDATE  tservice
+        <set>
+            <if test="sName!=null">sName=#{sName}</if>
+            <if test="sInfo2!=null">sInfo2=#{sInfo2}</if>
+            <if test="sUser!=null">sUser=#{sUser}</if>
+            <if test="sInfo3!=null">sName=#{sInfo3}</if>
+            <if test="sNumber!=null">sNumber=#{sNumber}</if>
+            <if test="infoTel!=null">infoTel=#{infoTel}</if>
+            <if test="sAddress!=null">sAddress=#{sAddress}</if>
+            <if test="sDescribe!=null">sDescribe=#{sDescribe}</if>
+        </set>
+        where sUser=#{sUser}
+    </update>
 
-
+-->
 </mapper>

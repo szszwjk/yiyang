@@ -11,7 +11,6 @@
         <module>../yiyang-manager</module>
 
         <module>../yiyang-common</module>
-        <module>../yiyang-sso-web</module>
         <module>../yiyang-service-web</module>
         <module>../yiyang-parent-web</module>
         <module>../yiyang-social-web</module>

@@ -3,16 +3,21 @@
 <mapper namespace="com.yiyang.mapper.TPreserviceMapper" >
 
     <select id="findDCL"  parameterType="com.yiyang.pojo.TPreservice" resultType="com.yiyang.pojo.TPreservice" >
-    SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psFlag FROM  tpreservice where 1=1
+    SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psFlag FROM  tpreservice where psFlag=1
     <if test="psUname!=null and psUname!=''" >
         and psUname LIKE '%${psUname}%'
     </if>
     <if test="psTelnumber!=null and psTelnumber!=''" >
         and psTelnumber=#{psTelnumber}
     </if>
-</select>
+    </select>
+
+    <select id="findDCLAll" resultType="com.yiyang.pojo.TPreservice">
+        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psFlag FROM  tpreservice where psFlag=1
+    </select>
+
     <select id="findYJD"  parameterType="com.yiyang.pojo.TPreservice"  resultType="com.yiyang.pojo.TPreservice" >
-        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psPeople,psFlag FROM  tpreservice where 1=1
+        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psPeople,psFlag FROM  tpreservice where psFlag=2
         <if test="psUname!=null and psUname!=''" >
             and psUname LIKE '%${psUname}%'
         </if>
@@ -20,8 +25,13 @@
             and psTelnumber=#{psTelnumber}
         </if>
     </select>
+
+    <select id="findYJDAll"  resultType="com.yiyang.pojo.TPreservice" >
+        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psPeople,psFlag FROM  tpreservice where psFlag=2
+    </select>
+
     <select id="findYWC" parameterType="com.yiyang.pojo.TPreservice" resultType="com.yiyang.pojo.TPreservice" >
-        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psPeople,psFinishTime,psFlag FROM  tpreservice where 1=1
+        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psPeople,psFinishTime,psFlag FROM  tpreservice where psFlag=3
         <if test="psUname!=null and psUname!=''" >
             and psUname LIKE '%${psUname}%'
         </if>
@@ -29,10 +39,54 @@
             and psTelnumber=#{psTelnumber}
         </if>
     </select>
-    <select id="findAll" resultType="com.yiyang.pojo.TPreservice">
-        SELECT  psId,psNumber,psUname,psTime,psTotime,psAddres,psFlag from tpreservice
+    <select id="findYWCAll"  resultType="com.yiyang.pojo.TPreservice" >
+        SELECT  psId,psNumber,psUname,psTelnumber,psTime,psTotime,psAddres,psPeople,psFinishTime,psFlag FROM  tpreservice where psFlag=3
     </select>
+
+    <resultMap id="preserviceAndItem" type="com.yiyang.pojo.TPreservice">
+        <id  property="psId" column="psId"></id>
+        <result property="psNumber" column="psNumber"></result>
+        <result property="psUname" column="psUname"></result>
+        <result property="psTime" column="psTime"></result>
+        <result property="psTelnumber" column="psTelnumber"></result>
+        <result property="psAddres" column="psAddres"></result>
+        <result property="psTotime" column="psTotime"></result>
+        <result property="psPeople" column="psPeople"></result>
+        <result property="psDesc" column="psDesc"></result>
+       <association property="tServiceitem" javaType="com.yiyang.pojo.TServiceitem">
+           <id  property="siId" column="siId"></id>
+           <result property="siUser" column="siUser"></result>
+           <result property="siName" column="siName"></result>
+           <result property="siItem" column="siItem"></result>
+           <result property="siType" column="siType"></result>
+           <result property="siPrice" column="siPrice"></result>
+       </association>
+    </resultMap>
+    <select id="findByPsNumber" parameterType="String" resultMap="preserviceAndItem">
+       SELECT a.psNumber,a.psUname,a.psTime,a.psTelnumber,a.psAddres,a.psTotime,
+        b.siLarge,b.siItem,b.siType,b.siName,b.siPrice,a.psPeople,a.psDesc
+       from tpreservice a left JOIN tserviceitem b on a.psPeople=b.siUser
+       where a.psNumber=#{psNumber}
+    </select>
+
     <select id="findType" parameterType="int" resultType="int">
         select count(*) from tpreservice WHERE psFlag = #{psFlag}
     </select>
+
+
+    <update id="updateDCL2" parameterType="int">
+        UPDATE tpreservice SET psFlag=2
+        where psNumber=#{psNumber}
+    </update>
+
+    <update id="updateYJD2" parameterType="int">
+        UPDATE tpreservice SET psFlag=3
+        where psNumber=#{psNumber}
+    </update>
+
+    <update id="updateYWC2" parameterType="int">
+        UPDATE tpreservice SET psFlag=4
+        where psNumber=#{psNumber}
+    </update>
+
 </mapper>

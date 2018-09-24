@@ -8,92 +8,86 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-        <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>服务预定</title>
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="../css/parentindex.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/parentindex.css">
 
-        <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-        <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
-        <!--[if lt IE 9]>
-        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <link rel="sty">
-    </head>
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="sty">
+</head>
 
 
-    <body>
-    <header>
+<body>
+<header>
 
-        <div class="row">
-            <div class="col-md-2">.col-md-8</div>
-            <div class="col-md-8">.col-md-8</div>
-            <div class="col-md-2">.col-md-4</div>
+    <div class="row">
+        <div class="col-md-2">.col-md-8</div>
+        <div class="col-md-8">
+            <div class="col-md-1 text-center"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded" >
+                <span ><a href="/index">首页</a></span></div>
+            <div class="col-md-1 text-center"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                <span><a href="#">信息管理</a></span></div>
+            <div class="col-md-1 text-center"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+                <span> <a href="/serviceitem">服务项目</a></span></div>
+            <div class="col-md-1 text-center"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
+                <span><a href="/preservice">工单管理</a></span></div>
+            <div class="col-md-1 text-center"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
+                <span>评价管理</span></div>
+            <div class="col-md-1 text-center"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
+                <span>投诉管理</span></div>
+            <div class="col-md-1 text-center"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
+                <span>订单流水</span></div>
         </div>
+        <div class="col-md-2">.col-md-4</div>
+    </div>
 
-    </header>
-    <section class="content">
+</header>
+<section class="content">
 
 
-
-        <div class="col-md-2">
-            <div class="tabTip">
-                <ul class="nav nav-pills nav-stacked" role="tablist">
-                    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="showlist">预警信息</a></li>
-                    <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">个人信息</a></li>
-                    <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
-                    <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
-                </ul>
-            </div>
+    <div class="col-md-2">
+        <div class="tabTip">
+            <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="info">个人基本信息</a></li>
+            </ul>
         </div>
+    </div>
 
-        <div class="col-md-10">
+    <div class="col-md-10" >
 
-
-            <div class="tabContent">
-                <!-- 面板区 -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="home">
-                        <table class="table" id="" title="待处理工单">
-                            <thead id="thead">
-                            <tr><th ><input type="checkbox"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务状态</th><th >操作</th></tr>
-                            </thead>
-                            <%--<c:forEach items="${result.roes}" var="item">
-                                <tr>
-                                    <th ><input type="checkbox"></th>
-                                    <td>${item.siId }</td>
-                                    <td>${item.siName}</td>
-                                    <td>${item.siLarge}</td>
-                                    <td>${item.siLittle}</td>
-                                    <td>${item.siItem}</td>
-                                    <td>${item.siPrice}</td>
-                                    <td><a href="#">查看详情</a> <a href="#">预定</a></td>
-                                    </tr>
-                            </c:forEach>--%>
-                        </table>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="profile">2</div>
-                    <div role="tabpanel" class="tab-pane" id="messages">3</div>
-                    <div role="tabpanel" class="tab-pane" id="settings">4</div>
+        <div class="tabContent" style="padding: 10px">
+            <!-- 面板区 -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
 
-    </section>
+</section>
 
 
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/service.js"></script>
-    </body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../js/preservicedcl.js"></script>
+</body>
 </html>

@@ -21,8 +21,9 @@
 
 	<context:property-placeholder location="classpath:*.properties" />
 	<mvc:resources location="/WEB-INF/img/" mapping="/img/**"/>
-	<mvc:resources location="/WEB-INF/jsp/" mapping="/js/**"/>
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+	<mvc:resources location="/WEB-INF/jsp/" mapping="/jsp/**"/>
     <mvc:resources location="/WEB-INF/lib/" mapping="/lib/**"/>
 	<!--  视图解析器-->
 	<bean
@@ -56,7 +57,8 @@
 	
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="yiyang-service-web"/>
-	<dubbo:registry protocol="zookeeper" address="192.168.25.122:2181"/>
+	<dubbo:registry protocol="zookeeper" address="192.168.25.167:2181"/>
 
 	<dubbo:reference interface="com.yiyang.service.tservice.TpreService" id="tpreService"/>
+    <dubbo:reference interface="com.yiyang.service.tservice.Serviceitem" id="serviceitem"/>
 	</beans>

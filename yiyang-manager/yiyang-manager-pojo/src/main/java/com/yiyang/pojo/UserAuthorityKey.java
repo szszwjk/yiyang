@@ -1,7 +1,10 @@
 package com.yiyang.pojo;
 
 import java.io.Serializable;
+
 import java.util.List;
+
+
 
 public class UserAuthorityKey implements Serializable {
     private String username;

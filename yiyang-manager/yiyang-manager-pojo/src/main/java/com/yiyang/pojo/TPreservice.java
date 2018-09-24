@@ -3,7 +3,9 @@ package com.yiyang.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+
 public class TPreservice implements Serializable {
+
     private Integer psId;
 
     private String psUser;
@@ -31,6 +33,15 @@ public class TPreservice implements Serializable {
     private String psPeople;
 
     private Date finishTime;
+    private TServiceitem tServiceitem;
+
+    public TServiceitem gettServiceitem() {
+        return tServiceitem;
+    }
+
+    public void settServiceitem(TServiceitem tServiceitem) {
+        this.tServiceitem = tServiceitem;
+    }
 
     public String getPsPeople() {
         return psPeople;
@@ -161,6 +172,7 @@ public class TPreservice implements Serializable {
                 ", psDesc='" + psDesc + '\'' +
                 ", psPeople='" + psPeople + '\'' +
                 ", finishTime=" + finishTime +
+                ", tServiceitem=" + tServiceitem +
                 '}';
     }
 }

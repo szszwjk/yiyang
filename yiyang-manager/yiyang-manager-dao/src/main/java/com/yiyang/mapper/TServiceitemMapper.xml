@@ -4,6 +4,7 @@
     <select id="selectAll" resultType="com.yiyang.pojo.TServiceitem">
         SELECT  * FROM tserviceitem
     </select>
+
     <insert id="insertServiceItem" parameterType="com.yiyang.pojo.TServiceitem">
         INSERT  INTO tserviceitem(siUser, siName, siLarge, siLittle, siItem, siPrice, siDesc, siType) VALUES
         (#{siUser},#{siName},#{siLarge},#{siLittle},#{siItem},#{siPrice},#{siDesc},#{siType})
