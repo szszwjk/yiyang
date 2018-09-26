@@ -129,6 +129,7 @@
 
 	<dubbo:service interface="com.yiyang.service.tservice.Serviceitem" ref="serviceitemImpl" timeout="30000"/>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	<dubbo:service interface="com.yiyang.service.doctor.DoctorService" ref="doctorServiceImpl" timeout="30000"/>
 	<!--
 	<dubbo:service interface="com.yiyang.service.tservice.Tservice" ref="tServiceImpl" timeout="30000"/>
@@ -138,5 +139,8 @@
 	<dubbo:service interface="com.yiyang.service.tservice.Tservice" ref="tserviceImpl" timeout="30000"/>
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
+	<dubbo:service interface="com.yiyang.service.social.SelectAllUserService" ref="selectAllUserServiceImpl" timeout="30000"/>
 </beans>

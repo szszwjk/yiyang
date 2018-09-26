@@ -5,7 +5,7 @@ import com.yiyang.common.utils.JsonUtils;
 import com.yiyang.common.utils.YiyangResult;
 import com.yiyang.mapper.*;
 
-import com.yiyang.pojo.TAuthority;
+
 import com.yiyang.pojo.TUser;
 import com.yiyang.pojo.TUserInfo;
 import com.yiyang.pojo.UserAuthorityKey;
@@ -18,6 +18,7 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService{
+
     @Value("${USER_INFO}")
     private String USER_INFO;
     @Value("${SESSION_EXPIRE}")

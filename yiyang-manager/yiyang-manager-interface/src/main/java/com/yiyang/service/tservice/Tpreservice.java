@@ -1,8 +1,9 @@
 package com.yiyang.service.tservice;
 import com.yiyang.common.utils.YiyangPageResult;
 import com.yiyang.pojo.TPreservice;
+import com.yiyang.pojo.TService;
 
-
+import java.util.Map;
 
 public interface TpreService {
     YiyangPageResult getTpreServicedcl(int page, int rows);

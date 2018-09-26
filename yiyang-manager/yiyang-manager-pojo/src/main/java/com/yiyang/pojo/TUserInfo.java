@@ -20,6 +20,16 @@ public class TUserInfo implements Serializable {
 
     private String infoMarriage;
 
+    private  TParent tParent;
+
+    public TParent gettParent() {
+        return tParent;
+    }
+
+    public void settParent(TParent tParent) {
+        this.tParent = tParent;
+    }
+
     public Integer getInfoId() {
         return infoId;
     }
@@ -82,5 +92,20 @@ public class TUserInfo implements Serializable {
 
     public void setInfoMarriage(String infoMarriage) {
         this.infoMarriage = infoMarriage == null ? null : infoMarriage.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TUserInfo{" +
+                "infoId=" + infoId +
+                ", infoSex='" + infoSex + '\'' +
+                ", infoTel='" + infoTel + '\'' +
+                ", infoAge=" + infoAge +
+                ", infoName='" + infoName + '\'' +
+                ", infoUser='" + infoUser + '\'' +
+                ", infoNation='" + infoNation + '\'' +
+                ", infoMarriage='" + infoMarriage + '\'' +
+                ", tParent=" + tParent +
+                '}';
     }
 }

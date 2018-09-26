@@ -8,4 +8,26 @@
     <select id="selectTUserInfoByTelnumber" parameterType="string" resultType="com.yiyang.pojo.TUserInfo">
         SELECT * FROM tuserinfo WHERE infoTel=#{telnumber};
     </select>
+    <resultMap id="AllUserMap" type="com.yiyang.pojo.TUserInfo">
+        <id column="infoName" property="infoName"/>
+        <result column="infoId" property="infoId"/>
+        <result column="infoSex" property="infoSex"/>
+        <result column="infoTel" property="infoTel"/>
+        <result column="infoAge" property="infoAge"/>
+        <result column="infoName" property="infoName"/>
+        <result column="infoUser" property="infoUser"/>
+        <result column="infoNation" property="infoNation"/>
+        <result column="infoMarriage" property="infoMarriage"/>
+
+        <association property="tParent" javaType="com.yiyang.pojo.TParent">
+            <!-- column:user表的主键对应的列  property：user对象中id属性-->
+            <id column="pUser" property="pUser"/>
+            <result column="pIdnum" property="pIdnum"/>
+       </association>
+
+
+    </resultMap>
+    <select id="SelectAllUser" resultMap="AllUserMap">
+       SELECT b.*,a.pIdnum from tparent a,tuserinfo b where a.pUser = b.infoName
+    </select>
 </mapper>

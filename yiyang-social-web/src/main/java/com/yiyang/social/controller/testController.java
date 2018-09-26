@@ -10,4 +10,5 @@ public class testController {
     public String demo1(){
         return "index";
     }
+
 }
