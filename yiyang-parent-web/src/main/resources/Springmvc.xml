@@ -30,6 +30,14 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="host" value="192.168.25.153"/>
+		<constructor-arg name="port" value="6379"/>
+	</bean>
+	<bean id="jedisClientPool" class="com.yiyang.common.jedis.JedisClientPool">
+
+	</bean>
 	<!--post乱码-->
 	<mvc:annotation-driven >
 	<mvc:message-converters register-defaults="true">
@@ -56,7 +64,7 @@
 	
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="taotao-search-web"/>
-	<dubbo:registry protocol="zookeeper" address="192.168.25.167:2181"/>
+	<dubbo:registry protocol="zookeeper" address="192.168.25.122:2181"/>
 
 
 	<dubbo:reference interface="com.yiyang.service.parent.ParentService" id="parentService" />

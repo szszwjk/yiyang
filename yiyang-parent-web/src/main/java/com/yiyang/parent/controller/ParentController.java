@@ -1,6 +1,7 @@
 package com.yiyang.parent.controller;
 
 import com.yiyang.common.utils.YiyangPageResult;
+import com.yiyang.pojo.ServiceDesc;
 import com.yiyang.pojo.TServiceitem;
 import com.yiyang.service.parent.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,12 @@ public class ParentController {
             YiyangPageResult result = parentService.getItemByLargeAndLittle(page, rows, tServiceitem);
             return result;
         }
+    }
+    @RequestMapping("/item/desc")
+    @ResponseBody
+    public ServiceDesc getServiceDesc(String itemId) {
+        ServiceDesc desc = parentService.getServicesDesc(itemId);
+        return desc;
     }
 
 }

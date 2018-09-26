@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService{
                 YiyangResult yiyangResult=new YiyangResult();
                 yiyangResult.setStatus(200);
                 yiyangResult.setMsg(token);
-                yiyangResult.setData("http://localhost:8088/");
+                yiyangResult.setData("http://localhost:8081/");
                 jedisClient.set(USER_INFO+":"+token,JsonUtils.objectToJson(user));
                 jedisClient.expire(USER_INFO + ":" + token, SESSION_EXPIRE);
                 return yiyangResult;
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService{
             userInfo = tUserInfoMapper.selectTUserInfoByTelnumber(telnumber);
         } catch (Exception e) {
             e.printStackTrace();
-            YiyangResult.build(500,"此电话已被使用");
+            return YiyangResult.build(500,"此电话已被使用");
         }
         if(userInfo!=null)
         {

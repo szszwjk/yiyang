@@ -40,6 +40,6 @@
 	<servlet-mapping>
 	<!-- restful风格 -->
 		<servlet-name>yiyang-sso-web</servlet-name>
-		<url-pattern>/*.css</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>
