@@ -9,12 +9,11 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>../yiyang-manager</module>
-
         <module>../yiyang-common</module>
         <module>../yiyang-service-web</module>
         <module>../yiyang-parent-web</module>
         <module>../yiyang-social-web</module>
-
+        <module>../yiyang-sso-web</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->
