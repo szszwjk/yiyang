@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TServiceMapper" >
-<!--
-    <select id="findInfoByUser" parameterType="String" resultType="">
-        SELECT a.sName,a.sInfo2,a.sUser,a.sInfo3,a.sNumber,b.infoTel,a.sAddress,a.sDescribe
+
+
+    <resultMap id="tServiceMap" type="com.yiyang.pojo.TService">
+        <id  property="sUser" column="id"></id>
+        <result property="sUser" column="sUser"></result>
+        <result property="sName" column="sName"></result>
+        <result property="sNumber" column="sNumber"></result>
+        <result property="sCnum" column="sCnum"></result>
+        <result property="sInfo2" column="sInfo2"></result>
+        <result property="sInfo3" column="sInfo3"></result>
+        <result property="sFlag" column="sFlag"></result>
+        <result property="sAddress" column="sAddress"></result>
+        <result property="sDescribe" column="sDescribe"></result>
+        <association property="tUserInfo" javaType="com.yiyang.pojo.TUserInfo">
+            <id  property="infoUser" column="id"></id>
+            <result property="infoTel" column="infoTel"></result>
+        </association>
+    </resultMap>
+    <select id="findInfoByUser" parameterType="String" resultMap="tServiceMap">
+        SELECT a.sName,a.sInfo2,a.sUser,a.sInfo3,a.sCnum,a.sNumber,b.infoTel,a.sFlag,a.sAddress,a.sDescribe
         from tservice a LEFT JOIN tuserinfo b on a.sUser=b.infoUser
         where a.sUser=#{sUser}
     </select>
-
+<!--
     <update id="updateByUser" parameterType="com.yiyang.pojo.TService">
         UPDATE  tservice
         <set>

@@ -61,7 +61,7 @@ $(function () {
                     "<td>"+list[i].psTotime+"</td>" +
                     "<td>"+list[i].psAddres+"</td>" +
                     "<td>"+list[i].psFlag+"</td>" +
-                    "<td><a href=\"/jieshou？psNumber=\"+list[i].psNumber>接受</a> <a href=\"#\">拒绝</a></td>" +
+                    "<td><a href=\"#\" onclick='jieshou1(this)'>接受</a> <a href=\"#\" onclick='refuse()'>拒绝</a></td>" +
                     "</tr>"
             }
             string+="</table>";
@@ -81,6 +81,20 @@ $(function () {
         });
     })
 });
+function jieshou1(obj) {
+     var rows=obj.parentNode.parentNode.rowIndex;
+     var recId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
+     console.log(recId);
+
+}
+function refuse() {
+    var text=confirm("确认要拒绝该工单么？");
+    if(text=true){
+    }else{
+        return "preservicedcl";
+    }
+
+
 function pageclick(obj) {
     var flag = $(obj).text();
     if (nowpage == flag) {
@@ -119,7 +133,7 @@ function pageclick(obj) {
                 "<td>" + list[i].psTotime + "</td>" +
                 "<td>" + list[i].psAddres + "</td>" +
                 "<td>" + list[i].psFlag + "</td>" +
-                "<td><a href=\"/jieshou？psNumber=list[i].psNumber\">接受</a> <a href=\"#\">拒绝</a></td>" +
+                "<td><a href=\"#\" onclick=\"accept(this)\">接受</a> <a href=\"#\" onclick='refuse()'>拒绝</a></td>" +
                 "</tr>"
         }
         string += "</table>";
@@ -146,4 +160,4 @@ function pageclick(obj) {
             $("#mytable").after(pagebt)
         }
     });
-}
+}}

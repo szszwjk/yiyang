@@ -33,6 +33,7 @@ public class TPreservice implements Serializable {
     private String psPeople;
 
     private Date finishTime;
+
     private TServiceitem tServiceitem;
 
     public TServiceitem gettServiceitem() {

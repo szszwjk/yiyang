@@ -91,13 +91,19 @@ public class TpreserviceController {
     public String preservice(){
         return "preservice";
     }
-    @RequestMapping("/jieshou")
-    public ModelAndView jieshou(@RequestParam("psNumber") String psNumber){
-        ModelAndView mv=new ModelAndView();
-        mv.addObject("psNumber",psNumber);
+    @RequestMapping("/serviceinfo")
+    public String serviceinfo(){
+        return "serviceinfo";
+    }
+
+
+    @RequestMapping(value="/jieshou",method=RequestMethod.GET)
+    public ModelAndView jieshou(String psNumber){
+        psNumber="002";
         TPreservice tPreservice=tpreService.findByPsNumber(psNumber);
-        mv.addObject("data",tPreservice);
-        mv.setViewName("/jieshou");
+        System.out.println(tPreservice);
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("tPreservice",tPreservice);
         return mv;
     }
     @RequestMapping("/index")

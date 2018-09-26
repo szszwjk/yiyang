@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 
 <head>
@@ -34,14 +35,14 @@
     <div class="row">
         <div class="col-md-2">.col-md-8</div>
         <div class="col-md-8">
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">
-                <span><a page="/index">首页</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
-                <span><a href="#">信息管理</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
-                <span> <a href="/serviceitem">服务项目</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
-                <span><a href="/preservice">工单管理</a></span></div>
+            <div class="col-md-1 text-center"><a href="/index"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded" >
+                <span>首页</span></a></div>
+            <div class="col-md-1 text-center"><a href="/serviceinfo"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                <span>信息管理</span></a></div>
+            <div class="col-md-1 text-center"><a href="/serviceitem"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+                <span> 服务项目</span></a></div>
+            <div class="col-md-1 text-center"><a href="/preservice"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
+                <span>工单管理</span></a></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
                 <span>评价管理</span></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
@@ -60,88 +61,88 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
 
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="post">
                              <div class="form-head">工单管理</div>
                              <div class="form-group">
-                                <div style="float: left;"><label for="psNumber" class="" style="line-height: 34px">订单编号</label></div>
+                                <div style="float:left;"><label for="psNumber" class="" style="line-height: 34px" >订单编号</label></div>
                                 <div class="myselect">
-                                    <input  type="text" class="form-control" id="psNumber" >
+                                    <input  type="text" class="form-control" id="psNumber" value="${tPreservice.psNumber}">
                                     </input>
                                 </div>
                                 <div style="float: left;"><label for="psUname" class="" style="line-height: 34px">订单用户姓名</label></div>
                                 <div class="myselect">
-                                    <input type="text" class="form-control" id="psUname">
+                                    <input type="text" class="form-control" id="psUname" value="${tPreservice.psUname}">
                                     </input>
                                 </div>
                              </div>
                             <div class="form-group">
                             <div style="float: left;"><label for="psTime" class="" style="line-height: 34px">下单时间</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="psTime">
+                                <input type="text" class="form-control" id="psTime" value="${tPreservice.psTime}">
                                 </input>
                             </div>
                             <div style="float: left;"><label for="psTelnumber" class="" style="line-height: 34px">电话号码</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="psTelnumber">
+                                <input type="text" class="form-control" id="psTelnumber" value="${tPreservice.psTelnumber}">
                                 </input>
                             </div>
                             </div>
                             <div class="form-group">
                             <div style="float: left;"><label for="psAddres" class="" style="line-height: 34px">服务地址</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="psAddres">
+                                <input type="text" class="form-control" id="psAddres" value="${tPreservice.psAddres}">
                                 </input>
                             </div>
 
                             <div style="float: left;"><label for="psTotime" class="" style="line-height: 34px">要求时间</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="psTotime">
+                                <input type="text" class="form-control" id="psTotime" value="${tPreservice.psTotime}">
                                 </input>
                             </div>
                             </div>
                             <div class="form-group">
                             <div style="float: left;"><label for="siLarge" class="" style="line-height: 34px">服务大类</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="siLarge">
+                                <input type="text" class="form-control" id="siLarge" value="${tPreservice.tServiceitem.siLarge}">
                                 </input>
                             </div>
 
                             <div style="float: left;"><label for="siItem" class="" style="line-height: 34px">服务项</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="siItem">
+                                <input type="text" class="form-control" id="siItem" value="${tPreservice.tServiceitem.siItem}">
                                 </input>
                             </div>
                             </div>
                             <div class="form-group">
                             <div style="float: left;"><label for="siType" class="" style="line-height: 34px">服务方式</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="siType">
+                                <input type="text" class="form-control" id="siType" value="${tPreservice.tServiceitem.siType}">
                                 </input>
                             </div>
 
                             <div style="float: left;"><label for="siName" class="" style="line-height: 34px">服务商名称</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="siName">
+                                <input type="text" class="form-control" id="siName" value="${tPreservice.tServiceitem.siName}">
                                 </input>
                             </div>
                             </div>
                             <div class="form-group">
                             <div style="float: left;"><label for="siPrice" class="" style="line-height: 34px">服务单价</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="siPrice">
+                                <input type="text" class="form-control" id="siPrice" value="${tPreservice.tServiceitem.siPrice}">
                                 </input>
                             </div>
 
                             <div style="float: left;"><label for="psPeople" class="" style="line-height: 34px">服务人员</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="psPeople">
+                                <input type="text" class="form-control" id="psPeople" value="${tPreservice.psPeople}">
                                 </input>
                             </div>
                             </div>
                             <div class="form-group">
                             <div style="float: left;"><label for="psDesc" class="" style="line-height: 34px">服务要求</label></div>
                             <div class="myselect">
-                                <input type="text" class="form-control" id="psDesc">
+                                <input type="text" class="form-control" id="psDesc" value="${tPreservice.psDesc}">
                                 </input>
                             </div>
                             </div>
@@ -161,7 +162,6 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="../js/showdcl.js"></script>
 <script src="../js/preservicedcl.js"></script>
 </body>
 </html>

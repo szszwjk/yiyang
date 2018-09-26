@@ -66,7 +66,7 @@ $(function () {
                     "<td>"+list[i].siDesc+"</td>" +
                     "<td>"+list[i].siType+"</td>" +
                     "<td>"+list[i].siPrice+"</td>" +
-                    "<td><a href=\"#\">编辑</a> <a href=\"#\">删除</a></td>" +
+                    "<td><a href=\"#\" onclick='update()'>编辑</a> <a href=\"#\">删除</a></td>" +
                     "</tr>"
 
             }
@@ -87,7 +87,10 @@ $(function () {
         });
     })
 });
+function update(){
 
+
+}
 
 
 function pageclick(obj) {

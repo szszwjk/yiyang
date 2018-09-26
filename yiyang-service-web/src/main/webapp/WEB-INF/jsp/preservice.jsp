@@ -36,14 +36,14 @@
     <div class="row">
         <div class="col-md-2">.col-md-8</div>
         <div class="col-md-8">
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">
-                <span><a href="/index">首页</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
-                <span ><a href="#">信息管理</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
-                <span> <a href="/serviceitem">服务项目</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
-                <span><a href="/preservice">工单管理</a></span></div>
+            <div class="col-md-1 text-center"><a href="/index"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded" >
+                <span>首页</span></a></div>
+            <div class="col-md-1 text-center"><a href="/serviceinfo"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                <span>信息管理</span></a></div>
+            <div class="col-md-1 text-center"><a href="/serviceitem"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+                <span> 服务项目</span></a></div>
+            <div class="col-md-1 text-center"><a href="/preservice"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
+                <span>工单管理</span></a></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
                 <span>评价管理</span></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">

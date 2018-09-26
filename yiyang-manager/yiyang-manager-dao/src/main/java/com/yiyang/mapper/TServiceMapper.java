@@ -6,8 +6,8 @@ import com.yiyang.pojo.TService;
 import org.apache.ibatis.annotations.Param;
 
 public interface TServiceMapper {
-/*
-      void findInfoByUser(String sUser);
 
-      void updateByUser(TService tService);*/
+    TService findInfoByUser(String sUser);
+
+     // void updateByUser(TService tService);
     }

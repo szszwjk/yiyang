@@ -1,10 +1,9 @@
 package com.yiyang.service.tservice;
 
-
-
+import com.yiyang.pojo.TService;
 
 public interface Tservice {
-   /* YiyangResult findInfoByUser(String sUser);
+   TService findInfoByUser(String sUser);
 
-    YiyangResult  updateByUser(TService tService);*/
+   // YiyangResult  updateByUser(TService tService);
 }

@@ -32,18 +32,17 @@
 
 <body>
 <header>
-
     <div class="row">
         <div class="col-md-2">.col-md-8</div>
         <div class="col-md-8">
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">
-                <span><a href="/">首页</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
-                <span><a href="#">信息管理</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
-                <span> <a href="/serviceitem">服务项目</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
-                <span> <a href="/preservice">工单管理</a></span></div>
+            <div class="col-md-1 text-center"><a href="/index"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded" >
+                <span>首页</span></a></div>
+            <div class="col-md-1 text-center"><a href="/serviceinfo"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                <span>信息管理</span></a></div>
+            <div class="col-md-1 text-center"><a href="/serviceitem"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+                <span> 服务项目</span></a></div>
+            <div class="col-md-1 text-center"><a href="/preservice"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
+                <span>工单管理</span></a></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
                 <span>评价管理</span></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
@@ -138,7 +137,7 @@
                             <button type="button" class="btn btn-info" style="width:70px" id="selectlist">查询</button>
                         </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-info" style="width:70px" id="add">新增</button>
+                                <button type="button" class="btn btn-info" style="width:70px" id="add" onclick="add(this)">新增</button>
                                 <button type="button" class="btn btn-info" style="width:70px" id="delete">批量删除</button>
                             </div>
                         </div>
@@ -148,10 +147,14 @@
             </div>
         </div>
     </div>
-
-
 </section>
+<script type="text/javascript">
+    function add() {
+    }
 
+
+
+</script>
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->

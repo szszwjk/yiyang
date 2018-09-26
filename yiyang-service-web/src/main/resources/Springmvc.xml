@@ -61,4 +61,5 @@
 
 	<dubbo:reference interface="com.yiyang.service.tservice.TpreService" id="tpreService"/>
     <dubbo:reference interface="com.yiyang.service.tservice.Serviceitem" id="serviceitem"/>
+	<dubbo:reference interface="com.yiyang.service.tservice.Tservice" id="tservice"/>
 	</beans>
