@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TDoctorMapper" >
 <insert id="insertDoctor" parameterType="com.yiyang.pojo.TDoctor" >
-  INSERT INTO t_doctor (
-	d_user,
-	d_hname,
-	d_cnum,
-	d_info1,
-	d_address
+  INSERT INTO tdoctor (
+	dUser,
+	dHname,
+	dCnum,
+	dInfo1,
+	dAddress
     )
     VALUES
 	(
@@ -18,6 +18,6 @@
 
 	<select id="findDoctorByName" parameterType="string" resultType="com.yiyang.pojo.TDoctor">
 
-		SELECT  * from t_doctor WHERE d_user = #{dUser}
+		SELECT  * from tdoctor WHERE dUser = #{dUser}
 	</select>
 </mapper>

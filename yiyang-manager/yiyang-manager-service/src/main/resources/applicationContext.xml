@@ -128,6 +128,7 @@
 	<dubbo:service interface="com.yiyang.service.social.FindTypeService" ref="findTypeServiceImpl" timeout="30000"/>
 
 	<dubbo:service interface="com.yiyang.service.tservice.Serviceitem" ref="serviceitemImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.doctor.DoctorService" ref="doctorServiceImpl" timeout="30000"/>
 	<!--
 	<dubbo:service interface="com.yiyang.service.tservice.Tservice" ref="tServiceImpl" timeout="30000"/>
 -->
