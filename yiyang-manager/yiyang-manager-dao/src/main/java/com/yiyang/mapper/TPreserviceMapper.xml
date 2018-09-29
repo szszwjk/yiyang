@@ -74,17 +74,17 @@
     </select>
 
 
-    <update id="updateDCL2" parameterType="int">
+    <update id="updateDCL2" parameterType="string">
         UPDATE tpreservice SET psFlag=2
         where psNumber=#{psNumber}
     </update>
 
-    <update id="updateYJD2" parameterType="int">
+    <update id="updateYJD2" parameterType="string">
         UPDATE tpreservice SET psFlag=3
         where psNumber=#{psNumber}
     </update>
 
-    <update id="updateYWC2" parameterType="int">
+    <update id="updateYWC2" parameterType="string">
         UPDATE tpreservice SET psFlag=4
         where psNumber=#{psNumber}
     </update>

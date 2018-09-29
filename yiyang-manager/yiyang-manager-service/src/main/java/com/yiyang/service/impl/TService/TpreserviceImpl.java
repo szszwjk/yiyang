@@ -131,5 +131,20 @@ public class TpreServiceImpl implements TpreService {
         return tPreservice;
     }
 
+    @Override
+    public YiyangResult updateFlag2(String psNumber) {
+        return null;
+    }
+
+    @Override
+    public YiyangResult updateFlag3(String psNumber) {
+        return null;
+    }
+
+    @Override
+    public YiyangResult updateFlag4(String psNumber) {
+        return null;
+    }
+
 
 }
