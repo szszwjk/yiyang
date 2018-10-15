@@ -1,5 +1,7 @@
 package com.yiyang.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,7 +21,7 @@ public class TPreservice implements Serializable {
     private Float psPrice;
 
     private Date psTime;
-
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date psTotime;
 
     private String psFlag;
@@ -32,9 +34,18 @@ public class TPreservice implements Serializable {
 
     private String psPeople;
 
-    private Date finishTime;
+    private Date psFinishTime;
 
     private TServiceitem tServiceitem;
+    private Integer psItemId;
+
+    public Integer getPsItemId() {
+        return psItemId;
+    }
+
+    public void setPsItemId(Integer psItemId) {
+        this.psItemId = psItemId;
+    }
 
     public TServiceitem gettServiceitem() {
         return tServiceitem;
@@ -45,6 +56,7 @@ public class TPreservice implements Serializable {
     }
 
     public String getPsPeople() {
+
         return psPeople;
     }
 
@@ -52,12 +64,12 @@ public class TPreservice implements Serializable {
         this.psPeople = psPeople;
     }
 
-    public Date getFinishTime() {
-        return finishTime;
+    public Date getPsFinishTime() {
+        return psFinishTime;
     }
 
-    public void setFinishTime(Date finishTime) {
-        this.finishTime = finishTime;
+    public void setPsFinishTime(Date psFinishTime) {
+        this.psFinishTime = psFinishTime;
     }
 
     public Integer getPsId() {
@@ -125,6 +137,7 @@ public class TPreservice implements Serializable {
     }
 
     public String getPsFlag() {
+
         return psFlag;
     }
 
@@ -172,8 +185,9 @@ public class TPreservice implements Serializable {
                 ", psAddres='" + psAddres + '\'' +
                 ", psDesc='" + psDesc + '\'' +
                 ", psPeople='" + psPeople + '\'' +
-                ", finishTime=" + finishTime +
+                ", psFinishTime=" + psFinishTime +
                 ", tServiceitem=" + tServiceitem +
+                ", psItemId=" + psItemId +
                 '}';
     }
 }

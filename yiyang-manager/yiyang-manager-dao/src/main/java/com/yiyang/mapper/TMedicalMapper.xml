@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TMedicalMapper" >
-
+    <select id="getTMedical" parameterType="com.yiyang.pojo.TMedical" resultType="com.yiyang.pojo.TMedical">
+        SELECT b.infoName,a.* FROM tmedical a INNER JOIN tuserinfo b on a.mUser=b.infoUser
+        WHERE a.mUser=#{mUser}
+        <if test="mHname!=null and mHname!=''" >
+            and mHname LIKE CONCAT('%',#{mHname},'%')
+        </if>
+        <if test="mInfo1!=null and mInfo1!=''">
+            and mInfo1 LIKE CONCAT('%',#{mInfo1},'%')
+        </if>
+    </select>
+    <insert id="addTMedical" parameterType="com.yiyang.pojo.TMedical" >
+        INSERT INTO tmedical(mUser, mHname, mInfo1, mInfo2, mNum, mIndate, mOutdate, mDesc)
+            VALUE (#{mUser},#{mHname},#{mInfo1},#{mInfo2},#{mNum},#{mIndate},#{mOutdate},#{mDesc})
+    </insert>
+    <update id="editTMedical" parameterType="com.yiyang.pojo.TMedical">
+        UPDATE tmedical
+        <trim prefix="set" suffixOverrides=",">
+            <if test="mHname!=null and mHname!=''">mHname=#{mHname},</if>
+            <if test="mInfo1!=null and mInfo1!=''">mInfo1=#{mInfo1},</if>
+            <if test="mInfo2!=null and mInfo2!=''">mInfo2=#{mInfo2},</if>
+            <if test="mNum!=null and mNum!=''">mNum=#{mNum},</if>
+            <if test="mIndate!=null and mIndate!=''">mIndate=#{mIndate},</if>
+            <if test="mOutdate!=null and mOutdate!=''">mOutdate=#{mOutdate},</if>
+            <if test="mDesc!=null and mDesc!=''">mDesc=#{mDesc},</if>
+        </trim>
+        WHERE mId=#{mId}
+    </update>
+    <delete id="deleteTMedical" parameterType="com.yiyang.pojo.TMedical">
+        DELETE FROM tmedical WHERE mId=#{mid}
+    </delete>
 </mapper>

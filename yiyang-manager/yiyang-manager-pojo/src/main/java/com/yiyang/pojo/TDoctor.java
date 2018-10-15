@@ -12,6 +12,33 @@ public class TDoctor implements Serializable {
     private String dInfo1;
 
     private String dAddress;
+    private String infoName;
+    private String infoImg;
+    private String infoTel;
+
+    public String getInfoTel() {
+        return infoTel;
+    }
+
+    public void setInfoTel(String infoTel) {
+        this.infoTel = infoTel;
+    }
+
+    public String getInfoImg() {
+        return infoImg;
+    }
+
+    public void setInfoImg(String infoImg) {
+        this.infoImg = infoImg;
+    }
+
+    public String getInfoName() {
+        return infoName;
+    }
+
+    public void setInfoName(String infoName) {
+        this.infoName = infoName;
+    }
 
     public String getdUser() {
         return dUser;

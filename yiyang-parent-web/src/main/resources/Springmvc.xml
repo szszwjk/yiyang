@@ -31,6 +31,15 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- 定义文件上传解析器 -->
+	<bean id="multipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设定默认编码 -->
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+		<property name="maxUploadSize" value="5242880"></property>
+	</bean>
+
 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
 		<constructor-arg name="host" value="192.168.25.153"/>
 		<constructor-arg name="port" value="6379"/>
@@ -58,7 +67,18 @@
                 </list>
             </property>
         </bean>
-    </mvc:message-converters>
+		<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+			<property name="objectMapper">
+				<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+					<property name="dateFormat">
+						<bean class="java.text.SimpleDateFormat">
+							<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+						</bean>
+					</property>
+				</bean>
+			</property>
+		</bean>
+	</mvc:message-converters>
 </mvc:annotation-driven>
 
 	
@@ -68,5 +88,7 @@
 
 
 	<dubbo:reference interface="com.yiyang.service.parent.ParentService" id="parentService" />
+	<dubbo:reference interface="com.yiyang.service.parent.ParentData" id="parentData" />
+	<dubbo:reference interface="com.yiyang.service.parent.PictureService" id="pictureService" />
 
 </beans>

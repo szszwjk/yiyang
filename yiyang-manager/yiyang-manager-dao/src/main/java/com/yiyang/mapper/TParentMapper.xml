@@ -2,15 +2,79 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TParentMapper" >
     <insert id="insertTParent" parameterType="string">
-        INSERT INTO tparent(pUser) VALUE (#{username})
+        INSERT INTO tparent(pUser,pInfo1,pInfo2,pInfo3,pInfo4) VALUE (#{username},'无','无','无','无')
     </insert>
     <select id="getParentInfo" parameterType="string" resultType="com.yiyang.pojo.ParentInfo">
-        SELECT a.infoSex,a.infoTel,c.cName,b.pIdnum,b.pBirthplace,b.pAddress,b.pCno,a.infoName,a.infoAge,b.pInfo1,b.pInfo2,b.pInfo3,b.pInfo4 FROM tuserinfo a LEFT JOIN tparent b ON a.infoUser=b.pUser
+        SELECT a.infoSex,a.infoTel,a.infoImg,c.cName,b.pIdnum,b.pBirthplace,b.pAddress,b.pCno,a.infoName,a.infoAge,b.pInfo1,b.pInfo2,b.pInfo3,b.pInfo4 FROM tuserinfo a LEFT JOIN tparent b ON a.infoUser=b.pUser
         LEFT JOIN tcommunity c ON b.pCnum=c.cNum WHERE a.infoUser=#{username};
     </select>
     <select id="getServicesDesc" parameterType="string" resultType="com.yiyang.pojo.ServiceDesc">
         SELECT a.siName,b.sAddress,c.infoTel,a.siItem,a.siPrice,a.siType,b.sInfo3,a.siDesc,b.sNumber
         FROM tserviceitem a LEFT JOIN tservice b ON a.siUser=b.sUser LEFT JOIN tuserinfo c
         ON a.siUser=c.infoUser where a.siId=#{itemId};
+    </select>
+    <select id="preServices" parameterType="string" resultType="com.yiyang.pojo.ServiceDesc">
+        SELECT a.sName siName,b.siItem,c.infoTel,b.siPrice,a.sUser,b.siType FROM tservice a
+        LEFT JOIN tserviceitem b ON a.sUser=b.siUser
+        LEFT JOIN tuserinfo c on b.siUser=c.infoUser WHERE b.siId=#{itemId}
+
+
+    </select>
+    <select id="getHServiceList" parameterType="com.yiyang.pojo.TPreservice" resultType="com.yiyang.pojo.HServiceList" >
+     SELECT a.psNumber,a.psUname,b.sName,a.psItem,a.psTime,a.psTotime,a.psAddres,c.siPrice,a.psPrice,a.psDesc,d.infoName,d.infoTel,a.psFlag
+     FROM tpreservice a INNER JOIN tservice b ON a.psPeople=b.sUser INNER JOIN
+    tserviceitem c ON a.psPeople=c.siUser INNER JOIN tuserinfo d ON a.psPeople=d.infoUser WHERE a.psUser=#{psUser} AND a.psNumber=#{psNumber};
+    </select>
+    <resultMap id="parentmap" type="com.yiyang.pojo.TParent">
+        <result property="pNationality" column="pNationality"></result>
+        <result property="pBirthplace" column="pBirthplace"></result>
+        <result property="pAddress" column="pAddress"></result>
+        <result property="pIdnum" column="pIdnum"></result>
+        <result property="cName" column="cName"></result>
+        <result property="pCnum" column="pCnum"></result>
+        <result property="pCno" column="pCno"></result>
+        <result property="pBlood" column="pBlood"></result>
+        <result property="pEducational" column="pEducational"></result>
+        <result property="pInfo1" column="pInfo1"></result>
+        <result property="pInfo2" column="pInfo2"></result>
+        <result property="pInfo3" column="pInfo3"></result>
+        <result property="pInfo4" column="pInfo4"></result>
+        <association property="tUserInfo" javaType="com.yiyang.pojo.TUserInfo">
+            <result property="infoName" column="infoName"></result>
+            <result property="infoSex" column="infoSex"></result>
+            <result property="infoTel" column="infoTel"></result>
+            <result property="infoAge" column="infoAge"></result>
+            <result property="infoMarriage" column="infoMarriage"></result>
+            <result property="infoNation" column="infoNation"></result>
+        </association>
+    </resultMap>
+    <select id="getParent" parameterType="string" resultMap="parentmap">
+        SELECT b.infoName,b.infoSex,b.infoTel,b.infoAge,a.pNationality,b.infoMarriage,b.infoNation,
+        a.pBirthplace,a.pAddress,a.pIdnum,c.cName,a.pCnum,a.pCno,a.pBlood,a.pEducational,a.pInfo1,a.pInfo2,a.pInfo3,a.pInfo4
+        FROM tparent a INNER JOIN tuserinfo b on a.pUser=b.infoUser
+        INNER JOIN tcommunity c ON a.pCnum =c.cNum WHERE a.pUser=#{username};
+    </select>
+    <update id="updateParent" parameterType="com.yiyang.pojo.TParent">
+        UPDATE tparent
+        <trim prefix="set" suffixOverrides=",">
+            <if test="pIdnum!=null and pIdnum!=''">pIdnum=#{pIdnum},</if>
+            <if test="pBirthplace!=null and pBirthplace!=''">pBirthplace=#{pBirthplace},</if>
+            <if test="pAddress!=null and pAddress!=''">pAddress=#{pAddress},</if>
+            <if test="pCnum!=null and pCnum!=''">pCnum=#{pCnum},</if>
+            <if test="pCno!=null and pCno!=''">pCno=#{pCno},</if>
+            <if test="pInfo1!=null and pInfo1!=''">pInfo1=#{pInfo1},</if>
+            <if test="pInfo2!=null and pInfo2!=''">pInfo2=#{pInfo2},</if>
+            <if test="pInfo3!=null and pInfo3!=''">pInfo3=#{pInfo3},</if>
+            <if test="pInfo4!=null and pInfo4!=''">pInfo4=#{pInfo4},</if>
+            <if test="pNationality!=null and pNationality!=''">pNationality=#{pNationality},</if>
+            <if test="pBlood!=null and pBlood!=''">pBlood=#{pBlood},</if>
+            <if test="pEducational!=null and pEducational!=''">pEducational=#{pEducational},</if>
+        </trim>
+        WHERE pUser=#{pUser}
+    </update>
+    <select id="getDoctor" parameterType="string" resultType="com.yiyang.pojo.TDoctor">
+        SELECT b.infoName,b.infoTel,b.infoImg,a.* FROM `tdoctor` a INNER JOIN tuserinfo b ON a.dUser=b.infoUser WHERE 1
+        <if test="_parameter!=null and _parameter!=''">AND b.infoName LIKE CONCAT('%',#{dname},'%')</if>
+          ORDER BY  RAND() LIMIT 8;
     </select>
 </mapper>

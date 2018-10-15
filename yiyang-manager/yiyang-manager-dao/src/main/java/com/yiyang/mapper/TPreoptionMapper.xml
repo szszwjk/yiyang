@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TPreoptionMapper" >
-
+    <select id="getTPreoptionforUsername" parameterType="string" resultType="com.yiyang.pojo.TPreoption">
+        SELECT * FROM tpreoption WHERE poUser=#{username}
+    </select>
+    <insert id="insertPreoption" parameterType="com.yiyang.pojo.TPreoption">
+        INSERT INTO tpreoption(poId, poUser, poItem, poMax, poMin, poUnit) VALUES (#{poId},#{poUser},#{poItem},#{poMax},#{poMin},#{poUnit});
+    </insert>
+    <update id="updatePreoption" parameterType="com.yiyang.pojo.TPreoption">
+        UPDATE tpreoption
+        <trim prefix="set" suffixOverrides=",">
+            <if test="poMax!=null">poMax=#{poMax},</if>
+            <if test="poMin!=null">poMin=#{poMin},</if>
+        </trim>
+        WHERE poId=#{poId};
+    </update>
+    <select id="getTpreoptionByItem" parameterType="com.yiyang.pojo.TPreoption" resultType="com.yiyang.pojo.TPreoption">
+        SELECT * FROM tpreoption WHERE poUser=#{poUser} AND poItem=#{poItem}
+    </select>
 </mapper>

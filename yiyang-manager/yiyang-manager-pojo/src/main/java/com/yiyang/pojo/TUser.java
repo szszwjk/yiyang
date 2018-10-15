@@ -4,10 +4,18 @@ import java.io.Serializable;
 
 public class TUser implements Serializable{
     private String username;
-
+    private String oldpass;
     private String password;
     private String authorityGroup;
     private String authorityCon;
+
+    public String getOldpass() {
+        return oldpass;
+    }
+
+    public void setOldpass(String oldpass) {
+        this.oldpass = oldpass;
+    }
 
     public String getUsername() {
         return username;

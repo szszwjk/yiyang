@@ -25,6 +25,15 @@ public class ParentInfo implements Serializable {
     private String pInfo4;
     private Date infoAge;
     private String age;
+    private String infoImg;
+
+    public String getInfoImg() {
+        return infoImg;
+    }
+
+    public void setInfoImg(String infoImg) {
+        this.infoImg = infoImg;
+    }
 
     public String getAge() {
         Date birthday=infoAge;

@@ -10,4 +10,7 @@
     <select id="selectUserByUsername" parameterType="string" resultType="com.yiyang.pojo.TUser">
         SELECT  * FROM  tuser WHERE username=#{username};
     </select>
+    <update id="updatePass" parameterType="com.yiyang.pojo.TUser">
+        UPDATE tuser SET password=#{password} WHERE username=#{username}
+    </update>
 </mapper>

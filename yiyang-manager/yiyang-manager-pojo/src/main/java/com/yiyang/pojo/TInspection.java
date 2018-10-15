@@ -16,6 +16,15 @@ public class TInspection implements Serializable {
     private String iDname;
 
     private String iDes;
+    private String infoName;
+
+    public String getInfoName() {
+        return infoName;
+    }
+
+    public void setInfoName(String infoName) {
+        this.infoName = infoName;
+    }
 
     public Integer getiId() {
         return iId;

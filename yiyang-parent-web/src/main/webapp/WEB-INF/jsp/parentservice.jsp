@@ -18,6 +18,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css">
+    <link href="../css/bootstrapdate/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/parentservice.css">
 
     <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
@@ -38,18 +39,18 @@
         <div class="col-md-8">
             <div class="col-md-1 text-center"><a href="/"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">
                 <span>首页</span></a></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
-                <span>健康检测</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
-                <span>健康监护</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
-                <span>健康档案</span></div>
-            <div class="col-md-1 text-center"><a href="/parentservice"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
+            <div class="col-md-1 text-center"><a href="/parent/parentdetction"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                <span>健康检测</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentcustody"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+                <span>健康监护</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentdocument"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
+                <span>健康档案</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentservice"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
                 <span>服务预定</span></a></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
-                <span>家庭医生</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
-                <span>个人账户</span></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentdoctor"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
+                <span>家庭医生</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentaccount"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
+                <span>个人账户</span></a></div>
         </div>
         <div class="col-md-2">.col-md-4</div>
     </div>
@@ -99,39 +100,7 @@
                                 <div class="myselect">
                                     <select class="form-control" id="littlelist">
                                         <option class="" value="" selected="selected" id="startop"> --请选择--</option>
-                                        <%--<option class="" value="热水器维修"> 热水器维修</option>--%>
-                                        <%--<option class="" value="气功"> 气功</option>--%>
-                                        <%--<option class="" value="浴室维修"> 浴室维修</option>--%>
-                                        <%--<option class="" value="城乡居民医疗保险"> 城乡居民医疗保险</option>--%>
-                                        <%--<option class="" value="缝纫设备维修"> 缝纫设备维修</option>--%>
-                                        <%--<option class="" value="针灸"> 针灸</option>--%>
-                                        <%--<option class="" value="太极拳"> 太极拳</option>--%>
-                                        <%--<option class="" value="微波炉维修"> 微波炉维修</option>--%>
-                                        <%--<option class="" value="酒店代订"> 酒店代订</option>--%>
-                                        <%--<option class="" value="洗衣机维修"> 洗衣机维修</option>--%>
-                                        <%--<option class="" value="城乡居民养老保险"> 城乡居民养老保险</option>--%>
-                                        <%--<option class="" value="政策咨询"> 政策咨询</option>--%>
-                                        <%--<option class="" value="拔火罐"> 拔火罐</option>--%>
-                                        <%--<option class="" value="旅游资讯查询"> 旅游资讯查询</option>--%>
-                                        <%--<option class="" value="墙缝修补"> 墙缝修补</option>--%>
-                                        <%--<option class="" value="政策宣传"> 政策宣传</option>--%>
-                                        <%--<option class="" value="不住家保姆"> 不住家保姆</option>--%>
-                                        <%--<option class="" value="申请廉租房"> 申请廉租房</option>--%>
-                                        <%--<option class="" value="墙面粉刷"> 墙面粉刷</option>--%>
-                                        <%--<option class="" value="宠物医疗"> 宠物医疗</option>--%>
-                                        <%--<option class="" value="代订机票"> 代订机票</option>--%>
-                                        <%--<option class="" value="优抚优待"> 优抚优待</option>--%>
-                                        <%--<option class="" value="电视机维修"> 电视机维修</option>--%>
-                                        <%--<option class="" value="老人陪护"> 老人陪护</option>--%>
-                                        <%--<option class="" value="宠物托管"> 宠物托管</option>--%>
-                                        <%--<option class="" value="宠物美容"> 宠物美容</option>--%>
-                                        <%--<option class="" value="空调维修"> 空调维修</option>--%>
-                                        <%--<option class="" value="搬家服务"> 搬家服务</option>--%>
-                                        <%--<option class="" value="钟点工"> 钟点工</option>--%>
-                                        <%--<option class="" value="租车"> 租车</option>--%>
-                                        <%--<option class="" value="冰箱维修"> 冰箱维修</option>--%>
-                                        <%--<option class="" value="住家保姆"> 住家保姆</option>--%>
-                                        <%--<option class="" value="水电代缴"> 水电代缴</option>--%>
+
                                     </select>
                                 </div>
                             </div>
@@ -173,12 +142,116 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     <span class="modal-title " >服务预定</span>
                                 </div>
+                                <div style="margin-right: 30px;">
+                                    <form id="preServices">
+                                    <table class="table">
+                                        <col style="width: 15%" />
+                                        <col style="width: 35%" />
+                                        <col style="width: 10%" />
+                                        <col style="width: 40%" />
+                                        <tr><td class="text-right">姓名:</td><td> <input type="text" class="form-control"id="psUser" name="psUname"></td><td class="text-right">联系电话:</td><td><div id="telgroup"><input type="text" class="form-control" name="psTelnumber" id="psTelnumber"></div></td></tr>
+                                        <tr><td class="text-right">服务地址</td><td colspan="3"><input type="text" class="form-control" id="psAddres" name="psAddres"></td></tr>
+                                        <tr><td class="text-right">服务商家:</td><td> <input type="text" class="form-control" id="serviceName" readonly></td><td class="text-right">服务项目:</td><td> <input type="text" class="form-control" id="psItem" name="psItem" readonly></td></tr>
+                                        <tr><td class="text-right">商家电话:</td><td> <input type="text" class="form-control" id="serviceTel" readonly></td><td class="text-right">服务单价:</td><td> <input type="text" class="form-control" id="servicePrice" readonly></td></tr>
+                                        <tr><td class="text-right"> <span id="serviceType">服务时长:</span></td><td> <select class="form-control" id="serviceNum">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select></td><td class="text-right">服务总价:</td><td> <input type="text" class="form-control" id="serviceSum" name="psPrice" readonly></td></tr>
+                                        <tr><td class="text-right">预约服务时间:</td><td>
+
+
+                                            <div class="form-group">
+                                                <div class="input-group date form_datetime col-md-5"  data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                                    <input class="form-control" size="16" type="text" value="" id="todate" name="psTotime" readonly>
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                                </div>
+                                            </div>
+                                        </td><td><input type="hidden" id="psPeople" name="psPeople"></td><td><input type="hidden" id="psItemId" name="psItemId"></td></tr>
+                                        <tr><td class="text-right">服务要求</td><td colspan="3"><div > <textarea class="form-control" rows="3" style="resize: none;" id="serviceDesc" name="psDesc"></textarea></div>
+                                        </td></tr>
+                                    </table>
+                                    </form>
+                                </div>
+
+                                <div class="modal-footer center">
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-default" onclick="preServices()">保存</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    </div>
+
+                                </div>
+
 
                             </div>
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="profile">2</div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-3" >
+                                <div style="float: left;"><label for="hid" class="" style="line-height: 34px">订单编号:</label></div>
+                                <div class="myselect">
+                                    <input type="text" class="form-control" id="hid">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div style="float: left;"><label for="hitem" class="" style="line-height: 34px">服务项目:</label></div>
+                                <div class="myselect">
+                                    <input type="text" class="form-control" id="hitem">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-info" style="width:70px" id="hselect">查询</button>
+                            </div>
+
+
+
+                        </div>
+                    </form>
+                    <div class="modal fade bs-example-modal-lg h-services" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <span class="modal-title " >详细情况</span>
+                                </div>
+                                <div style="margin-right: 30px;">
+                                    <table class="table">
+                                        <col style="width: 15%" />
+                                        <col style="width: 35%" />
+                                        <col style="width: 10%" />
+                                        <col style="width: 40%" />
+                                        <tr><td class="text-right">订单编号:</td><td> <input type="text" class="form-control" readonly id="hpsNumber" ></td><td class="text-right">客户姓名:</td><td><div ><input type="text" class="form-control" readonly id="hpsUname"></div></td></tr>
+                                        <tr><td class="text-right">服务商家:</td><td> <input type="text" class="form-control" readonly id="hsName"></td><td class="text-right">服务项目:</td><td><div ><input type="text" class="form-control" id="hpsItem" readonly></div></td></tr>
+                                        <tr><td class="text-right">下单时间:</td><td> <input type="text" class="form-control" readonly id="hpsTime"></td><td class="text-right">服务时间:</td><td><div ><input type="text" class="form-control" readonly id="hpsTotime" ></div></td></tr>
+                                        <tr><td class="text-right">服务地址:</td><td colspan="3"> <input type="text" class="form-control" readonly id="hpsAddres"></td></tr>
+                                        <tr><td class="text-right">服务单价:</td><td> <input type="text" class="form-control" readonly id="hsiPrice"></td><td class="text-right">服务总价:</td><td><div ><input type="text" class="form-control" readonly id="hpsPrice" ></div></td></tr>
+                                        <tr><td class="text-right">服务要求:</td><td colspan="3"><div > <textarea class="form-control" rows="3" style="resize: none;"  readonly id="hpsDesc"></textarea></div></td></tr>
+                                        <tr><td class="text-right">服务人员:</td><td> <input type="text" class="form-control" readonly id="hinfoName"></td><td class="text-right">商家电话:</td><td><div ><input type="text" class="form-control" readonly id="hinfoTel" ></div></td></tr>
+                                        <tr><td class="text-right">订单状态:</td><td> <input type="text" class="form-control" readonly id="hpsFlag"></td><td class="text-right"></td><td></td></tr>
+
+                                    </table>
+                                </div>
+
+                                <div class="modal-footer center">
+                                    <div class="text-center">
+                                        <%--<button type="button" class="btn btn-default" onclick="preServices()">保存</button>--%>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -190,6 +263,36 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../js/bootstrapdate/bootstrap-datetimepicker.js"></script>
+<script src="../js/bootstrapdate/bootstrap-datetimepicker.zh-CN.js"></script>
 <script src="../js/parentservice.js"></script>
+<script src="../js/hservice.js"></script>
+<script type="text/javascript">
+    $.fn.datetimepicker.defaults = {
+        //默认语言
+        language: 'zh-CN',
+        //默认选择格式
+        format: "yyyy-mm-dd hh:ii:ss",
+        autoclose: true,
+        todayBtn: true,
+        //选择板所在输入框位置
+        pickerPosition: "bottom-left"
+    };
+  $(function () {
+
+      $('.form_datetime').datetimepicker({
+          weekStart: 0, //一周从哪一天开始
+          todayBtn:  1, //
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          forceParse: 0,
+          showMeridian: 1
+      });
+
+
+    });
+
+   </script>
 </body>
 </html>

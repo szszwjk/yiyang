@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TPreremindMapper" >
-
+    <select id="getTPreremind" parameterType="com.yiyang.pojo.TPreremind" resultType="com.yiyang.pojo.TPreremind">
+        SELECT * FROM tpreremind WHERE prUser=#{prUser}
+        <if test="prItem!=null and prItem!=''" >
+            and prItem=#{prItem}
+        </if>
+        <if test="prFlag!=null and prFlag!=''">
+            and prFlag=#{prFlag}
+        </if>
+        ORDER BY prId DESC
+    </select>
+    <update id="updateFlag" parameterType="com.yiyang.pojo.TPreremind" >
+        UPDATE tpreremind SET  prFlag=#{prFlag} WHERE prId=#{prId}
+    </update>
 </mapper>

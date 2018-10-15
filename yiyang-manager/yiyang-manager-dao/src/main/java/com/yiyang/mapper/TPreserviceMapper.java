@@ -36,12 +36,12 @@ public interface TPreserviceMapper {
     /**
      *服务商点击接受待处理工单
      */
-   void updateFlag2(int psFlag);
+   void updateFlag2(String psNumber);
 
     /*服务商点击提交处理已接单工单
      *
      */
-   void updateFlag3(int psFlag);
+   void updateFlag3(String psNumber);
 
     List<TPreservice> findAll();
 
@@ -50,6 +50,12 @@ public interface TPreserviceMapper {
      /**
      * 服务商点击拒绝工单
      */
-   void updateFlag4(int psFlag);
+   void updateFlag4(String psNumber);
 
+    /**
+     * 添加订单
+     * @param tPreservice
+     */
+    void insertOrder(TPreservice tPreservice);
+    List<TPreservice> getHServices(TPreservice tPreservice);
    }

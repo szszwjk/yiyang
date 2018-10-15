@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TInspectionMapper" >
-
+    <select id="getTInspection" parameterType="com.yiyang.pojo.TInspection" resultType="com.yiyang.pojo.TInspection">
+        SELECT b.infoName,a.* FROM tinspection a INNER JOIN tuserinfo b ON a.iUser=b.infoUser
+        WHERE iUser=#{iUser}
+        <if test="iHname!=null and iHname!=''" >
+            and iHname LIKE CONCAT('%',#{iHname},'%')
+        </if>
+        <if test="iInfo1!=null and iInfo1!=''">
+            and iInfo1 LIKE CONCAT('%',#{iInfo1},'%')
+        </if>
+    </select>
+    <insert id="addTInspection" parameterType="com.yiyang.pojo.TInspection">
+        INSERT INTO tinspection(iUser, iHname, iItem, iInfo1, iDname, iDes) VALUE
+            (#{iUser},#{iHname},#{iItem},#{iInfo1},#{iDname},#{iDes})
+    </insert>
+    <update id="editTInspection" parameterType="com.yiyang.pojo.TInspection">
+        UPDATE tinspection
+        <trim prefix="set" suffixOverrides=",">
+            <if test="iHname!=null and iHname!=''">iHname=#{iHname},</if>
+            <if test="iItem!=null and iItem!=''">iItem=#{iItem},</if>
+            <if test="iInfo1!=null and iInfo1!=''">iInfo1=#{iInfo1},</if>
+            <if test="iDname!=null and iDname!=''">iDname=#{iDname},</if>
+            <if test="iDes!=null and iDes!=''">iDes=#{iDes},</if>
+        </trim>
+        WHERE iId=#{iId}
+    </update>
+    <delete id="deleteTInspection" parameterType="int" >
+        DELETE FROM tinspection WHERE iId=#{iId}
+    </delete>
 </mapper>

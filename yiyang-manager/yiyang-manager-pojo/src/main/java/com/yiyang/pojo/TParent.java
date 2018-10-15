@@ -26,8 +26,27 @@ public class TParent implements Serializable {
     private String pNationality;
 
     private String pBlood;
+    private String cName;
 
     private String pEducational;
+    private TUserInfo tUserInfo;
+
+    public String getcName() {
+        return cName;
+    }
+
+    public void setcName(String cName) {
+        this.cName = cName;
+    }
+
+    public TUserInfo gettUserInfo() {
+        return tUserInfo;
+    }
+
+    public void settUserInfo(TUserInfo tUserInfo) {
+        this.tUserInfo = tUserInfo;
+    }
+
 
     public String getpUser() {
         return pUser;
@@ -131,5 +150,26 @@ public class TParent implements Serializable {
 
     public void setpEducational(String pEducational) {
         this.pEducational = pEducational == null ? null : pEducational.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TParent{" +
+                "pUser='" + pUser + '\'' +
+                ", pIdnum='" + pIdnum + '\'' +
+                ", pBirthplace='" + pBirthplace + '\'' +
+                ", pAddress='" + pAddress + '\'' +
+                ", pCnum='" + pCnum + '\'' +
+                ", pCno='" + pCno + '\'' +
+                ", pInfo1='" + pInfo1 + '\'' +
+                ", pInfo2='" + pInfo2 + '\'' +
+                ", pInfo3='" + pInfo3 + '\'' +
+                ", pInfo4='" + pInfo4 + '\'' +
+                ", pNationality='" + pNationality + '\'' +
+                ", pBlood='" + pBlood + '\'' +
+                ", cName='" + cName + '\'' +
+                ", pEducational='" + pEducational + '\'' +
+                ", tUserInfo=" + tUserInfo +
+                '}';
     }
 }

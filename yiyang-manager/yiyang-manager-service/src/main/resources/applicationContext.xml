@@ -137,4 +137,7 @@
 
 
 	<dubbo:service interface="com.yiyang.service.social.SelectAllUserService" ref="selectAllUserServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.parent.ParentData" ref="parentDataImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.parent.PictureService" ref="pictureServiceImpl" timeout="30000"/>
+
 </beans>

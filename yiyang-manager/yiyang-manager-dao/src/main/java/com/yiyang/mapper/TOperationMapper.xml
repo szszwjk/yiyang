@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TOperationMapper" >
-
+    <select id="getTOperation" parameterType="com.yiyang.pojo.TOperation" resultType="com.yiyang.pojo.TOperation">
+        SELECT b.infoName,a.* FROM `toperation` a INNER JOIN tuserinfo b ON a.opUser=b.infoUser WHERE opUser=#{opUser}
+        <if test="opHname!=null and opHname!=''" >
+            and opHname LIKE CONCAT('%',#{opHname},'%')
+        </if>
+        <if test="opItem!=null and opItem!=''">
+            and opItem LIKE CONCAT('%',#{opItem},'%')
+        </if>
+    </select>
+    <insert id="addOperation" parameterType="com.yiyang.pojo.TOperation">
+        INSERT  INTO toperation(opUser, opHname, opItem, opInfo1, opInfo2, opDate)
+            VALUE(#{opUser},#{opHname},#{opItem},#{opInfo1},#{opInfo2},#{opDate})
+    </insert>
+    <update id="editOperation" parameterType="com.yiyang.pojo.TOperation">
+        UPDATE toperation
+        <trim prefix="set" suffixOverrides=",">
+            <if test="opHname!=null and opHname!=''">opHname=#{opHname},</if>
+            <if test="opItem!=null and opItem!=''">opItem=#{opItem},</if>
+            <if test="opInfo1!=null and opInfo1!=''">opInfo1=#{opInfo1},</if>
+            <if test="opInfo2!=null and opInfo2!=''">opInfo2=#{opInfo2},</if>
+            <if test="opDate!=null and opDate!=''">opDate=#{opDate},</if>
+        </trim>
+        WHERE opId=#{opId}
+    </update>
+    <delete id="deleteOperation" parameterType="int">
+        DELETE FROM toperation WHERE opId=#{opId}
+    </delete>
 </mapper>

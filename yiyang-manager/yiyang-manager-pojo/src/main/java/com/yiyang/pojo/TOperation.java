@@ -1,5 +1,7 @@
 package com.yiyang.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,12 +13,22 @@ public class TOperation implements Serializable {
     private String opHname;
 
     private String opItem;
-
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date opDate;
     
     private String opInfo1;
 
     private String opInfo2;
+
+    private String infoName;
+
+    public String getInfoName() {
+        return infoName;
+    }
+
+    public void setInfoName(String infoName) {
+        this.infoName = infoName;
+    }
 
     public Integer getOpId() {
         return opId;

@@ -14,6 +14,30 @@ public class ServiceDesc implements Serializable{
     private String sInfo3;
     private String siDesc;
     private String sNumber;
+    private String sUser;
+    private String siPriceAndType;
+
+    public String getSiPriceAndType() {
+        switch (siType)
+        {
+            case "1": siPriceAndType=siPrice+"/小时";break;
+            case "2":siPriceAndType=siPrice+"/次";break;
+            case "3":siPriceAndType="免费";break;
+        }
+        return siPriceAndType;
+    }
+
+    public void setSiPriceAndType(String siPriceAndType) {
+        this.siPriceAndType = siPriceAndType;
+    }
+
+    public String getsUser() {
+        return sUser;
+    }
+
+    public void setsUser(String sUser) {
+        this.sUser = sUser;
+    }
 
     public String getSiName() {
         return siName;
@@ -48,12 +72,7 @@ public class ServiceDesc implements Serializable{
     }
 
     public String getSiPrice() {
-        switch (siType)
-        {
-            case "1": siPrice+="/小时";break;
-            case "2":siPrice+="/次";break;
-            case "3":siPrice="免费";break;
-        }
+
         return siPrice;
     }
 
@@ -91,5 +110,22 @@ public class ServiceDesc implements Serializable{
 
     public void setsNumber(String sNumber) {
         this.sNumber = sNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceDesc{" +
+                "siName='" + siName + '\'' +
+                ", sAddress='" + sAddress + '\'' +
+                ", infoTel='" + infoTel + '\'' +
+                ", siItem='" + siItem + '\'' +
+                ", siPrice='" + siPrice + '\'' +
+                ", siType='" + siType + '\'' +
+                ", sInfo3='" + sInfo3 + '\'' +
+                ", siDesc='" + siDesc + '\'' +
+                ", sNumber='" + sNumber + '\'' +
+                ", sUser='" + sUser + '\'' +
+                ", siPriceAndType='" + siPriceAndType + '\'' +
+                '}';
     }
 }

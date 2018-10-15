@@ -1,57 +1,86 @@
-var flag=1;
+var flag="xt";
 var dom;
 var myChart;
 var maxdata;
 var mindata;
 $(function () {
 
+
+
     $("#xtlist").click(function () {
-        console.log("aaa")
-        flag = 1;
+
+        flag ="xt";
     });
     $("#xylist").click(function () {
-        flag = 2;
-        console.log("bbb")
+        flag = "xy";
+
     });
     $("#xllist").click(function () {
-        flag = 3;
-        console.log("ccc")
+        flag = "xl";
+
     })
+    $("#nearWeek").click(function () {
+        console.log("aaa")
+        $.post("/parent/neartime",{time:7,flag:flag},function (data) {
+            // console.log(data);
+            chart(data)
+        })
+    });
+    $("#nearMonth").click(function () {
+        console.log("bbb")
+        $.post("/parent/neartime",{time:30,flag:flag},function (data) {
+            // console.log(data);
+            chart(data)
+        })
+    });
+    $("#selectData").click(function () {
+        console.log("ccc")
+        $("#daItem").val(flag);
+        $.post("/parent/betweenTime",$("#betweenTime").serialize(),function (data) {
+            chart(data)
+            // console.log(data);
+        })
+    });
 
 
-    $("#hselect").click(function () {
-        console.log(flag)
-        var arrayX;
-        var arrayY;
+    function chart(data) {
+        var arrayX=new Array();
+        var arrayY=new Array();
+        for(var i=0;i<data.length;i++)
+        {
+            arrayX.push(data[i].daDate.split(" ")[0]);
+            arrayY.push(Number(data[i].daValue));
+        }
+
         var util;
         var titleText;
-        if(flag==1)
+        if(flag=="xt")
         {
             maxdata=7.2;
             mindata=3.9;
             titleText='血糖指标';
             util='{value} mmol/L';
-            arrayX=new Array('2018-9-1', '2018-9-2', '2018-9-3', '2018-9-4', '2018-9-5', '2018-9-6', '2018-9-7');
-             arrayY=new Array(3.9, 4.1, 6.1, 5.2, 5.5, 7.2, 3.0);
+            // arrayX=new Array('2018-9-1', '2018-9-2', '2018-9-3', '2018-9-4', '2018-9-5', '2018-9-6', '2018-9-7');
+            //  arrayY=new Array(3.9, 4.1, 6.1, 5.2, 5.5, 7.2, 3.0);
             dom = document.getElementById("xtchart");
-        }if(flag==2)
+        }if(flag=="xy")
         {
             mindata=94;
            maxdata=100;
             titleText='血氧指标';
             util='{value} %';
-            arrayX=new Array('2018-9-1', '2018-9-2', '2018-9-3', '2018-9-4', '2018-9-5', '2018-9-6', '2018-9-7');
-            arrayY=new Array(91, 95, 92, 98, 90, 96, 94);
+            // arrayX=new Array('2018-9-1', '2018-9-2', '2018-9-3', '2018-9-4', '2018-9-5', '2018-9-6', '2018-9-7');
+            // arrayY=new Array(91, 95, 92, 98, 90, 96, 94);
             dom = document.getElementById("xychart");
         }
-        if(flag==3)
+        if(flag=="xl")
         {
             maxdata=100;
             mindata=60;
             titleText='心率指标';
             util='{value} bpm';
-            arrayX=new Array('2018-9-1', '2018-9-2', '2018-9-3', '2018-9-4', '2018-9-5', '2018-9-6', '2018-9-7');
-            arrayY=new Array(67, 101, 85, 92, 87, 79, 80);
+            // arrayX=new Array('2018-9-1', '2018-9-2', '2018-9-3', '2018-9-4', '2018-9-5', '2018-9-6', '2018-9-7');
+            // arrayY=new Array(67, 101, 85, 92, 87, 79, 80);
             dom = document.getElementById("xlchart");
         }
 
@@ -123,5 +152,5 @@ $(function () {
         if (option && typeof option === "object") {
             myChart.setOption(option, true);
         }
-    })
+    }
 })

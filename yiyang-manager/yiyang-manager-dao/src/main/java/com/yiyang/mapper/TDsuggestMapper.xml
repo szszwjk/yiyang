@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TDsuggestMapper" >
+    <select id="getTDsuggestMapper" parameterType="string" resultType="com.yiyang.pojo.TDsuggest">
+        SELECT b.infoName pname,c.infoName dname,a.* FROM `tdsuggest` a INNER JOIN tuserinfo b ON a.dsPuser=b.infoUser INNER JOIN tuserinfo c ON a.dsDuser=c.infoUser
+        WHERE a.dsPuser=#{username} ORDER BY a.dsId DESC
+    </select>
 
 </mapper>

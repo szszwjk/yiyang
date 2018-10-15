@@ -15,6 +15,24 @@ public class TDsuggest implements Serializable {
     private String dsItem;
 
     private String dsSuggest;
+    private String pname;
+    private String dname;
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public String getDname() {
+        return dname;
+    }
+
+    public void setDname(String dname) {
+        this.dname = dname;
+    }
 
     public Integer getDsId() {
         return dsId;

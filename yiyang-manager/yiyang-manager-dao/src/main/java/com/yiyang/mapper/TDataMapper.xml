@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TDataMapper" >
-
+    <!--&lt;<  小于号；&gt;> 大于号； -->
+    <select id="selectDataByWeekOrMonth" resultType="com.yiyang.pojo.TData">
+        select * from tdata where date_sub(curdate(),interval #{0} day) &lt;=date(daDate) AND daUser=#{2} AND daItem=#{1};
+    </select>
+    <select id="selectDataAddWeek" parameterType="com.yiyang.pojo.TData" resultType="com.yiyang.pojo.TData">
+        SELECT * FROM tdata WHERE daDate BETWEEN #{startTime} AND DATE_ADD(#{startTime},INTERVAL 7 day)
+        AND daUser=#{daUser} AND daItem=#{daItem};
+    </select>
+    <select id="selectDataSubWeek" parameterType="com.yiyang.pojo.TData" resultType="com.yiyang.pojo.TData">
+        SELECT * FROM tdata WHERE daDate BETWEEN date_sub(#{endTime},interval 7 day) AND #{endTime}
+        AND daUser=#{daUser} AND daItem=#{daItem};
+    </select>
+    <select id="selectDataBetween" parameterType="com.yiyang.pojo.TData" resultType="com.yiyang.pojo.TData">
+        SELECT * FROM tdata WHERE daDate BETWEEN #{startTime} AND #{endTime}
+        AND daUser=#{daUser} AND daItem=#{daItem};
+    </select>
 </mapper>

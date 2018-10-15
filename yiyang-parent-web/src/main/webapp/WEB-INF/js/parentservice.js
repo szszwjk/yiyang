@@ -9,6 +9,12 @@ var $hlist;
 var $showlist;
 var $largelist;
 var $littlelist;
+var siPrice;
+var siType;
+var $telnumber;
+var $telgroup;
+var recId;
+var reg_tel=/^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$/;
 var largedata=new Array("交通旅游","医疗救助","法律宣传","家政服务","申请低保","设备维修","房屋工程","医疗保险","代购代缴","教学工程","宠物工程")
 // var littledata=new Array("热水器维修","气功","浴室维修","城乡居民医疗保险","缝纫设备维修","针灸","太极拳","微波炉维修","酒店代订","洗衣机维修","城乡居民养老保险","政策咨询" ,"拔火罐","旅游资讯查询","墙缝修补","政策宣传","不住家保姆","申请廉租房","墙面粉刷","宠物医疗","代订机票","优抚优待","电视机维修","老人陪护","宠物托管","宠物美容","空调维修","搬家服务","钟点工","租车","冰箱维修","住家保姆","水电代缴")
 var littledata=new Object();
@@ -24,8 +30,8 @@ littledata[8]=new Array("水电代缴");
 littledata[9]=new Array("气功","太极拳");
 littledata[10]=new Array("宠物医疗","宠物托管","宠物美容");
 $(function () {
-
-
+    $telgroup=$("#telgroup")
+    $telnumber=$("#psTelnumber");
     $home=$("#home");
     $largelist=$("#largelist");
     //搜索条件切换 页数归一
@@ -59,6 +65,8 @@ $(function () {
     $showlist.click(function () {
         $("#mytable").css("display","");
         $("#pt").css("display","");
+        $("#hmytable").css("display","none");
+        $("#hpt").css("display","none");
     });
     $selectlist=$("#selectlist");
     $hlist=$("#hlist");
@@ -66,6 +74,8 @@ $(function () {
     $hlist.click(function () {
         $("#mytable").css("display","none");
         $("#pt").css("display","none");
+        $("#hmytable").css("display","");
+        $("#hpt").css("display","");
     });
     $selectlist.click(function () {
         nowpage=1;
@@ -118,20 +128,74 @@ $(function () {
             $("#mytable").after(pagebt)
         });
     })
+    $("#todate").change(function () {
+        console.log( $("#todate").val());
 
+    })
+    $("#serviceNum").change(function () {
+        if(siType==3)
+        {
+            return;
+        }
+        var sum=$("#serviceNum").val()*siPrice;
+        $("#serviceSum").val(sum);
+    })
+//电话验证
+    $telnumber.focus(function () {
+        $telgroup.removeClass('has-error has-feedback');
+        $telgroup.removeClass('has-success has-feedback');
+        $("#telgroup .sr-only").remove();
+        $("#telgroup .glyphicon").remove();
+
+
+    });
+
+    $telnumber.blur(function () {
+        var tel_text = $telnumber.val();
+        if (tel_text == "") {
+
+        }
+        else if (reg_tel.test(tel_text)) {
+            addsuccess( $telgroup);
+            addSuccessAfter($telnumber);
+
+        } else {
+
+            adderror( $telgroup);
+            addErrorAfter( $telnumber);
+
+        }
+    });
 
 });
+function preServices() {
+
+    var $preServices=$("#preServices");
+
+        $.post("/parent/order", $preServices.serialize(),function(data){
+            if (data.status == 200) {
+                alert("订购成功！");
+                $('.accept-services').modal('toggle');
+
+            } else {
+                alert("订购失败，原因是：" + data.msg);
+                console.log(data);
+            }
+        });
+
+
+}
 function showdesc(obj) {
     var rows=obj.parentNode.parentNode.rowIndex;
-    var recId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
-    console.log(recId)
+    recId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
+
     $.post("/item/desc",{"itemId":recId},function (data) {
 
         $("#siName").text(data.siName);
         $("#sAddress").text(data.sAddress);
         $("#infoTel").text(data.infoTel);
         $("#siItem").text(data.siItem);
-        $("#siPrice").text(data.siPrice);
+        $("#siPrice").text(data.siPriceAndType);
         $("#siType").text(data.siType);
         $("#sInfo3").text(data.sInfo3);
         $("#siDesc").text(data.siDesc);
@@ -140,11 +204,49 @@ function showdesc(obj) {
     $('.show-desc').modal('toggle');
 }
 function acceptservices(obj) {
+    $telgroup.removeClass('has-error has-feedback');
+    $telgroup.removeClass('has-success has-feedback');
+    $("#telgroup .sr-only").remove();
+    $("#telgroup .glyphicon").remove();
     var rows=obj.parentNode.parentNode.rowIndex;
-    var recId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
-    console.log(recId)
+    recId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
+
+    $("#todate").val("")
+    $("#psUser").val("")
+    $("#serviceNum").val("1")
+    $("#psTelnumber").val("");
+    $("#serviceDesc").val("");
+    $("#psAddres").val("");
+
+    $.post("/parent/preservice",{"itemId":recId},function (data) {
+        console.log(data)
+        siPrice=data.siPrice;
+        siType=data.siType;
+        var sum=$("#serviceNum").val()*data.siPrice;
+        $("#serviceSum").val(sum);
+        if(data.siType==1)
+        {
+            $("#serviceType").text("服务时长");
+        }
+        if(data.siType==2)
+        {
+            $("#serviceType").text("服务次数");
+        }
+        if(data.siType==3)
+        {
+            $("#serviceSum").val("0");
+        }
+        $("#serviceName").val(data.siName);
+        $("#serviceTel").val(data.infoTel);
+        $("#servicePrice").val(data.siPriceAndType);
+        $("#psItem").val(data.siItem);
+        $("#psPeople").val(data.sUser);
+        $("#psItemId").val(recId);
+    })
+
     $('.accept-services').modal('toggle');
 }
+
 function selchange() {
     nowpage=$("#sel").val();
     $("#mytable").remove();
@@ -283,5 +385,23 @@ function pageclick(obj) {
 
     });
 
+
+}
+function adderror(obj)
+{
+    obj.addClass('has-error has-feedback');
+}
+function addErrorAfter(obj)
+{
+    obj.after('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
+
+}
+function addsuccess(obj)
+{
+    obj.addClass('has-success has-feedback');
+}
+function addSuccessAfter(obj)
+{
+    obj.after('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
 
 }

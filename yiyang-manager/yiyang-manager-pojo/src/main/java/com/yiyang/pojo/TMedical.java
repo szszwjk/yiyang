@@ -1,5 +1,7 @@
 package com.yiyang.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,12 +17,22 @@ public class TMedical implements Serializable {
     private String mInfo2;
 
     private String mNum;
-
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date mIndate;
-
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date mOutdate;
 
     private String mDesc;
+
+    private String infoName;
+
+    public String getInfoName() {
+        return infoName;
+    }
+
+    public void setInfoName(String infoName) {
+        this.infoName = infoName;
+    }
 
     public Integer getmId() {
         return mId;

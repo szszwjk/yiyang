@@ -2,4 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TConsultMapper" >
 
+    <resultMap id="consultMap" type="com.yiyang.pojo.TConsult">
+        <result property="cId" column="cId"></result>
+        <result property="cUser" column="cUser"></result>
+        <result property="cDuser" column="cDuser"></result>
+        <result property="cFlag" column="cFlag"></result>
+        <result property="cDesc" column="cDesc"></result>
+        <result property="cAnswer" column="cAnswer"></result>
+        <result property="cEvaluate" column="cEvaluate"></result>
+        <result property="cDate" column="cDate"></result>
+        <association property="consultUser" javaType="com.yiyang.pojo.TUserInfo">
+            <result property="infoName" column="cName"></result>
+            <result property="infoTel" column="cTel"></result>
+            <result property="infoImg" column="cImg"></result>
+        </association>
+        <association property="doctorUser" javaType="com.yiyang.pojo.TUserInfo">
+            <result property="infoName" column="dName"></result>
+            <result property="infoTel" column="dTel"></result>
+            <result property="infoImg" column="dImg"></result>
+        </association>
+    </resultMap>
+    <select id="getConsult" parameterType="com.yiyang.pojo.TConsult" resultMap="consultMap">
+        SELECT b.infoName cName,b.infoImg cImg,b.infoTel cTel,c.infoName dName,c.infoImg dImg,c.infoTel dTel, a.* FROM `tconsult` a INNER JOIN tuserinfo b ON a.cUser=b.infoUser INNER JOIN tuserinfo c ON a.cDuser=c.infoUser
+        WHERE a.cUser=#{cUser}
+        <if test="cFlag!=null and cFlag!=''" >
+            and cFlag=#{cFlag}
+        </if>
+        <if test="cDesc!=null and cDesc!=''">
+            and cDesc LIKE CONCAT('%',#{cDesc},'%')
+        </if>
+        ORDER  BY a.cId  DESC
+    </select>
+    <insert id="addConsult" parameterType="com.yiyang.pojo.TConsult">
+        INSERT INTO tconsult(cUser, cDuser, cDesc, cAnswer, cFlag, cEvaluate,cDate) VALUE
+            (#{cUser},#{cDuser},#{cDesc},#{cAnswer},#{cFlag},#{cEvaluate},#{cDate})
+    </insert>
+    <update id="updateConsult" parameterType="com.yiyang.pojo.TConsult">
+        UPDATE tconsult SET cAnswer=#{cAnswer},cFlag=#{cFlag} WHERE cId=#{cId}
+    </update>
 </mapper>

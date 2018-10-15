@@ -30,4 +30,20 @@
     <select id="SelectAllUser" resultMap="AllUserMap">
        SELECT b.*,a.pIdnum from tparent a,tuserinfo b where a.pUser = b.infoName
     </select>
+    <update id="updateUserInfo" parameterType="com.yiyang.pojo.TUserInfo">
+        UPDATE tuserinfo
+        <trim prefix="set" suffixOverrides=",">
+        <if test="infoSex!=null and infoSex!=''">infoSex=#{infoSex},</if>
+        <if test="infoTel!=null and infoTel!=''">infoTel=#{infoTel},</if>
+        <if test="infoAge!=null and infoAge!=''">infoAge=#{infoAge},</if>
+        <if test="infoName!=null and infoName!=''">infoName=#{infoName},</if>
+        <if test="infoNation!=null and infoNation!=''">infoNation=#{infoNation},</if>
+        <if test="infoMarriage!=null and infoMarriage!=''">infoMarriage=#{infoMarriage},</if>
+        </trim>
+        WHERE infoUser=#{infoUser}
+    </update>
+    <update id="updateImg" parameterType="com.yiyang.pojo.TUserInfo">
+        UPDATE tuserinfo SET infoImg=#{infoImg} WHERE infoUser=#{infoUser}
+    </update>
+
 </mapper>

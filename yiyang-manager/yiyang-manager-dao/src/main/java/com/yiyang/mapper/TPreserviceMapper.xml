@@ -74,19 +74,35 @@
     </select>
 
 
-    <update id="updateDCL2" parameterType="int">
+    <update id="updateDCL2" parameterType="string">
         UPDATE tpreservice SET psFlag=2
         where psNumber=#{psNumber}
     </update>
 
-    <update id="updateYJD2" parameterType="int">
+    <update id="updateYJD2" parameterType="string">
         UPDATE tpreservice SET psFlag=3
         where psNumber=#{psNumber}
     </update>
 
-    <update id="updateYWC2" parameterType="int">
+    <update id="updateYWC2" parameterType="string">
         UPDATE tpreservice SET psFlag=4
         where psNumber=#{psNumber}
     </update>
+    <insert id="insertOrder" parameterType="com.yiyang.pojo.TPreservice">
+        INSERT INTO tpreservice(psUser, psNumber, psUname, psItem, psPrice, psTime, psTotime, psFlag, psDesc, psTelnumber, psAddres, psPeople, psFinishTime,psItemId)
+        VALUES (#{psUser},#{psNumber},#{psUname},#{psItem},#{psPrice},#{psTime},#{psTotime},#{psFlag},#{psDesc},#{psTelnumber},#{psAddres},#{psPeople},#{psFinishTime},#{psItemId})
+    </insert>
+    <select id="getHServices" parameterType="com.yiyang.pojo.TPreservice" resultType="com.yiyang.pojo.TPreservice">
+        SELECT a.psId,a.psNumber,a.psTime,b.sName psPeople,a.psItem,a.psPrice,a.psFlag from tpreservice a INNER JOIN tservice b on a.psPeople=b.sUser
+        where a.psUser=#{psUser}
+
+        <if test="psNumber!=null and psNumber!=''" >
+            and psNumber=#{psNumber}
+        </if>
+        <if test="psItem!=null and psItem!=''">
+            and psItem=#{psItem}
+        </if>
+
+    </select>
 
 </mapper>

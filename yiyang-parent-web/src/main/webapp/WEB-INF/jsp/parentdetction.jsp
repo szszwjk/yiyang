@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>首页</title>
+    <title>健康检测</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css">
@@ -41,13 +41,13 @@
                 <span>首页</span></a></div>
             <div class="col-md-1 text-center"><a href="/parent/parentdetction"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
                 <span>健康检测</span></a></div>
-            <div class="col-md-1 text-center"><a href=""><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+            <div class="col-md-1 text-center"><a href="/parent/parentcustody"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
                 <span>健康监护</span></a></div>
-            <div class="col-md-1 text-center"><a href=""><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
+            <div class="col-md-1 text-center"><a href="/parent/parentdocument"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
                 <span>健康档案</span></a></div>
             <div class="col-md-1 text-center"><a href="/parent/parentservice"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
                 <span>服务预定</span></a></div>
-            <div class="col-md-1 text-center"><a href=""><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
+            <div class="col-md-1 text-center"><a href="/parent/parentdoctor"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
                 <span>家庭医生</span></a></div>
             <div class="col-md-1 text-center"><a href="/parent/parentaccount"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
                 <span>个人账户</span></a></div>
@@ -72,29 +72,32 @@
     <div class="col-md-10" >
 
         <div class="tabContent" style="padding: 10px">
-            <form class="form-horizontal">
+            <form class="form-horizontal" id="betweenTime">
                 <div class="form-group">
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-info" style="width:100px" >最近七天</button>
+                        <button type="button" class="btn btn-info" style="width:100px" id="nearWeek">最近七天</button>
                     </div>
                     <div class="col-md-1" style="margin-left: 10px;">
-                        <button type="button" class="btn btn-info" style="width:100px" id="">最近三十天</button>
+                        <button type="button" class="btn btn-info" style="width:100px" id="nearMonth">最近三十天</button>
                     </div>
+
                     <div class="col-md-3" >
-                        <div style="float: left;margin-left: 20px"><label for="hid" class="" style="line-height: 34px">开始时间:</label></div>
+                        <div style="float: left;margin-left: 20px"><label for="startTime" class="" style="line-height: 34px">开始时间:</label></div>
                         <div class="myselect">
-                            <input type="text" class="form-control" id="hid">
+                            <input type="text" class="form-control" id="startTime" name="startTime">
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div style="float: left;"><label for="hitem" class="" style="line-height: 34px">结束时间:</label></div>
+                        <div style="float: left;"><label for="endTime" class="" style="line-height: 34px">结束时间:</label></div>
                         <div class="myselect">
-                            <input type="text" class="form-control" id="hitem">
+                            <input type="text" class="form-control" id="endTime" name="endTime">
                         </div>
                     </div>
+
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-info" style="width:70px" id="hselect">查询</button>
+                        <button type="button" class="btn btn-info" style="width:70px" id="selectData">查询</button>
                     </div>
+                    <div><input class="hidden" id="daItem" name="daItem"></div>
 
 
 
@@ -131,8 +134,18 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../js/echart/echarts.min.js"></script>
-
+<script src="../js/laydate/laydate.js"></script>
 
 <script src="../js/parentdetction.js"></script>
+<script>
+    laydate.render({
+        elem: '#startTime'
+        ,type: 'datetime'
+    });
+    laydate.render({
+        elem: '#endTime'
+        ,type: 'datetime'
+    });
+</script>
 </body>
 </html>

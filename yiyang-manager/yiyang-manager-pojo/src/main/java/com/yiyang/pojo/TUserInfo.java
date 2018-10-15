@@ -1,5 +1,7 @@
 package com.yiyang.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ public class TUserInfo implements Serializable {
     private String infoSex;
 
     private String infoTel;
-
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date infoAge;
 
     private String infoName;
@@ -21,6 +23,15 @@ public class TUserInfo implements Serializable {
     private String infoMarriage;
 
     private  TParent tParent;
+    private String infoImg;
+
+    public String getInfoImg() {
+        return infoImg;
+    }
+
+    public void setInfoImg(String infoImg) {
+        this.infoImg = infoImg;
+    }
 
     public TParent gettParent() {
         return tParent;
@@ -55,6 +66,7 @@ public class TUserInfo implements Serializable {
     }
 
     public Date getInfoAge() {
+
         return infoAge;
     }
 
