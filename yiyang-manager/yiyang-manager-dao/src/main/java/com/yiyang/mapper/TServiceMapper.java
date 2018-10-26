@@ -9,5 +9,5 @@ public interface TServiceMapper {
 
     TService findInfoByUser(String sUser);
 
-     // void updateByUser(TService tService);
+     void updateByUser(TService tService);
     }

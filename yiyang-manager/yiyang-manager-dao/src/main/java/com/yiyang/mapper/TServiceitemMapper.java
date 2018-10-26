@@ -16,5 +16,13 @@ public interface TServiceitemMapper {
     List<TServiceitem> selectAll();
 
     void insertServiceItem(TServiceitem tServiceitem);
+
     List<TServiceitem> selectByLargeAndLittle(TServiceitem tServiceitem);
+
+    TServiceitem findBySiId(int siId);
+
+    void updateServiceItem(TServiceitem tServiceitem);
+
+    void deleteBySiId(int siId);
+
     }

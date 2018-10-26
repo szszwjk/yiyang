@@ -132,18 +132,18 @@ public class TpreServiceImpl implements TpreService {
     }
 
     @Override
-    public YiyangResult updateFlag2(String psNumber) {
-        return null;
+    public void updateFlag2(String psNumber) {
+       tPreserviceMapper.updateFlag2(psNumber);
     }
 
     @Override
-    public YiyangResult updateFlag3(String psNumber) {
-        return null;
+    public void updateFlag3(String psNumber) {
+        tPreserviceMapper.updateFlag3(psNumber);
     }
 
     @Override
-    public YiyangResult updateFlag4(String psNumber) {
-        return null;
+    public void updateFlag4(String psNumber) {
+        tPreserviceMapper.updateFlag4(psNumber);
     }
 
 
