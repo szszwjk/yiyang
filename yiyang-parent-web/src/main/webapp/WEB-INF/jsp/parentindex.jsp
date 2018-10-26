@@ -77,7 +77,7 @@
                         <col style="width: 15%" />
                         <col style="width: 42.5%" />
                         <col style="width: 42.5%" />
-                       <tr> <td rowspan="4"> 照片</td><td>性别:${item.infoSex}</td><td>身份证:</td></tr>
+                       <tr> <td>性别:${item.infoSex}</td><td>身份证:</td></tr>
                         <tr> <td>联系方式:${item.infoSex}</td><td>出生地:</td></tr>
                         <tr> <td>居住地:${item.infoSex}</td><td></td></tr>
                         <tr> <td>所属社区:${item.infoSex}</td><td>社保编号:</td></tr>

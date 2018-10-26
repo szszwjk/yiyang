@@ -1,6 +1,7 @@
 package com.yiyang.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class TConsult implements Serializable {
     private Integer cId;
@@ -16,6 +17,33 @@ public class TConsult implements Serializable {
     private String cAnswer;
 
     private String cEvaluate;
+    private Date date;
+    private TUserInfo consultUser;
+    private TUserInfo doctorUser;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public TUserInfo getConsultUser() {
+        return consultUser;
+    }
+
+    public void setConsultUser(TUserInfo consultUser) {
+        this.consultUser = consultUser;
+    }
+
+    public TUserInfo getDoctorUser() {
+        return doctorUser;
+    }
+
+    public void setDoctorUser(TUserInfo doctorUser) {
+        this.doctorUser = doctorUser;
+    }
 
     public Integer getcId() {
         return cId;

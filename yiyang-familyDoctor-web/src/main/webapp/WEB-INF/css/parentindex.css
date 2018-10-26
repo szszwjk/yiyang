@@ -12,8 +12,8 @@ body::before {
     bottom: 0px;
     z-index: -1;
     /*-1 可以当背景*/
-    -webkit-filter: blur(10px);
-    filter: blur(10px);
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
     margin: -30px;  /*消除边缘透明*/
     background: url(../img/parentindex_bg.jpg)  no-repeat center top;
     background-size: cover;
@@ -21,13 +21,9 @@ body::before {
     background-attachment: fixed;
     /*位置固定*/
 }
-header{
-    box-shadow: darkgrey 0px 0px 30px 5px ;/* 边框阴影 */
-}
 header div{
-
     height: 90px;
-    /*border: 2px solid #f5f5f5;*/
+    border: 2px solid #f5f5f5;
 }
 header .col-md-8 .col-md-1{
     padding-top: 10px;
@@ -38,11 +34,11 @@ header img{
     margin-bottom: 3px;
 }
 section {
-    margin-top:10px;
+    margin-top:15px;
 }
 section > div{
     height: 700px;
-    /*border: 2px solid #f5f5f5;*/
+    border: 2px solid #f5f5f5;
 }
 .myselect{
     float: left;

@@ -2,7 +2,13 @@ package com.yiyang.mapper;
 
 
 import java.util.List;
+
+import com.yiyang.pojo.TConsult;
 import org.apache.ibatis.annotations.Param;
 
 public interface TConsultMapper {
+   //查询医生所属病人的咨询
+   public List<TConsult> findConsultAll(String cDuser);
+   //修改医生回答
+   public void updateAnser(TConsult tConsult);
    }
