@@ -10,6 +10,15 @@ public class TYunadmin implements Serializable {
     private String yDepartment;
 
     private String yEmail;
+    private TUserInfo tUserInfo;
+
+    public TUserInfo gettUserInfo() {
+        return tUserInfo;
+    }
+
+    public void settUserInfo(TUserInfo tUserInfo) {
+        this.tUserInfo = tUserInfo;
+    }
 
     public Integer getyId() {
         return yId;

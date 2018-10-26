@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Param;
 
 public interface TCommunityMapper {
    public List<TCommunity> getCommunity();
+
    }

@@ -1,0 +1,100 @@
+body {
+
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+
+}
+body::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: -1;
+    /*-1 可以当背景*/
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+    margin: -30px;  /*消除边缘透明*/
+    background: url(../img/parentindex_bg.jpg)  no-repeat center top;
+    background-size: cover;
+    /*平铺*/
+    background-attachment: fixed;
+    /*位置固定*/
+}
+header{
+    box-shadow: darkgrey 0px 0px 30px 5px ;/* 边框阴影 */
+}
+header div{
+
+    height: 90px;
+    /*border: 2px solid #f5f5f5;*/
+}
+img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+header .col-md-8 .col-md-1{
+    padding-top: 10px;
+    height: 90px;
+    width:90px ;
+}
+header img{
+    margin-bottom: 3px;
+}
+section {
+    margin-top:10px;
+}
+section > div{
+    height: 700px;
+    /*border: 2px solid #f5f5f5;*/
+}
+.myselect{
+    float: left;
+    width: 176px;
+    margin-left: 20px;
+}
+
+
+.content .col-md-10{
+    padding-left: 0px;
+
+}
+.content>.col-md-2>.tabTip
+{background-color: #fff;
+    box-shadow: darkgrey 0px 0px 30px 5px ;/* 边框阴影 */
+    border-radius: 5px;/* 圆角矩形 */
+    border: 2px solid #f5f5f5;
+    margin-top: 20px;
+    padding:10px;
+    height: 700px;
+}
+.tabContent{
+    background-color: #fff;
+    box-shadow: darkgrey 0px 0px 30px 5px ;/* 边框阴影 */
+    border-radius: 5px;/* 圆角矩形 */
+    border: 2px solid #f5f5f5;
+    margin-top: 20px;
+
+    height: 700px;
+}
+.tabTip a{
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #46b8da;
+}
+table .form-control{
+    display: inline;
+    width: 400px;
+}
+.my-control{
+    width: 350px;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 0px;
+}

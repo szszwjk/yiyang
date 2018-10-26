@@ -11,6 +11,24 @@ public class UserAuthorityKey implements Serializable {
 
     private String authorityGroup;
     private List<TAuthority> authorityList;
+    private TUserInfo tUserInfo;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public TUserInfo gettUserInfo() {
+        return tUserInfo;
+    }
+
+    public void settUserInfo(TUserInfo tUserInfo) {
+        this.tUserInfo = tUserInfo;
+    }
 
     public List<TAuthority> getAuthorityList() {
         return authorityList;

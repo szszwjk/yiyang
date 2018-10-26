@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TRelativeMapper" >
-
+    <resultMap id="infoMap" type="com.yiyang.pojo.TRelative">
+       <result property="rUser" column="rUser"></result>
+        <result property="rAddress" column="rAddress"></result>
+        <result property="rCnum" column="rCnum"></result>
+        <result property="cName" column="cName"></result>
+        <association property="tUserInfo" javaType="com.yiyang.pojo.TUserInfo">
+            <result property="infoSex" column="infoSex"></result>
+            <result property="infoTel" column="infoTel"></result>
+            <result property="infoAge" column="infoAge"></result>
+            <result property="infoName" column="infoName"></result>
+            <result property="infoNation" column="infoNation"></result>
+            <result property="infoImg" column="infoImg"></result>
+        </association>
+    </resultMap>
+    <select id="getRelativeInfo" parameterType="string" resultMap="infoMap">
+        SELECT a.*,b.*,c.cName FROM `trelative` a INNER JOIN tuserinfo b ON a.rUser=b.infoUser INNER JOIN tcommunity c ON a.rCnum=c.cNum
+        WHERE a.rUser=#{username};
+    </select>
+    <update id="updateRelative" parameterType="com.yiyang.pojo.TRelative">
+        UPDATE trelative
+        <trim prefix="set" suffixOverrides=",">
+            <if test="rAddress!=null and rAddress!=''">rAddress=#{rAddress},</if>
+            <if test="rCnum!=null and rCnum!=''">rCnum=#{rCnum},</if>
+        </trim>
+        WHERE rUser=#{rUser}
+    </update>
+    <select id="getParentInfo" parameterType="string" resultType="com.yiyang.pojo.TUserInfo">
+        SELECT * FROM `userauthority` a INNER JOIN tuserinfo b ON a.username=b.infoUser WHERE a.authorityGroup='parent' and b.infoUser
+        NOT IN(SELECT pUser FROM relationparent WHERE rUser=#{infoUser})
+        <if test="infoName!=null and infoName!=''" >
+            and infoName LIKE CONCAT('%',#{infoName},'%')
+        </if>
+        <if test="infoTel!=null and infoTel!=''">
+            and infoTel=#{infoTel}
+        </if>
+    </select>
+    <select id="getSuggest" parameterType="com.yiyang.pojo.TDsuggest" resultType="com.yiyang.pojo.TDsuggest">
+        SELECT b.infoName pname,c.infoName dname,a.* FROM `tdsuggest` a INNER JOIN tuserinfo b ON a.dsPuser=b.infoUser INNER JOIN tuserinfo c ON a.dsDuser=c.infoUser
+        WHERE a.dsPuser in(SELECT pUser FROM `relationparent` where rUser=#{dsDuser})
+        <if test="pname!=null and pname!=''" >
+            and b.infoName LIKE CONCAT('%',#{pname},'%')
+        </if>
+        ORDER BY a.dsId DESC
+    </select>
 </mapper>

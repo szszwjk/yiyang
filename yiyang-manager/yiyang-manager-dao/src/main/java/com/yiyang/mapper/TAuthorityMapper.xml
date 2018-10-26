@@ -12,5 +12,20 @@
         and
         a.authorityGroup=#{authorityGroup}
     </select>
+    <select id="getAuthority"  resultType="com.yiyang.pojo.TAuthority">
+        SELECT * from tauthority WHERE 1
+        <if test="authorityGroup!=null and authorityGroup!=''">
+            and authorityGroup=#{authorityGroup}
+        </if>
+    </select>
+    <insert id="addAuthority" parameterType="com.yiyang.pojo.TAuthority">
+        INSERT INTO tauthority(authorityGroup, authorityCon) VALUE (#{authorityGroup},#{authorityCon})
+    </insert>
+    <update id="updateAuthority" parameterType="com.yiyang.pojo.TAuthority">
+        UPDATE tauthority SET authorityCon=#{authorityCon} WHERE aid=#{aid}
+    </update>
+    <delete id="deleteAuthority" parameterType="com.yiyang.pojo.TAuthority">
+        DELETE FROM tauthority WHERE aid=#{aid}
+    </delete>
 
 </mapper>

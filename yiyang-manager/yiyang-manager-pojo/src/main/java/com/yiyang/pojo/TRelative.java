@@ -8,6 +8,24 @@ public class TRelative implements Serializable {
     private String rAddress;
 
     private String rCnum;
+    private TUserInfo tUserInfo;
+    private String cName;
+
+    public TUserInfo gettUserInfo() {
+        return tUserInfo;
+    }
+
+    public void settUserInfo(TUserInfo tUserInfo) {
+        this.tUserInfo = tUserInfo;
+    }
+
+    public String getcName() {
+        return cName;
+    }
+
+    public void setcName(String cName) {
+        this.cName = cName;
+    }
 
     public String getrUser() {
         return rUser;
@@ -31,5 +49,16 @@ public class TRelative implements Serializable {
 
     public void setrCnum(String rCnum) {
         this.rCnum = rCnum == null ? null : rCnum.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TRelative{" +
+                "rUser='" + rUser + '\'' +
+                ", rAddress='" + rAddress + '\'' +
+                ", rCnum='" + rCnum + '\'' +
+                ", tUserInfo=" + tUserInfo +
+                ", cName='" + cName + '\'' +
+                '}';
     }
 }

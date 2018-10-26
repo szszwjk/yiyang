@@ -5,7 +5,7 @@
         INSERT INTO tparent(pUser,pInfo1,pInfo2,pInfo3,pInfo4) VALUE (#{username},'无','无','无','无')
     </insert>
     <select id="getParentInfo" parameterType="string" resultType="com.yiyang.pojo.ParentInfo">
-        SELECT a.infoSex,a.infoTel,a.infoImg,c.cName,b.pIdnum,b.pBirthplace,b.pAddress,b.pCno,a.infoName,a.infoAge,b.pInfo1,b.pInfo2,b.pInfo3,b.pInfo4 FROM tuserinfo a LEFT JOIN tparent b ON a.infoUser=b.pUser
+        SELECT a.infoUser, a.infoSex,a.infoTel,a.infoImg,c.cName,b.pIdnum,b.pBirthplace,b.pAddress,b.pCno,a.infoName,a.infoAge,b.pInfo1,b.pInfo2,b.pInfo3,b.pInfo4 FROM tuserinfo a LEFT JOIN tparent b ON a.infoUser=b.pUser
         LEFT JOIN tcommunity c ON b.pCnum=c.cNum WHERE a.infoUser=#{username};
     </select>
     <select id="getServicesDesc" parameterType="string" resultType="com.yiyang.pojo.ServiceDesc">

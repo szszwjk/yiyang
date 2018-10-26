@@ -145,7 +145,7 @@ function addelement_i(data) {
             "                                        </div>" +
             "                                    </div>\n" +
             "                                   \n" +
-            "                                </div>\n" +
+            "                                </div>\n" +q
             "                            </div>\n" +
             "                        </div>\n" +
             "                    </div>\n" +

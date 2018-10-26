@@ -2,4 +2,83 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TYunadminMapper" >
 
+    <resultMap id="yunadminMap" type="com.yiyang.pojo.TYunadmin">
+        <result property="yUser" column="yUser"></result>
+        <result property="yDepartment" column="yDepartment"></result>
+        <result property="yEmail" column="yEmail"></result>
+        <association property="tUserInfo" javaType="com.yiyang.pojo.TUserInfo">
+            <result property="infoName" column="infoName"></result>
+            <result property="infoSex" column="infoSex"></result>
+            <result property="infoTel" column="infoTel"></result>
+            <result property="infoAge" column="infoAge"></result>
+            <result property="infoNation" column="infoNation"></result>
+            <result property="infoImg" column="infoImg"></result>
+        </association>
+    </resultMap>
+    <select id="getYunadminInfo" parameterType="string" resultMap="yunadminMap">
+        SELECT * FROM `tyunadmin` a INNER JOIN tuserinfo b ON a.yUser=b.infoUser WHERE a.yUser=#{username};
+    </select>
+    <update id="updateAdmin" parameterType="com.yiyang.pojo.TYunadmin">
+        UPDATE tyunadmin
+        <trim prefix="set" suffixOverrides=",">
+            <if test="yDepartment!=null and yDepartment!=''">yDepartment=#{yDepartment},</if>
+            <if test="yEmail!=null and yEmail!=''">yEmail=#{yEmail},</if>
+        </trim>
+        WHERE yUser=#{yUser}
+    </update>
+    <select id="getComunityType" resultType="com.yiyang.pojo.UserType">
+        SELECT
+            typeinfo. NAME,
+            SUM(VALUE)
+                VALUE
+
+        FROM
+            (
+                SELECT
+                    b.cName NAME,
+                    COUNT(0)
+                            VALUE
+
+                FROM
+                    `tdoctor` a
+                    INNER JOIN tcommunity b ON a.dCnum = b.cNum
+                GROUP BY
+                    dCnum
+                UNION ALL
+                SELECT
+                    b.cName NAME,
+                    COUNT(0)
+                            VALUE
+
+                FROM
+                    `tparent` a
+                    INNER JOIN tcommunity b ON a.pCnum = b.cNum
+                GROUP BY
+                    a.pCnum
+                UNION ALL
+                SELECT
+                    b.cName NAME,
+                    COUNT(0)
+                            VALUE
+
+                FROM
+                    `trelative` a
+                    INNER JOIN tcommunity b ON a.rCnum = b.cNum
+                GROUP BY
+                    a.rCnum
+                UNION ALL
+                SELECT
+                    b.cName NAME,
+                    COUNT(0)
+                            VALUE
+
+                FROM
+                    `tservice` a
+                    INNER JOIN tcommunity b ON a.sCnum = b.cNum
+                GROUP BY
+                    a.sCnum
+            ) AS typeinfo
+        GROUP BY
+            typeinfo. NAME
+    </select>
 </mapper>

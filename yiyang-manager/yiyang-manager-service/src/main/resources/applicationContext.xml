@@ -122,7 +122,7 @@
 	<dubbo:protocol name="dubbo" port="20880" />
 	<!-- 声明需要暴露的服务接口 -->
 	<dubbo:service interface="com.yiyang.service.user.UserService" ref="userServiceImpl" timeout="30000"/>
-	<dubbo:service interface="com.yiyang.service.tservice.TpreService" ref="tpreServiceImpl" timeout="30000"/>
+	<!--<dubbo:service interface="com.yiyang.service.tservice.TpreService" ref="tpreServiceImpl" timeout="30000"/>-->
 	<dubbo:service interface="com.yiyang.service.parent.ParentService" ref="parentServiceImpl" timeout="30000"/>
 
 	<dubbo:service interface="com.yiyang.service.social.FindTypeService" ref="findTypeServiceImpl" timeout="30000"/>
@@ -139,5 +139,6 @@
 	<dubbo:service interface="com.yiyang.service.social.SelectAllUserService" ref="selectAllUserServiceImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.parent.ParentData" ref="parentDataImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.parent.PictureService" ref="pictureServiceImpl" timeout="30000"/>
-
+	<dubbo:service interface="com.yiyang.service.relation.RelationService" ref="relationServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.yunadmin.AdminService" ref="adminServiceImpl" timeout="30000"/>
 </beans>

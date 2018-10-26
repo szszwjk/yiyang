@@ -17,6 +17,15 @@ public class TPreremind implements Serializable {
     private Date prTime;
 
     private String prFlag;
+    private String infoName;
+
+    public String getInfoName() {
+        return infoName;
+    }
+
+    public void setInfoName(String infoName) {
+        this.infoName = infoName;
+    }
 
     public Integer getPrId() {
         return prId;

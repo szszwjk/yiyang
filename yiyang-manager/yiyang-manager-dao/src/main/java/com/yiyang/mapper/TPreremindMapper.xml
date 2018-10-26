@@ -14,4 +14,25 @@
     <update id="updateFlag" parameterType="com.yiyang.pojo.TPreremind" >
         UPDATE tpreremind SET  prFlag=#{prFlag} WHERE prId=#{prId}
     </update>
+    <select id="getAllUserTPreremind" parameterType="com.yiyang.pojo.TUserInfo" resultType="com.yiyang.pojo.TPreremind">
+        SELECT
+            a.*, b.infoName
+        FROM
+            tpreremind a
+            INNER JOIN tuserinfo b ON a.prUser = b.infoUser
+        WHERE
+            a.prUser IN (
+                SELECT
+                    pUser
+                FROM
+                    relationparent
+                WHERE
+                    rUser = #{infoUser}
+            )
+        <if test="infoName!=null and infoName!=''">
+            and b.infoName LIKE CONCAT('%',#{infoName},'%')
+        </if>
+        ORDER BY
+            prTime DESC
+    </select>
 </mapper>

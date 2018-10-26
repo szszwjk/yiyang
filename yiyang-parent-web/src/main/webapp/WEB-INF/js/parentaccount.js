@@ -7,7 +7,7 @@ $(function () {
     })
     $("#savebt").click(function () {
         $("#savebt").addClass("hidden");
-        $("#infoAge").val($("#infoAge").val()+" 00:00:00");
+        $("#age").val($("#age").val()+" 00:00:00");
 
         $.post("/parent/saveparent",$("#saveparent").serialize(),function (data) {
             if (data.status == 200) {

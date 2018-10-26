@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.RelationParentMapper" >
-
+    <select id="getRelation" parameterType="com.yiyang.pojo.RelationParentKey" resultType="com.yiyang.pojo.RelationParentKey">
+        SELECT * FROM relationparent WHERE rUser=#{rUser} AND pUser=#{pUser}
+    </select>
+    <delete id="deleteRelationParentKey" parameterType="com.yiyang.pojo.RelationParentKey">
+        DELETE FROM relationparent WHERE rUser=#{rUser} AND pUser=#{pUser}
+    </delete>
+    <insert id="addRelationParentKey" parameterType="com.yiyang.pojo.RelationParentKey">
+        insert into relationparent (rUser, pUser) values (#{rUser},#{pUser});
+    </insert>
+    <select id="getRelationList" parameterType="string" resultType="com.yiyang.pojo.RelationParentKey">
+        select *
+        from relationparent WHERE rUser=#{rUser};
+    </select>
 </mapper>

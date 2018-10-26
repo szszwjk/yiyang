@@ -5,4 +5,7 @@
   INSERT INTO t_localinfo (l_user, l_date, l_localx, l_localy)
 VALUES (#{lUser},#{lDate},#{lLocalx},#{lLocaly})
 </insert>
+  <select id="getLocation" parameterType="com.yiyang.pojo.RelationParentKey" resultType="com.yiyang.pojo.TLocalinfo">
+    SELECT * FROM `tlocalinfo` a INNER JOIN relationparent b ON a.lUser=b.pUser WHERE b.rUser=#{rUser} AND b.pUser=#{pUser};
+  </select>
 </mapper>

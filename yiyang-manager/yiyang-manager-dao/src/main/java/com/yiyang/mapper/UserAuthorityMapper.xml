@@ -18,4 +18,47 @@
        ON a.authorityGroup=b.authorityGroup 
        where username=#{username};
     </select>
+    <select id="getUserType" resultType="com.yiyang.pojo.UserType">
+        SELECT authorityGroup name,COUNT(0) value FROM `userauthority` GROUP BY authorityGroup;
+    </select>
+    <resultMap id="userMap" type="com.yiyang.pojo.UserAuthorityKey">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="authorityGroup" property="authorityGroup"></result>
+        <association property="tUserInfo" javaType="com.yiyang.pojo.TUserInfo">
+            <id column="infoId" property="infoId"></id>
+            <result column="infoSex" property="infoSex"></result>
+            <result column="infoTel" property="infoTel"></result>
+            <result column="infoAge" property="infoAge"></result>
+            <result column="infoName" property="infoName"></result>
+            <result column="infoUser" property="infoUser"></result>
+            <result column="infoNation" property="infoNation"></result>
+            <result column="infoImg" property="infoImg"></result>
+        </association>
+    </resultMap>
+    <select id="getAllUser" parameterType="com.yiyang.pojo.UserAuthorityKey" resultMap="userMap">
+        SELECT * FROM tuserinfo a LEFT JOIN userauthority b ON a.infoUser=b.username
+        WHERE 1
+        <if test="tUserInfo!=null">
+            <if test="tUserInfo.infoUser!=null and tUserInfo.infoUser!=''">
+                and a.infoUser=#{tUserInfo.infoUser}
+            </if>
+        </if>
+
+        <if test="authorityGroup!=null and authorityGroup!=''">
+            and authorityGroup=#{authorityGroup}
+        </if>
+    </select>
+    <select id="getUserAuthorityKeyByUser" parameterType="string" resultType="com.yiyang.pojo.UserAuthorityKey">
+        SELECT * FROM  userauthority WHERE username=#{username}
+    </select>
+    <delete id="deleteUserAuthority" parameterType="string">
+        DELETE FROM userauthority WHERE username=#{username}
+    </delete>
+    <insert id="addUserAuthority" >
+        INSERT INTO userauthority(username, authorityGroup) VALUES
+        <foreach collection ="list" item="user" separator =",">
+            ( #{user.username}, #{user.authorityGroup})
+        </foreach >
+    </insert>
 </mapper>
