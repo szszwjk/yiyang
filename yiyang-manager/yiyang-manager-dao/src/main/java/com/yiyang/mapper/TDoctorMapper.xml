@@ -20,4 +20,12 @@
 
 		SELECT  * from tdoctor WHERE dUser = #{dUser}
 	</select>
+	<select id="selectAllDoc" resultType="com.yiyang.pojo.TDoctor">
+		SELECT * from tdoctor
+	</select>
+	<select id="findDoctorByName1" parameterType="string" resultType="com.yiyang.pojo.TDoctor">
+
+		SELECT  * from tdoctor WHERE dUser = #{dUser}
+	</select>
+
 </mapper>

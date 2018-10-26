@@ -6,4 +6,10 @@
         WHERE a.dsPuser=#{username} ORDER BY a.dsId DESC
     </select>
 
+    <select id="findTDsuggestBydsDuser" parameterType="String" resultType="com.yiyang.pojo.TDsuggest">
+        SELECT * FROM tdsuggest WHERE dsDuser=#{dsDuser} ORDER BY dsDate DESC
+    </select>
+    <insert id="insertTDsuggest" parameterType="com.yiyang.pojo.TDsuggest">
+        INSERT INTO tdsuggest(dsDuser,dsPuser,dsSuggest,dsDate,dsItem) VALUES(#{dsDuser},#{dsPuser},#{dsSuggest},NOW(),#{dsItem});
+    </insert>
 </mapper>

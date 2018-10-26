@@ -17,9 +17,20 @@ public class TConsult implements Serializable {
     private String cAnswer;
 
     private String cEvaluate;
+
     private Date cDate;
+
+    private Date date;
     private TUserInfo consultUser;
     private TUserInfo doctorUser;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public TUserInfo getConsultUser() {
         return consultUser;

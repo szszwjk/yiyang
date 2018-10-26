@@ -30,6 +30,7 @@
     <select id="SelectAllUser" resultMap="AllUserMap">
        SELECT b.*,a.pIdnum from tparent a,tuserinfo b where a.pUser = b.infoName
     </select>
+
     <update id="updateUserInfo" parameterType="com.yiyang.pojo.TUserInfo">
         UPDATE tuserinfo
         <trim prefix="set" suffixOverrides=",">
@@ -45,5 +46,11 @@
     <update id="updateImg" parameterType="com.yiyang.pojo.TUserInfo">
         UPDATE tuserinfo SET infoImg=#{infoImg} WHERE infoUser=#{infoUser}
     </update>
+
+
+
+    <select id="SelectPointUser" parameterType="String" resultMap="AllUserMap">
+        SELECT b.*,a.pIdnum from tparent a,tuserinfo b where a.pUser = b.infoName AND b.infoName = #{0} AND b.infoTel = #{1}
+    </select>
 
 </mapper>

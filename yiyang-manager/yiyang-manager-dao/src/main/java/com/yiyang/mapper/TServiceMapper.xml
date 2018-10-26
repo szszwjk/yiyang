@@ -17,28 +17,45 @@
         <association property="tUserInfo" javaType="com.yiyang.pojo.TUserInfo">
             <id  property="infoUser" column="id"></id>
             <result property="infoTel" column="infoTel"></result>
+            <result property="infoSex" column="infoSex"></result>
+            <result property="infoAge" column="infoAge"></result>
+            <result property="infoNation" column="infoNation"></result>
+
         </association>
     </resultMap>
     <select id="findInfoByUser" parameterType="String" resultMap="tServiceMap">
-        SELECT a.sName,a.sInfo2,a.sUser,a.sInfo3,a.sCnum,a.sNumber,b.infoTel,a.sFlag,a.sAddress,a.sDescribe
+        SELECT a.sId,a.sName,a.sInfo2,a.sUser,a.sInfo3,a.sCnum,a.sNumber,b.infoTel,a.sFlag,a.sAddress,a.sDescribe,b.infoSex,b.infoAge,b.infoNation
         from tservice a LEFT JOIN tuserinfo b on a.sUser=b.infoUser
         where a.sUser=#{sUser}
     </select>
-<!--
+
     <update id="updateByUser" parameterType="com.yiyang.pojo.TService">
         UPDATE  tservice
-        <set>
-            <if test="sName!=null">sName=#{sName}</if>
-            <if test="sInfo2!=null">sInfo2=#{sInfo2}</if>
-            <if test="sUser!=null">sUser=#{sUser}</if>
-            <if test="sInfo3!=null">sName=#{sInfo3}</if>
-            <if test="sNumber!=null">sNumber=#{sNumber}</if>
-            <if test="infoTel!=null">infoTel=#{infoTel}</if>
-            <if test="sAddress!=null">sAddress=#{sAddress}</if>
-            <if test="sDescribe!=null">sDescribe=#{sDescribe}</if>
-        </set>
+        <trim prefix="SET"  suffixOverrides=",">
+            <if test="sName!=null">sName=#{sName},</if>
+            <if test="sInfo2!=null">sInfo2=#{sInfo2},</if>
+            <if test="sUser!=null">sUser=#{sUser},</if>
+            <if test="sInfo3!=null">sInfo3=#{sInfo3},</if>
+            <if test="sCnum!=null">sCnum=#{sCnum},</if>
+            <if test="sNumber!=null">sNumber=#{sNumber},</if>
+
+            <if test="sAddress!=null">sAddress=#{sAddress},</if>
+            <if test="sDescribe!=null">sDescribe=#{sDescribe},</if>
+
+        </trim>
         where sUser=#{sUser}
     </update>
 
--->
+
+
+
+    <select id="selectAllService" resultType="com.yiyang.pojo.TService">
+        SELECT  * from tservice
+
+    </select>
+    <select id="selectServiceByName" parameterType="String" resultType="com.yiyang.pojo.TService">
+        SELECT * FROM tservice where sUser = #{sUser}
+    </select>
+
+
 </mapper>

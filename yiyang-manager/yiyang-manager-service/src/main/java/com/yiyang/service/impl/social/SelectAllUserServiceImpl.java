@@ -19,7 +19,7 @@ public class SelectAllUserServiceImpl implements SelectAllUserService {
     public List< TUserInfo > SelectAllUser() {
 
        List<TUserInfo> list =  tUserInfoMapper.SelectAllUser();
-        System.out.println(list);
+
         return  list;
     }
 }

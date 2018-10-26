@@ -38,23 +38,24 @@
 <header>
 
     <div class="row">
-        <div class="col-md-2">.col-md-8</div>
+        <div class="col-md-2"></div>
         <div class="col-md-8">
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">
-                <span>首页</span></div>
-            <div class="col-md-1 text-center"><a href="/dangan" ><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
-                <span>档案管理</span></a></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
-                <span>工单管理</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
-                <span>投诉管理</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
-                <span>预警管理</span></div>
+            <div class="col-md-8">
+                <div class="col-md-1 text-center"><a href="/"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">
+                    <span>首页</span></a></div>
+                <div class="col-md-1 text-center"><a href="dangan" ><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                    <span>档案管理</span></a></div>
+                <div class="col-md-1 text-center"><a href="/gongdan" ><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+                    <span>工单管理</span></a></div>
+                <%--<div class="col-md-1 text-center"><a href="/tousu" ><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">--%>
+                    <%--<span>投诉管理</span></a></div>--%>
+                <%--<div class="col-md-1 text-center"><a href="/yujing"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">--%>
+                    <%--<span>预警管理</span></a></div>--%>
 
         </div>
-        <div class="col-md-2">.col-md-4</div>
+        <div class="col-md-2"></div>
     </div>
-
+    </div>
 </header>
 <section class="content">
 

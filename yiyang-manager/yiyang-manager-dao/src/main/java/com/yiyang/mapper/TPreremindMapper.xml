@@ -35,4 +35,8 @@
         ORDER BY
             prTime DESC
     </select>
+
+    <select id="findPreremindAll" parameterType="String" resultType="com.yiyang.pojo.TPreremind">
+        select * from tpreremind where prUser in (select pUser from doctorparent where dUser = #{dUser})ORDER BY prTime DESC
+    </select>
 </mapper>

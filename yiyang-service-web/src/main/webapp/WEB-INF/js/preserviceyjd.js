@@ -17,10 +17,10 @@ $(function () {
     $psTelnumber2.change(function () {
         nowpage = 1;
     })
-    $yjdlist = $("#yjslist");
+    $yjdlist = $("#yjdlist");
     //换页隐藏
     $yjdlist.click(function () {
-        $("#mytable").css("display", "none");
+        $("#mytable2").css("display", "none");
         $("#pt").css("display", "none");
     });
     $selectyjdlist = $("#selectyjdlist");
@@ -28,7 +28,7 @@ $(function () {
         nowpage = 1;
         var psUname2 = $psUname2.val();
         var psTelnumber2 = $psTelnumber2.val();
-        $("#mytable").remove();
+        $("#mytable2").remove();
         $("#pt").remove();
         $.post("/item/yjdlist", {page: nowpage, rows: 14, psUname: psUname2, psTelnumber: psTelnumber2}, function (data) {
             total = data.total;
@@ -40,7 +40,7 @@ $(function () {
                 tlength = pagenum - nowpage;
             }
             console.log(pagenum);
-            var string = " <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"已接单工单\">" +
+            var string = " <table class=\"table table-condensed table-striped\" id=\"mytable2\" title=\"已接单工单\">" +
                 "<thead id=\"thead\">" +
                 "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th >电话号码</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务人员</th><th >服务状态</th><th >操作</th></tr>" +
                 "</thead>";
@@ -56,11 +56,11 @@ $(function () {
                     "<td>" + list[i].psAddres + "</td>" +
                     "<td>" + list[i].psPeople + "</td>" +
                     "<td>" + list[i].psFlag + "</td>" +
-                    "<td><a href=\"#\">处理</a> </td>" +
+                    "<td><a href=\"#\" onclick='chuli(this)'>处理</a> </td>" +
                     "</tr>"
             }
             string += "</table>";
-            $home.after(string);
+           $("#form2").after(string);
             var pagebt = "<nav aria-label=\"Page navigation \" class=\"text-right\" id=\"pt\">" +
                 "<ul class=\"pagination \">" + "<li>" +
                 "<a   aria-label=\"Previous\" onclick=\"pageclick(this)\">" +
@@ -71,10 +71,17 @@ $(function () {
             }
             pagebt += "<li><a  >...</a><>" + "<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
                 ">>" + "</a>" + "<>" + "</ul>" + "</nav>"
-            $("#mytable").after(pagebt)
+
         });
     })
 });
+function chuli(obj) {
+    var rows=obj.parentNode.parentNode.rowIndex;
+    var psNumber=$("#mytable2 tr:eq("+rows+") td:eq(2)").html();
+    console.log(psNumber);
+    window.location.href="/chuli/"+psNumber;
+}
+
 function pageclick(obj) {
             var flag = $(obj).text();
             if (nowpage == flag) {
@@ -95,14 +102,14 @@ function pageclick(obj) {
             } else {
                 nowpage = flag;
             }
-            $("#mytable").remove();
+            $("#mytable2").remove();
             $.post("/item/yjdlist", {
                 page: nowpage,
                 rows: 14,
                 psUname: psUname2,
                 psTelnumber: psTelnumber2
             }, function (data) {
-                var string = " <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"待处理工单\">" +
+                var string = " <table class=\"table table-condensed table-striped\" id=\"mytable2\" title=\"待处理工单\">" +
                     "<thead id=\"thead\">" +
                     "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th >电话号码</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务人员</th><th >服务状态</th><th >完成时间</th><th >操作</th></tr>" +
                     "</thead>";
@@ -118,7 +125,7 @@ function pageclick(obj) {
                         "<td>" + list[i].psAddres + "</td>" +
                         "<td>" + list[i].psPeople + "</td>" +
                         "<td>" + list[i].psFlag + "</td>" +
-                        "<td><a href=\"#\">处理</a></td>" +
+                        "<td><a href=\"#\" onclick='chuli(this)'>处理</a></td>" +
                         "</tr>"
                 }
                 string += "</table>";
@@ -142,7 +149,7 @@ function pageclick(obj) {
                     }
                     pagebt += "<li><a  >...</a></li>" + "<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
                         ">>" + "</a>" + "</li>" + "</ul>" + "</nav>"
-                    $("#mytable").after(pagebt)
+                    $("#mytable2").after(pagebt)
                 }
             });
     }

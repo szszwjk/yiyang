@@ -52,10 +52,15 @@ public interface TPreserviceMapper {
      */
    void updateFlag4(String psNumber);
 
+
     /**
      * 添加订单
      * @param tPreservice
      */
     void insertOrder(TPreservice tPreservice);
     List<TPreservice> getHServices(TPreservice tPreservice);
+
+    List<TPreservice> selectAllPreservice();
+    void deletePreserviceByNum(String num);
+    List<TPreservice> selectPreserviceByName( String name);
    }

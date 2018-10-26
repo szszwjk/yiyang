@@ -77,4 +77,22 @@
         <if test="_parameter!=null and _parameter!=''">AND b.infoName LIKE CONCAT('%',#{dname},'%')</if>
           ORDER BY  RAND() LIMIT 8;
     </select>
+    <select id="SelectUserByIdnum" resultType="com.yiyang.pojo.TParent"  parameterType="String">
+        SELECT * from tparent WHERE pIdnum = #{pIdnum}
+    </select>
+    <select id="UpdateTParent" parameterType="String" >
+UPDATE tparent
+SET pBirthplace = #{3},
+ pAddress = #{1},
+ pCnum = #{10},
+ pInfo1 = #{6},
+ pInfo2 = #{8},
+ pInfo3 = #{7},
+ pInfo4 = #{9},
+ pNationality = #{5},
+ pBlood = #{4},
+ pEducational = #{2}
+WHERE
+	pIdnum = #{0}
+    </select>
 </mapper>

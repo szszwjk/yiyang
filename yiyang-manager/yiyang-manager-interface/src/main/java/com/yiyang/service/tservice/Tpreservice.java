@@ -23,9 +23,9 @@ public interface TpreService {
 
     TPreservice findByPsNumber(String psNumber);
 
-    public YiyangResult updateFlag2(String psNumber);
-    public YiyangResult updateFlag3(String psNumber);
-    public YiyangResult updateFlag4(String psNumber);
+    public void updateFlag2(String psNumber);
+    public void updateFlag3(String psNumber);
+    public void updateFlag4(String psNumber);
 
 
 }

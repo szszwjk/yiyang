@@ -56,14 +56,12 @@
 
 </header>
 <section class="content">
-
-
     <div class="col-md-2">
         <div class="tabTip">
             <ul class="nav nav-pills nav-stacked" role="tablist">
                 <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="dcllist">待处理工单</a></li>
-                <li role="presentation"><a href="#profile" role="tab" data-toggle="tab" id="yjslist">已接收工单</a></li>
-                <li role="presentation"><a href="#profile" role="tab" data-toggle="tab" id="ywclist">已完成工单</a></li>
+                <li role="presentation"><a href="#profile" role="tab" data-toggle="tab" id="yjdlist">已接收工单</a></li>
+                <li role="presentation"><a href="#message" role="tab" data-toggle="tab" id="ywclist">已完成工单</a></li>
             </ul>
         </div>
     </div>
@@ -74,7 +72,7 @@
             <!-- 面板区 -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="form1">
                         <div class="form-group">
                             <div class="col-md-3" >
                                 <div style="float: left;"><label for="psUname1" class="" style="line-height: 34px">老人姓名</label></div>
@@ -97,7 +95,7 @@
                     </form>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="profile">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="form2">
                         <div class="form-group">
                             <div class="col-md-3" >
                                 <div style="float: left;"><label for="psUname2" class="" style="line-height: 34px">老人姓名</label></div>
@@ -120,7 +118,7 @@
                     </form>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="message">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="form3">
                         <div class="form-group">
                             <div class="col-md-3" >
                                 <div style="float: left;"><label for="psUname3" class="" style="line-height: 34px">老人姓名</label></div>
@@ -145,10 +143,27 @@
             </div>
         </div>
     </div>
-
-
+    <div>
+        <div class="modal fade bs-example-modal-lg show-desc" id="show-desc" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <form action="/item/refuse" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">信息</h4>
+                    </div>
+                    <div class="modal-body">
+                       <span> 确定要拒绝<span id="psNumber"/>工单么？</span>
+                    </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary" id="saverefuse">确定</button>
+                    </div>
+            </div>
+        </div>
+        </div>
+    </div>
 </section>
-
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->

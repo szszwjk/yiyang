@@ -122,23 +122,36 @@
 	<dubbo:protocol name="dubbo" port="20880" />
 	<!-- 声明需要暴露的服务接口 -->
 	<dubbo:service interface="com.yiyang.service.user.UserService" ref="userServiceImpl" timeout="30000"/>
-	<!--<dubbo:service interface="com.yiyang.service.tservice.TpreService" ref="tpreServiceImpl" timeout="30000"/>-->
+	<dubbo:service interface="com.yiyang.service.tservice.TpreService" ref="tpreServiceImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.parent.ParentService" ref="parentServiceImpl" timeout="30000"/>
-
 	<dubbo:service interface="com.yiyang.service.social.FindTypeService" ref="findTypeServiceImpl" timeout="30000"/>
-
 	<dubbo:service interface="com.yiyang.service.tservice.Serviceitem" ref="serviceitemImpl" timeout="30000"/>
-
 	<dubbo:service interface="com.yiyang.service.doctor.DoctorService" ref="doctorServiceImpl" timeout="30000"/>
-
-
 	<dubbo:service interface="com.yiyang.service.tservice.Tservice" ref="tserviceImpl" timeout="30000"/>
+
+	<dubbo:service interface="com.yiyang.service.social.SelectPointUserService" ref="selectPointUserServiceImpl" timeout="30000"/>
 
 
 
 	<dubbo:service interface="com.yiyang.service.social.SelectAllUserService" ref="selectAllUserServiceImpl" timeout="30000"/>
+
 	<dubbo:service interface="com.yiyang.service.parent.ParentData" ref="parentDataImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.parent.PictureService" ref="pictureServiceImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.relation.RelationService" ref="relationServiceImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.yunadmin.AdminService" ref="adminServiceImpl" timeout="30000"/>
+
+
+	<dubbo:service interface="com.yiyang.service.social.SelectUserByIdnumService" ref="selectUserByIdnumServiceImpl" timeout="30000"/>
+
+	<dubbo:service interface="com.yiyang.service.social.UpdateTParentService" ref="updateTParentServiceImpl" timeout="30000"/>
+
+	<dubbo:service interface="com.yiyang.service.social.SelectAllDocService" ref="selectAllDocServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.SelectAllServiceService" ref="selectAllServiceServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.SelectServiceByNameService" ref="selectServiceByNameServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.SelectAllPreserviceService" ref="selectAllPreserviceServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.DeletePreserviceByNumService" ref="deletePreserviceByNumServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.SelectPreserviceByNameService" ref="selectPreserviceByNameServiceImpl" timeout="30000"/>
+
+
+
 </beans>

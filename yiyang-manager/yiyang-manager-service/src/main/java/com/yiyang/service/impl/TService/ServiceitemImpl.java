@@ -51,4 +51,25 @@ public class ServiceitemImpl implements  Serviceitem{
         result.setRows(list);
         return result;
     }
+
+    @Override
+    public TServiceitem fingBySiId(int siId) {
+        TServiceitem tServiceitem= tServiceitemMapper.findBySiId(siId);
+        return tServiceitem;
+    }
+
+    @Override
+    public void insertServiceItem(TServiceitem tServiceitem) {
+        tServiceitemMapper.insertServiceItem(tServiceitem);
+    }
+
+    @Override
+    public void updateServiceItem(TServiceitem tServiceitem) {
+        tServiceitemMapper.updateServiceItem(tServiceitem);
+    }
+
+    @Override
+    public void deleteBySiId(int siId) {
+        tServiceitemMapper.deleteBySiId(siId);
+    }
 }

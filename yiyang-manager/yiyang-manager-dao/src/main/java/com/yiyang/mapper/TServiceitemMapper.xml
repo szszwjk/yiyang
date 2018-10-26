@@ -5,10 +5,11 @@
         SELECT  * FROM tserviceitem
     </select>
 
-    <insert id="insertServiceItem" parameterType="com.yiyang.pojo.TServiceitem">
+    <insert id="insertServiceItem" parameterType="com.yiyang.pojo.TServiceitem" >
         INSERT  INTO tserviceitem(siUser, siName, siLarge, siLittle, siItem, siPrice, siDesc, siType) VALUES
         (#{siUser},#{siName},#{siLarge},#{siLittle},#{siItem},#{siPrice},#{siDesc},#{siType})
     </insert>
+
     <select id="selectByLargeAndLittle" parameterType="com.yiyang.pojo.TServiceitem" resultType="com.yiyang.pojo.TServiceitem">
         SELECT * from tserviceitem
         <where>
@@ -20,4 +21,22 @@
             </if>
         </where>
     </select>
+
+    <select id="findBySiId" parameterType="int" resultType="com.yiyang.pojo.TServiceitem">
+        SELECT * FROM tserviceitem WHERE siId=#{siId}
+    </select>
+
+    <update id="updateServiceItem" parameterType="com.yiyang.pojo.TServiceitem">
+       UPDATE  tserviceitem
+        <trim prefix="SET"  suffixOverrides="," suffix="WHERE siId=#{siId}">
+           <if test="siType!=null and siType!=''">siType=#{siType},</if>
+           <if test="siPrice!=null and siPrice!=''">siPrice=#{siPrice},</if>
+           <if test="siDesc!=null and siDesc!=''">siDesc=#{siDesc},</if>
+    </trim>
+    </update>
+
+    <delete id="deleteBySiId" parameterType="int" >
+        DELETE from tserviceitem where siId=#{siId};
+    </delete>
+
 </mapper>

@@ -1,29 +1,64 @@
 package com.yiyang.social.controller;
 
 import com.yiyang.common.utils.JsonUtils;
+import com.yiyang.pojo.TDoctor;
+import com.yiyang.pojo.TParent;
+import com.yiyang.pojo.TService;
 import com.yiyang.pojo.TUserInfo;
-import com.yiyang.service.social.SelectAllUserService;
+import com.yiyang.service.social.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
 public class AllUserController {
     @Autowired
-    public SelectAllUserService selectAllUserService;
+            public SelectAllUserService selectAllUserService;
+    @Autowired
+            public SelectUserByIdnumService selectUserByIdnumService;
+    @Autowired
+            public UpdateTParentService updateTParentService;
+    @Autowired
+            public SelectAllDocService selectAllDocService;
+    @Autowired
+            public  SelectAllServiceService selectAllServiceService;
+    String id ;
+    @RequestMapping(value = "/dangan")
+    public String chart1(HttpServletRequest request, HttpServletResponse response) {
+        List< TUserInfo > list = selectAllUserService.SelectAllUser();
+        request.setAttribute( "list",list );
+        TParent tParent = selectUserByIdnumService.SelectUserByIdnum( request.getParameter( "ID" ));
+        request.setAttribute( "tparent",tParent );
+        id = request.getParameter( "act" );
+        TParent update = selectUserByIdnumService.SelectUserByIdnum( request.getParameter( "act" ));
+        request.setAttribute( "update",update );
 
-    @RequestMapping("/dangan")
-    public String charts(HttpServletRequest request, HttpServletResponse response, Model mod) {
-       List< TUserInfo > list = selectAllUserService.SelectAllUser();
 
-        String json = JsonUtils.objectToJson( list );
-        mod.addAttribute("list",list );
+        //查询出所有的医生，返回集合 result
+        List<TDoctor> result = selectAllDocService.selectAllDoc();
+        request.setAttribute( "result",result );
+
+        //查询出所有的服务商 返回集合 ServiceResult
+        List<TService> ServiceResult = selectAllServiceService.SelectAllService();
+        request.setAttribute( "ServiceResult",ServiceResult );
+
         return "dangan";
-
     }
+    @RequestMapping(value = "/UD",method = RequestMethod.POST)//提交更新表单信息。update
+    public String  chart2(HttpServletRequest request, HttpServletResponse response) {
+
+        updateTParentService.UpdateTParent( id,request.getParameter( "juzhudi" ),request.getParameter( "xueli" ),request.getParameter( "chushengdi" ),
+                request.getParameter( "xuexing" ),request.getParameter( "guoji" ),request.getParameter( "guominshi" ),
+                request.getParameter( "waishang" ),request.getParameter( "shoushushi" ),request.getParameter( "yichuanbing" ),
+                request.getParameter( "shequhao" ));
+
+        return "success";
+    }
+
+
 }

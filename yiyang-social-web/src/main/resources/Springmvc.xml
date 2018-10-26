@@ -60,4 +60,14 @@
 	<dubbo:reference interface="com.yiyang.service.user.UserService" id="userService" />
     <dubbo:reference interface="com.yiyang.service.social.FindTypeService" id="findTypeService "/>
 	<dubbo:reference interface="com.yiyang.service.social.SelectAllUserService" id="selectAllUserService "/>
+	<dubbo:reference interface="com.yiyang.service.social.SelectPointUserService" id="selectPointUserService "/>
+	<dubbo:reference interface="com.yiyang.service.social.SelectUserByIdnumService" id="selectUserByIdnumService "/>
+	<dubbo:reference interface="com.yiyang.service.social.UpdateTParentService" id="updateTParentService "/>
+	<dubbo:reference interface="com.yiyang.service.social.SelectAllDocService" id="selectAllDocService"/>
+	<dubbo:reference interface="com.yiyang.service.doctor.DoctorService" id="doctorService"/>
+	<dubbo:reference interface="com.yiyang.service.social.SelectAllServiceService" id="selectAllServiceService"/>
+	<dubbo:reference interface="com.yiyang.service.social.SelectServiceByNameService" id="selectServiceByNameService"/>
+	<dubbo:reference interface="com.yiyang.service.social.SelectAllPreserviceService" id="selectAllPreserviceService"/>
+	<dubbo:reference interface="com.yiyang.service.social.DeletePreserviceByNumService" id="deletePreserviceByNumService"/>
+	<dubbo:reference interface="com.yiyang.service.social.SelectPreserviceByNameService" id="selectPreserviceByNameService"/>
 </beans>
