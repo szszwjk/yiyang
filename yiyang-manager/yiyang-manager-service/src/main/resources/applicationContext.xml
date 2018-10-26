@@ -124,21 +124,19 @@
 	<dubbo:service interface="com.yiyang.service.user.UserService" ref="userServiceImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.tservice.TpreService" ref="tpreServiceImpl" timeout="30000"/>
 	<dubbo:service interface="com.yiyang.service.parent.ParentService" ref="parentServiceImpl" timeout="30000"/>
-
 	<dubbo:service interface="com.yiyang.service.social.FindTypeService" ref="findTypeServiceImpl" timeout="30000"/>
-
 	<dubbo:service interface="com.yiyang.service.tservice.Serviceitem" ref="serviceitemImpl" timeout="30000"/>
-
 	<dubbo:service interface="com.yiyang.service.doctor.DoctorService" ref="doctorServiceImpl" timeout="30000"/>
-
-
 	<dubbo:service interface="com.yiyang.service.tservice.Tservice" ref="tserviceImpl" timeout="30000"/>
+<<<<<<< HEAD
 
 
 
 	<dubbo:service interface="com.yiyang.service.social.SelectPointUserService" ref="selectPointUserServiceImpl" timeout="30000"/>
 
 
+=======
+>>>>>>> 9c022905382a086162da73f1c4c1f3a19b7d35bf
 	<dubbo:service interface="com.yiyang.service.social.SelectAllUserService" ref="selectAllUserServiceImpl" timeout="30000"/>
 
 	<dubbo:service interface="com.yiyang.service.social.SelectUserByIdnumService" ref="selectUserByIdnumServiceImpl" timeout="30000"/>

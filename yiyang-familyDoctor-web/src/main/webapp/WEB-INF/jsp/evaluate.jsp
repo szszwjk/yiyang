@@ -16,7 +16,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>首页</title>
+    <title>医生评估</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css">
@@ -27,7 +27,6 @@
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-
     <![endif]-->
     <link rel="sty">
 </head>
@@ -56,8 +55,7 @@
     <div class="col-md-2">
         <div class="tabTip">
             <ul class="nav nav-pills nav-stacked" role="tablist">
-                <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="showlist">个人信息</a></li>
-                <li role="presentation"><a href="#profile" role="tab" data-toggle="tab" id="hlist">预警信息</a></li>
+                <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="showlist">老人身体评估</a></li>
             </ul>
         </div>
     </div>
@@ -69,39 +67,26 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <table class="table table-striped">
-                        <col style="width: 15%" />
-                        <col style="width: 42.5%" />
-                        <col style="width: 42.5%" />
-                        <tr><td>姓名:${doctor.dUser }</td></tr>
-                        <tr><td>所属医院:${doctor.dHname }</td></tr>
-                        <tr><td>社区编号:${doctor.dCnum }</td></tr>
-                        <tr><td>所属科室:${doctor.dInfo1 }</td></tr>
-                        <tr><td>居住地:${doctor.dAddress }</td></tr>
-                    </table>
-
-                </div>
-                <div role="tabpanel" class="tab-pane" id="profile">
-                    <table class="table table-striped">
                         <tr>
                             <td>老人姓名</td>
-                            <td>预警项目</td>
-                            <td>预警值</td>
-                            <td>预警单位</td>
-                            <td>预警时间</td>
-                            <td>操作</td>
+                            <td>项目</td>
+                            <td>身体评估</td>
+                            <td>时间</td>
                         </tr>
-                        <c:forEach items="${prList}" var="item">
+                        <c:forEach items="${evaList}" var="item">
                             <tr>
-                                <td>${item.prUser }</td>
-                                <td>${item.prItem }</td>
-                                <td>${item.prValue }</td>
-                                <td>${item.prUnit }</td>
-                                <td><fmt:formatDate value="${item.prTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-                                <td><a href="#" data-toggle="modal" data-target="#myModal">查看详情</a></td>
+                                <td>${item.dsPuser }</td>
+                                <td>${item.dsItem }</td>
+                                <td>${item.dsSuggest }</td>
+                                <td><fmt:formatDate value="${item.dsDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                             </tr>
                         </c:forEach>
 
                     </table>
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                        添加评估
+                    </button>
+                    <!-- 模态框（Modal） -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -114,18 +99,48 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                  老人紧急联系方式：1568974831
+                                    <form class="form-horizontal" role="form"id="addInfo">
+                                        <div class="form-group">
+                                            <label for="parname" class="col-sm-2 control-label">老人姓名</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="parname"
+                                                       placeholder="请输入老人姓名" name="dsPuser">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="docname" class="col-sm-2 control-label">医生姓名</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="docname"
+                                                       placeholder="请输入医生姓名" name="dsDuser">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="itemname" class="col-sm-2 control-label">项目</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="itemname"
+                                                       placeholder="请输入项目" name="dsItem">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phy" class="col-sm-2 control-label">身体评估</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="phy"
+                                                       placeholder="请输入身体评估" name="dsSuggest">
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary" onclick="submit_info()">
+                                        提交
+                                    </button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                    </button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                      确定
-                                    </button>
+                                </button>
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -139,6 +154,6 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../js/parentindex.js"></script>
-<script src="../js/index.js"></script>
+
 </body>
 </html>

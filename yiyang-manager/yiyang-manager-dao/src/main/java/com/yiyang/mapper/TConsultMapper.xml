@@ -2,4 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TConsultMapper" >
 
+
+    <resultMap id="consultMap" type="com.yiyang.pojo.TConsult">
+        <result property="cId" column="cId"></result>
+        <result property="cUser" column="cUser"></result>
+        <result property="cDuser" column="cDuser"></result>
+        <result property="cFlag" column="cFlag"></result>
+        <result property="cDesc" column="cDesc"></result>
+        <result property="cAnswer" column="cAnswer"></result>
+        <result property="cEvaluate" column="cEvaluate"></result>
+        <association property="consultUser" javaType="com.yiyang.pojo.TUserInfo">
+            <result property="infoName" column="infoName"></result>
+        </association>
+    </resultMap>
+    <select id="findConsultAll" parameterType="String" resultMap="consultMap">
+       SELECT b.infoName,a.* FROM `tconsult` a INNER JOIN tuserinfo b ON a.cUser=b.infoUser WHERE a.cDuser=#{cDuser};
+    </select>
+    <update id="updateAnser" parameterType="com.yiyang.pojo.TConsult">
+        UPDATE tconsult SET  cAnswer=#{cAnswer} ,cFlag='2'WHERE cId=#{cId}
+    </update>
 </mapper>

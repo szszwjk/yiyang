@@ -16,7 +16,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>首页</title>
+    <title>咨询问题</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css">
@@ -27,7 +27,6 @@
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-
     <![endif]-->
     <link rel="sty">
 </head>
@@ -56,8 +55,7 @@
     <div class="col-md-2">
         <div class="tabTip">
             <ul class="nav nav-pills nav-stacked" role="tablist">
-                <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="showlist">个人信息</a></li>
-                <li role="presentation"><a href="#profile" role="tab" data-toggle="tab" id="hlist">预警信息</a></li>
+                <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="showlist">老人咨询</a></li>
             </ul>
         </div>
     </div>
@@ -68,36 +66,21 @@
             <!-- 面板区 -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    <table class="table table-striped">
-                        <col style="width: 15%" />
-                        <col style="width: 42.5%" />
-                        <col style="width: 42.5%" />
-                        <tr><td>姓名:${doctor.dUser }</td></tr>
-                        <tr><td>所属医院:${doctor.dHname }</td></tr>
-                        <tr><td>社区编号:${doctor.dCnum }</td></tr>
-                        <tr><td>所属科室:${doctor.dInfo1 }</td></tr>
-                        <tr><td>居住地:${doctor.dAddress }</td></tr>
-                    </table>
-
-                </div>
-                <div role="tabpanel" class="tab-pane" id="profile">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="mytable_i">
                         <tr>
+                            <td>序号</td>
                             <td>老人姓名</td>
-                            <td>预警项目</td>
-                            <td>预警值</td>
-                            <td>预警单位</td>
-                            <td>预警时间</td>
-                            <td>操作</td>
+                            <td>问题描述</td>
+                            <td>老人评价</td>
+                            <td>答复</td>
                         </tr>
-                        <c:forEach items="${prList}" var="item">
+                        <c:forEach items="${conList}" var="item">
                             <tr>
-                                <td>${item.prUser }</td>
-                                <td>${item.prItem }</td>
-                                <td>${item.prValue }</td>
-                                <td>${item.prUnit }</td>
-                                <td><fmt:formatDate value="${item.prTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-                                <td><a href="#" data-toggle="modal" data-target="#myModal">查看详情</a></td>
+                                <td>${item.cId }</td>
+                                <td>${item.cUser }</td>
+                                <td>${item.cDesc }</td>
+                                <td>${item.cEvaluate }</td>
+                                <td><a href="#" onclick="showdesc(this)">查看详情</a></td>
                             </tr>
                         </c:forEach>
 
@@ -114,13 +97,23 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                  老人紧急联系方式：1568974831
+                                    <form id="inspectionForm">
+                                        <table class="table text-right">
+                                            <col style="width: 15%"/>
+                                            <col style="width: 85%"/>
+                                            <tr><td>问题:</td><td><textarea class="form-control" rows="3" style="resize: none;" id="desc" ></textarea></td></tr>
+                                            <tr><td>回复:</td><td><textarea class="form-control" rows="3" style="resize: none;" id="answer" name="cAnswer" ></textarea></td></tr>
+                                            <tr><td><input type="text" class="hidden" id="cId" name="cId"></td></tr>
+                                        </table>
+                                    </form>
+
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                                     </button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                      确定
+                                    <button type="button" class="btn btn-primary" onclick="savedescinfo()">
+                                        提交更改
                                     </button>
                                 </div>
                             </div><!-- /.modal-content -->
@@ -139,6 +132,33 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../js/parentindex.js"></script>
-<script src="../js/index.js"></script>
+<script>
+    $(function () {
+        var list=${listjson}
+            console.log(list)
+    })
+    function showdesc(obj) {
+        var rows=obj.parentNode.parentNode.rowIndex;
+        console.log()
+        var iId=$("#mytable_i tr:eq(" + rows + ") td:eq(2)").html()
+        var cId=$("#mytable_i tr:eq(" + rows + ") td:eq(0)").html()
+        $("#desc").val(iId)
+        $("#cId").val(cId)
+        $('#myModal').modal('toggle');
+
+    }
+    function savedescinfo() {
+        $.post("/doctor/saveanswer",$("#inspectionForm").serialize(),function (data) {
+            if (data.status == 200) {
+                alert("添加成功！");
+
+            } else {
+                alert("添加失败，原因是：" + data.msg);
+            }
+
+
+        })
+    }
+</script>
 </body>
 </html>

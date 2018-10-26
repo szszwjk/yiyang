@@ -61,12 +61,12 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
 
-                    <form class="form-horizontal" method="post">
+                    <form class="form-horizontal" action="/jieshou/" method="post">
                              <div class="form-head">工单管理</div>
                              <div class="form-group">
                                 <div style="float:left;"><label for="psNumber" class="" style="line-height: 34px" >订单编号</label></div>
                                 <div class="myselect">
-                                    <input  type="text" class="form-control" id="psNumber" value="${tPreservice.psNumber}">
+                                    <input  type="text" class="form-control" id="psNumber" name="psNumber" value="${tPreservice.psNumber}">
                                     </input>
                                 </div>
                                 <div style="float: left;"><label for="psUname" class="" style="line-height: 34px">订单用户姓名</label></div>
@@ -147,15 +147,13 @@
                             </div>
                             </div>
                             <div class="form-group">
-                            <button type="button" class="btn btn-info" style="width:70px" id="accept">接受</button>
-                            <button type="button" class="btn btn-info" style="width:70px" id="return" onclick="/preservice">返回</button>
+                                <button type="submit" class="btn btn-info" style="width:70px" id="accept">接受</button>
+                                <button type="button" class="btn btn-info" style="width:70px" id="return"><a href="javascript:" onclick="self.location=document.referrer;">返回</a></button>
                             </div>
                     </form>
             </div>
         </div>
     </div>
-
-
 </section>
 
 

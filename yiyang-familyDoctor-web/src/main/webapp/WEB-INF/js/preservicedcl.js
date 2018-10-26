@@ -6,10 +6,8 @@ var tlength=null;
 var $dcllist;
 var $psUname1;
 var $psTelnumber1;
-var $saverefuse;
 $(function () {
     $home=$("#home");
-
     $psUname1=$("#psUname1");
     //搜索条件切换 页数归一
     $psUname1.change(function () {
@@ -33,7 +31,7 @@ $(function () {
         nowpage=1;
         var psUname1=$psUname1.val();
         var psTelnumber1=$psTelnumber1.val();
-        $("#mytable1").remove();
+        $("#mytable").remove();
         $("#pt").remove();
 
         $.post("/item/dcllist",{page:nowpage,rows:14,psUname:psUname1,psTelnumber:psTelnumber1},function(data){
@@ -47,7 +45,7 @@ $(function () {
                 tlength=pagenum-nowpage;
             }
             console.log(pagenum);
-            var string=" <table class=\"table table-condensed table-striped\" id=\"mytable1\" title=\"待处理工单\">" +
+            var string=" <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"待处理工单\">" +
                 "<thead id=\"thead\">" +
                 "<tr><th ><input checked=\"checked\" type=\"checkbox\" id=\"selectAll\"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th >电话号码</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务状态</th><th >操作</th></tr>" +
                 "</thead>";
@@ -63,11 +61,11 @@ $(function () {
                     "<td>"+list[i].psTotime+"</td>" +
                     "<td>"+list[i].psAddres+"</td>" +
                     "<td>"+list[i].psFlag+"</td>" +
-                    "<td><a href=\"#\" onclick='jieshou1(this)'>接受</a> <a href=\"#\" onclick='refuse(this)'>拒绝</a></td>" +
+                    "<td><a href=\"/jieshou？psNumber=\"+list[i].psNumber>接受</a> <a href=\"#\">拒绝</a></td>" +
                     "</tr>"
             }
             string+="</table>";
-            $("#form1").after(string);
+            $home.after(string);
             var pagebt="<nav aria-label=\"Page navigation \" class=\"text-right\" id=\"pt\">" +
                 "<ul class=\"pagination \">" + "<li>" +
                 "<a   aria-label=\"Previous\" onclick=\"pageclick(this)\">" +
@@ -79,30 +77,10 @@ $(function () {
             }
             pagebt+="<li><a  >...</a><>" + "<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
                 ">>" + "</a>" + "<>" + "</ul>" + "</nav>"
-            /*$("#mytable1").after(pagebt)*/
+            $("#mytable").after(pagebt)
         });
     })
 });
-function jieshou1(obj) {
-     var rows=obj.parentNode.parentNode.rowIndex;
-     var psNumber = $("#mytable1 tr:eq(" + rows + ") td:eq(2)").html();
-     console.log(psNumber);
-     window.location.href="/jieshou/"+psNumber;
-}
-
-function refuse(obj) {
-    $saverefuse=$("#saverefuse");
-    var rows=obj.parentNode.parentNode.rowIndex;
-    var psNumber = $("#mytable1 tr:eq(" + rows + ") td:eq(2)").html();
-    console.log(psNumber);
-    $('.show-desc').modal('toggle');
-    $saverefuse.click(function () {
-        $.post("/item/refuse",{psNumber:psNumber},function (data) {
-            $("#psNumber").val(data.psNumber);
-        })
-        $('.show-desc').modal('toggle');
-    })
-}
 function pageclick(obj) {
     var flag = $(obj).text();
     if (nowpage == flag) {
@@ -123,10 +101,10 @@ function pageclick(obj) {
     } else {
         nowpage = flag;
     }
-    $("#mytable1").remove();
+    $("#mytable").remove();
 
     $.post("/item/dcllist", {page: nowpage, rows: 14,psUname:psUname1,psTelnumber:psTelnumber1}, function (data) {
-        var string = " <table class=\"table table-condensed table-striped\" id=\"mytable1\" title=\"待处理工单\">" +
+        var string = " <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"待处理工单\">" +
             "<thead id=\"thead\">" +
             "<tr><th ><input checked=\"checked\" type=\"checkbox\" id=\"selectAll\"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th >电话号码</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务状态</th><th >操作</th></tr>" +
             "</thead>";
@@ -141,7 +119,7 @@ function pageclick(obj) {
                 "<td>" + list[i].psTotime + "</td>" +
                 "<td>" + list[i].psAddres + "</td>" +
                 "<td>" + list[i].psFlag + "</td>" +
-                "<td><a href=\"#\" onclick='accept(this)'>接受</a> <a href=\"#\" onclick='refuse(this)'>拒绝</a></td>" +
+                "<td><a href=\"/jieshou？psNumber=list[i].psNumber\">接受</a> <a href=\"#\">拒绝</a></td>" +
                 "</tr>"
         }
         string += "</table>";

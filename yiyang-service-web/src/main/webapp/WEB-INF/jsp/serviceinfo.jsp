@@ -58,88 +58,112 @@
 </header>
 <section class="content" >
     <div class="col-md-12">
-        <form class="form" id="form" method="post">
+        <form class="form" id="form" method="post" action="/serviceInfo">
         <fieldset class="fieldest">
         <legend class="fieldest-legend">
            <span class="span">服务商基本信息</span>
         </legend>
         <div class="col-md-4">
-                <div class="name">
+                <div >
                     <span >商家名称</span>
-                    <input type="text" id="sName" class="sName"  value="${tService.sName}">
+                    <input type="text" id="sName" class="sName"  value="${tService.sName}" name="sName">
                 </div>
-                <div class="name">
+                <div >
                     <span >管理人员</span>
-                    <input type="text" id="sUser" class="sUser"  value="${tService.sUser}">
+                    <input type="text" id="sUser" class="sUser"  value="${tService.sUser}" name="sUser">
                 </div>
-               <div class="name">
+               <div  >
                 <span >周末服务</span>
-                <input type="text" id="sInfo3" class="sInfo3"  value="${tService.sInfo3}">
+                   <select id="sInfo3" value="${tService.sInfo3}" name="sInfo3">
+                       <option value="">----请选择----</option>
+                       <option value="1" >是</option>
+                       <option value="2">否</option>
+                   </select>
             </div>
 
         </div>
         <div class="col-md-4">
-                <div class="name">
+                <div >
                     <span >服务状态</span>
-                    <input type="text" id="sInfo2" class="sInfo2"  value="${tService.sInfo2}">
+                    <select id="sInfo2" value="${tService.sInfo2}" name="sInfo2">
+                        <option value="">----请选择----</option>
+                        <option value="1">正常服务</option>
+                        <option value="2">停止服务</option>
+                    </select>
                 </div>
-                <div class="name">
+                <div >
                     <span >手机号码</span>
-                    <input type="text" id="infoTel" class="infoTel"  value="${tService.tUserInfo.infoTel}">
+                    <input type="text" id="infoTel" class="infoTel"  value="${tService.tUserInfo.infoTel}" name="infoTel">
                 </div>
-               <div class="name">
+               <div >
                 <span >执照号码</span>
-                <input type="text" id="sNumber" class="sNumber"  value="${tService.sNumber}">
+                <input type="text" id="sNumber" class="sNumber"  value="${tService.sNumber}" name="sNumber">
             </div>
         </div>
         <div class="col-md-4">
             <button class="btn" name="update" >修改</button>
         </div>
-
-
 </fieldset>
-
         <fieldset class="fieldest">
             <legend class="fieldest-legend">
                 <span class="span">服务商其他信息</span>
             </legend>
             <div class="col-md-12">
                 <div class="col-md-4">
-                        <div class="name">
+                        <div >
                             <span >商家地址</span>
-                            <input type="text" id="sAddress" class="sAddress"  value="${tService.sAddress}">
+                            <input type="text" id="sAddress" class="sAddress"  value="${tService.sAddress}" name="sAddress">
                         </div>
                 </div>
                 <div class="col-md-4">
-                        <div class="name">
+                        <div >
                             <span >社区编号</span>
-                            <input type="text" id="sCnum" class="sCnum"  value="${tService.sCnum}">
+                            <input type="text" id="sCnum" class="sCnum"  value="${tService.sCnum}" name="sCnum" >
                         </div>
                     </div>
                 <div class="col-md-4">
-                        <div class="name">
+                        <div >
                             <span >商家状态</span>
-                            <input type="text" id="sFlag" class="sFlag"  value="${tService.sFlag}">
+                            <select id="sFlag" value="${tService.sFlag}" name="sFlag">
+                                <option value="" >----请选择----</option>
+                                <option value="1" >正常营业</option>
+                                <option value="2" >店铺关闭</option>
+                            </select>
                         </div>
                 </div>
             </div>
             <div class="col-md-12">
-                        <div class="name">
+                        <div >
                             <span >商家描述</span>
-                            <input type="text" id="sDescribe" class="sDescribe"  value="${tService.sDescribe}">
+                             <textarea name="sDescribe" id="sDescribe" style="width:67%;height:160px;" class="sDescribe"  value="${tService.sDescribe}"></textarea>
                         </div>
             </div>
         </fieldset>
             <div class="formsubmit">
-              <button class="btn-submit" type="submit">保存</button>
-                <button class="btn-return" type="button" onclick="/index">返回</button>
+                <button class="btn-submit" type="submit" id="saveInfo" ><a href="javascript:" onclick="self.location=document.referrer;">保存</a></button>
+                <button class="btn-return" type="button" onclick="fanhui(this)">返回</button>
             </div>
         </form>
     </div>
 </section>
+
+
+
+
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="../js/preservicedcl.js"></script>
+<script type="text/javascript">
+    function fanhui(obj){
+        window.location.href="/index";
+    }
+    $(function () {
+        var Json=${tServiceJson};
+        console.log(Json);
+        $("#sInfo3").val(Json.sInfo3);
+        $("#sInfo2").val(Json.sInfo2);
+        $("#sFlag").val(Json.sFlag);
+    })
+</script>
 </body>
 </html>

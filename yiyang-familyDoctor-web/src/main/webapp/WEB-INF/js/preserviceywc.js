@@ -1,42 +1,36 @@
-var $selectdcllist;
+var $selectywclist;
 var total;
 var pagenum;
 var nowpage=1;
 var tlength=null;
-var $dcllist;
-var $psUname1;
-var $psTelnumber1;
-var $saverefuse;
+var $ywclist;
+var $psUname3;
+var $psTelnumber3;
 $(function () {
     $home=$("#home");
-
-    $psUname1=$("#psUname1");
+    $psUname3=$("#psUname3");
     //搜索条件切换 页数归一
-    $psUname1.change(function () {
+    $psUname3.change(function () {
         nowpage=1;
     });
-    $psTelnumber1=$("#psTelnumber1");
-    $psTelnumber1.change(function () {
+    $psTelnumber3=$("#psTelnumber3");
+    $psTelnumber3.change(function () {
         nowpage=1;
     })
-    //换页显示
-    $dcllist=$("#dcllist");
-    $dcllist.click(function () {
-        $("#mytable").css("display","");
-        $("#pt").css("display","");
+    $ywclist=$("#ywclist");
+    //换页隐藏
+    $ywclist.click(function () {
+        $("#mytable").css("display","none");
+        $("#pt").css("display","none");
     });
-    $selectdcllist=$("#selectdcllist");
-    $("#selectAll").click(function(){
-    $("input[name='ids']").prop("checked",this.checked);
-    });
-    $selectdcllist.click(function () {
+    $selectywclist=$("#selectywclist");
+    $selectywclist.click(function () {
         nowpage=1;
-        var psUname1=$psUname1.val();
-        var psTelnumber1=$psTelnumber1.val();
-        $("#mytable1").remove();
+        var psUname3=$psUname3.val();
+        var psTelnumber3=$psTelnumber3.val();
+        $("#mytable").remove();
         $("#pt").remove();
-
-        $.post("/item/dcllist",{page:nowpage,rows:14,psUname:psUname1,psTelnumber:psTelnumber1},function(data){
+        $.post("/item/ywclist",{page:nowpage,rows:14,psUname:psUname3,psTelnumber:psTelnumber3},function(data){
             total=data.total;
             pagenum=total%14==0?total/14:Math.floor(total/14)+1;
             if((pagenum-nowpage)>10)
@@ -47,14 +41,14 @@ $(function () {
                 tlength=pagenum-nowpage;
             }
             console.log(pagenum);
-            var string=" <table class=\"table table-condensed table-striped\" id=\"mytable1\" title=\"待处理工单\">" +
+            var string=" <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"已完成工单\">" +
                 "<thead id=\"thead\">" +
-                "<tr><th ><input checked=\"checked\" type=\"checkbox\" id=\"selectAll\"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th >电话号码</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务状态</th><th >操作</th></tr>" +
+                "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th >电话号码</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务状态</th><th >完成时间</th><th >操作</th></tr>" +
                 "</thead>";
             var list=data.rows;
             for(var i=0;i<list.length;i++)
             {
-                string+="<tr>"+"<td ><input name='list[i].psId' type=\"checkbox\"></td>\n"+
+                string+="<tr>"+"<td ><input type=\"checkbox\"></td>\n"+
                     "<td>"+list[i].psId+"</td>" +
                     "<td>"+list[i].psNumber+"</td>" +
                     "<td>"+list[i].psUname+"</td>" +
@@ -62,12 +56,13 @@ $(function () {
                     "<td>"+list[i].psTime+"</td>" +
                     "<td>"+list[i].psTotime+"</td>" +
                     "<td>"+list[i].psAddres+"</td>" +
+                    "<td>"+list[i].psFinishTime+"</td>" +
                     "<td>"+list[i].psFlag+"</td>" +
-                    "<td><a href=\"#\" onclick='jieshou1(this)'>接受</a> <a href=\"#\" onclick='refuse(this)'>拒绝</a></td>" +
+                    "<td><a href=\"#\">查看详情</a></td>" +
                     "</tr>"
             }
             string+="</table>";
-            $("#form1").after(string);
+            $home.after(string);
             var pagebt="<nav aria-label=\"Page navigation \" class=\"text-right\" id=\"pt\">" +
                 "<ul class=\"pagination \">" + "<li>" +
                 "<a   aria-label=\"Previous\" onclick=\"pageclick(this)\">" +
@@ -79,30 +74,10 @@ $(function () {
             }
             pagebt+="<li><a  >...</a><>" + "<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
                 ">>" + "</a>" + "<>" + "</ul>" + "</nav>"
-            /*$("#mytable1").after(pagebt)*/
+            $("#mytable").after(pagebt)
         });
     })
 });
-function jieshou1(obj) {
-     var rows=obj.parentNode.parentNode.rowIndex;
-     var psNumber = $("#mytable1 tr:eq(" + rows + ") td:eq(2)").html();
-     console.log(psNumber);
-     window.location.href="/jieshou/"+psNumber;
-}
-
-function refuse(obj) {
-    $saverefuse=$("#saverefuse");
-    var rows=obj.parentNode.parentNode.rowIndex;
-    var psNumber = $("#mytable1 tr:eq(" + rows + ") td:eq(2)").html();
-    console.log(psNumber);
-    $('.show-desc').modal('toggle');
-    $saverefuse.click(function () {
-        $.post("/item/refuse",{psNumber:psNumber},function (data) {
-            $("#psNumber").val(data.psNumber);
-        })
-        $('.show-desc').modal('toggle');
-    })
-}
 function pageclick(obj) {
     var flag = $(obj).text();
     if (nowpage == flag) {
@@ -123,25 +98,25 @@ function pageclick(obj) {
     } else {
         nowpage = flag;
     }
-    $("#mytable1").remove();
-
-    $.post("/item/dcllist", {page: nowpage, rows: 14,psUname:psUname1,psTelnumber:psTelnumber1}, function (data) {
-        var string = " <table class=\"table table-condensed table-striped\" id=\"mytable1\" title=\"待处理工单\">" +
+    $("#mytable").remove();
+    $.post("/item/ywclist", {page: nowpage, rows: 14, psUname: psUname3, psTelnumber: psTelnumber3}, function (data) {
+        var string = " <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"待处理工单\">" +
             "<thead id=\"thead\">" +
-            "<tr><th ><input checked=\"checked\" type=\"checkbox\" id=\"selectAll\"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th >电话号码</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务状态</th><th >操作</th></tr>" +
+            "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>订单编号</th><th >客户姓名</th><th >电话号码</th><th>下单时间</th><th>要求时间</th><th >服务地址</th><th >服务状态</th><th >操作</th></tr>" +
             "</thead>";
         var list = data.rows;
         for (var i = 0; i < list.length; i++) {
-            string += "<tr>" + "<td ><input name='list[i].psId' type=\"checkbox\"></td>\n" +
+            string += "<tr>" + "<td ><input type=\"checkbox\"></td>\n" +
                 "<td>" + list[i].psId + "</td>" +
                 "<td>" + list[i].psNumber + "</td>" +
                 "<td>" + list[i].psUname + "</td>" +
-                "<td>"+list[i].psTelnumber+"</td>" +
+                "<td>" + list[i].psTelnumber + "</td>" +
                 "<td>" + list[i].psTime + "</td>" +
                 "<td>" + list[i].psTotime + "</td>" +
                 "<td>" + list[i].psAddres + "</td>" +
+                "<td>" + list[i].psFinishTime + "</td>" +
                 "<td>" + list[i].psFlag + "</td>" +
-                "<td><a href=\"#\" onclick='accept(this)'>接受</a> <a href=\"#\" onclick='refuse(this)'>拒绝</a></td>" +
+                "<td><a href=\"#\">查看详情</a></td>" +
                 "</tr>"
         }
         string += "</table>";

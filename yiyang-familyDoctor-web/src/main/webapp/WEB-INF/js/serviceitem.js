@@ -7,14 +7,7 @@ var $hlist;
 var $showlist;
 var $largelist;
 var $littlelist;
-var $add;
-var $delete;
-var $saveupdate;
-var $saveadd;
-var $saveshanchu;
 $(function () {
-    $saveupdate=$("#saveupdate");
-    $saveshanchu=$("#saveshanchu");
     $home=$("#home");
     $largelist=$("#largelist");
     //搜索条件切换 页数归一
@@ -38,33 +31,6 @@ $(function () {
         $("#mytable").css("display","none");
         $("#pt").css("display","none");
     });
-   $add=$("#add");
-   $saveadd=$("#saveadd");
-   $add.click(function () {
-      $saveadd.click(function () {
-          $.post("/item/add",$("#form1").serialize(),function (data) {
-              $("#siLarge1").val(data.siLarge);
-              $("#siLittle1").val(data.siLittle);
-              $("#siItem1").val(data.siItem);
-              $("#siType1").val(data.siType);
-              $("#siPrice1").val(data.siPrice);
-              $("#siDesc1").val(data.siDesc);
-              if(data!=null&&data!=''){
-                  alert("添加成功！")
-              }else{
-                  alert("添加失败！");
-              }
-          })
-          $('.insert').modal('toggle');
-
-      })
-        $('.insert').modal('toggle');
-    });
-  $delete=$("#delete");
-    $delete.click(function () {
-
-    });
-
     $selectlist.click(function () {
         nowpage=1;
         var largeval=$largelist.val();
@@ -85,7 +51,7 @@ $(function () {
             console.log(pagenum);
             var string=" <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"待处理工单\">" +
                 "<thead id=\"thead\">" +
-                "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th >收费方式</th><th >单价</th><th >操作</th></tr>" +
+                "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th>说明</th><th >收费方式</th><th >单价</th><th >操作</th></tr>" +
             "</thead>";
             var list=data.rows;
             for(var i=0;i<list.length;i++)
@@ -97,10 +63,10 @@ $(function () {
                     "<td>"+list[i].siLarge+"</td>" +
                     "<td>"+list[i].siLittle+"</td>" +
                     "<td>"+list[i].siItem+"</td>" +
-                   /* "<td>"+list[i].siDesc+"</td>" +*/
+                    "<td>"+list[i].siDesc+"</td>" +
                     "<td>"+list[i].siType+"</td>" +
                     "<td>"+list[i].siPrice+"</td>" +
-                    "<td><a href=\"#\" onclick='update(this)'>编辑</a> <a href=\"#\" onclick='shanchu(this)'>删除</a></td>" +
+                    "<td><a href=\"#\">编辑</a> <a href=\"#\">删除</a></td>" +
                     "</tr>"
 
             }
@@ -117,54 +83,13 @@ $(function () {
             }
             pagebt+="<li><a  >...</a></li>" + "<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
                 ">>" + "</a>" + "</li>" + "</ul>" + "</nav>"
-           /* $("#mytable").after(pagebt)*/
+            $("#mytable").after(pagebt)
         });
     })
-
-    $saveupdate.click(function () {
-        $.post("/item/saveupdate",$("#form2").serialize(),function (data) {
-            $("#siId").val(data.siId);
-            $("#siName").val(data.siName);
-            $("#siLarge").val(data.siLarge);
-            $("#siLittle").val(data.siLittle);
-            $("#siItem").val(data.siItem);
-            $("#siDesc").val(data.siDesc);
-            $("#siType").val(data.siType);
-            $("#siPrice").val(data.siPrice);
-        })
-        $('.show-desc1').modal('toggle');
-    });
 });
-function shanchu(obj) {
-    var rows=obj.parentNode.parentNode.rowIndex;
-    var siId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
-    console.log(siId);
-    $('.shanchu').modal('toggle');
-    $saveshanchu.click(function () {
-        $.post("/item/shanchu",{"siId":siId},function (data) {
-            $("#siId").val(data.siId);
-        })
-        $('.shanchu').modal('toggle');
-    })
-}
-function update(obj){
-    var rows=obj.parentNode.parentNode.rowIndex;
-    var siId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
-    console.log(siId)
-    $.post("/item/desc1",{"siId":siId},function (data) {
-        console.log(data)
-        $("#siId2").val(data.siId);
-        $("#siName").val(data.siName);
-        $("#siLarge").val(data.siLarge);
-        $("#siLittle").val(data.siLittle);
-        $("#siItem").val(data.siItem);
-        $("#siDesc").val(data.siDesc);
-        $("#siType").val(data.siType);
-        $("#siPrice").val(data.siPrice);
-    });
-    $('.show-desc1').modal('toggle');
 
-}
+
+
 function pageclick(obj) {
     var flag =$(obj).text();
     if(nowpage==flag)
@@ -214,7 +139,7 @@ function pageclick(obj) {
                 "<td>"+list[i].siDesc+"</td>" +
                 "<td>"+list[i].siType+"</td>" +
                 "<td>"+list[i].siPrice+"</td>" +
-                "<td><a href=\"#\" onclick='update(this)'>编辑</a> <a href=\"#\" onclick='shanchu(this)'>删除</a></td>" +
+                "<td><a href=\"#\">编辑</a> <a href=\"#\">删除</a></td>" +
                 "</tr>"
 
 

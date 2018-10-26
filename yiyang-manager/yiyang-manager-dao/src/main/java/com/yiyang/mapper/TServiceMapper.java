@@ -9,7 +9,9 @@ public interface TServiceMapper {
 
     TService findInfoByUser(String sUser);
 
+
      // void updateByUser(TService tService);
     List<TService> selectAllService();
     List<TService> selectServiceByName( String name);
+     void updateByUser(TService tService);
     }

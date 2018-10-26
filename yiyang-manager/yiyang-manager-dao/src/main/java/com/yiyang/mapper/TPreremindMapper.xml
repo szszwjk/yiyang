@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiyang.mapper.TPreremindMapper" >
 
+    <select id="findPreremindAll" parameterType="String" resultType="com.yiyang.pojo.TPreremind">
+        select * from tpreremind where prUser in (select pUser from doctorparent where dUser = #{dUser})ORDER BY prTime DESC
+    </select>
 </mapper>

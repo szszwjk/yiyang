@@ -45,8 +45,13 @@ section > div{
     width: 176px;
     margin-left: 20px;
 }
+.modal fade bs-example-modal-lg show-desc1>.modal-dialog modal-lg>.modal-content>.modal-body>.span{
+    position: absolute;left:0;top:0;
+}
 
-
+.content>.col-md-12>.form>.div{
+    margin-top: 20px;
+}
 .content .col-md-10{
     padding-left: 0px;
 
