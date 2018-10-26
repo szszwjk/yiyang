@@ -10,4 +10,5 @@ public interface TUserInfoMapper {
      void insertTUserInfo(TUserInfo tUserInfo);
      TUserInfo selectTUserInfoByTelnumber(String telnumber);
      List<TUserInfo> SelectAllUser ();
+     List<TUserInfo> SelectPointUser(String name,String telnumber);
     }

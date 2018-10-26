@@ -52,4 +52,7 @@ public interface TPreserviceMapper {
      */
    void updateFlag4(String psNumber);
 
+    List<TPreservice> selectAllPreservice();
+    void deletePreserviceByNum(String num);
+    List<TPreservice> selectPreserviceByName( String name);
    }

@@ -117,7 +117,7 @@
 	<!-- 使用dubbo发布服务 -->
 	<!-- 提供方应用信息，用于计算依赖关系 -->
 	<dubbo:application name="yiyang-manager" />
-	<dubbo:registry protocol="zookeeper" address="192.168.25.122:2181"/>
+	<dubbo:registry protocol="zookeeper" address="192.168.25.167:2181"/>
 	<!-- 用dubbo协议在20880端口暴露服务 -->
 	<dubbo:protocol name="dubbo" port="20880" />
 	<!-- 声明需要暴露的服务接口 -->
@@ -136,5 +136,21 @@
 
 
 
+	<dubbo:service interface="com.yiyang.service.social.SelectPointUserService" ref="selectPointUserServiceImpl" timeout="30000"/>
+
+
 	<dubbo:service interface="com.yiyang.service.social.SelectAllUserService" ref="selectAllUserServiceImpl" timeout="30000"/>
+
+	<dubbo:service interface="com.yiyang.service.social.SelectUserByIdnumService" ref="selectUserByIdnumServiceImpl" timeout="30000"/>
+
+	<dubbo:service interface="com.yiyang.service.social.UpdateTParentService" ref="updateTParentServiceImpl" timeout="30000"/>
+
+	<dubbo:service interface="com.yiyang.service.social.SelectAllDocService" ref="selectAllDocServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.SelectAllServiceService" ref="selectAllServiceServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.SelectServiceByNameService" ref="selectServiceByNameServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.SelectAllPreserviceService" ref="selectAllPreserviceServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.DeletePreserviceByNumService" ref="deletePreserviceByNumServiceImpl" timeout="30000"/>
+	<dubbo:service interface="com.yiyang.service.social.SelectPreserviceByNameService" ref="selectPreserviceByNameServiceImpl" timeout="30000"/>
+
+
 </beans>

@@ -6,6 +6,7 @@ import com.yiyang.service.doctor.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
@@ -18,11 +19,11 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public TDoctor findDoctorByName(String name) {
-        TDoctor tDoctor = tDoctorMapper.findDoctorByName(name);
+    public List<TDoctor> findDoctorByName(String name) {
+        List<TDoctor> tDoctor = tDoctorMapper.findDoctorByName(name);
         System.out.println(tDoctorMapper);
 
-        System.out.println(tDoctor);
+
         return tDoctor;
     }
 }

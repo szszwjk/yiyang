@@ -41,4 +41,12 @@
     </update>
 
 -->
+
+    <select id="selectAllService" resultType="com.yiyang.pojo.TService">
+        SELECT  * from tservice
+
+    </select>
+    <select id="selectServiceByName" parameterType="String" resultType="com.yiyang.pojo.TService">
+        SELECT * FROM tservice where sUser = #{sUser}
+    </select>
 </mapper>

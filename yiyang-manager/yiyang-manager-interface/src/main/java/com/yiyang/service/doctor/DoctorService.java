@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface DoctorService {
      void insertDoctor(TDoctor doctor);
-     TDoctor findDoctorByName(String name);
+     List<TDoctor> findDoctorByName(String name);
 }

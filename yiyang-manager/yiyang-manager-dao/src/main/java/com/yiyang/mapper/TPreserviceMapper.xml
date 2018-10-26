@@ -88,5 +88,13 @@
         UPDATE tpreservice SET psFlag=4
         where psNumber=#{psNumber}
     </update>
-
+<select id="selectAllPreservice" resultType="com.yiyang.pojo.TPreservice">
+    SELECT * FROM tpreservice limit 0,8
+</select>
+    <select id="deletePreserviceByNum" parameterType="string">
+        DELETE  FROM tpreservice WHERE psNumber = #{psNumber}
+    </select>
+    <select id="selectPreserviceByName" resultType="com.yiyang.pojo.TPreservice"  parameterType="String">
+        SELECT * FROM tpreservice WHERE psUser = #{psUser}
+    </select>
 </mapper>
