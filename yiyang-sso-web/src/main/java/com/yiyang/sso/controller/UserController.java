@@ -25,7 +25,7 @@ public class UserController {
     @ResponseBody
     public YiyangResult login(TUser tUser, String authority, HttpServletRequest request,HttpServletResponse response)
     {
-        tUser.setAuthorityGroup(authority);
+        System.out.println(tUser);
         YiyangResult yiyangResult = userService.userLogin(tUser);
         if(yiyangResult.getStatus().equals(200))
         {

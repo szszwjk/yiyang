@@ -45,8 +45,13 @@ section > div{
     width: 176px;
     margin-left: 20px;
 }
+.modal fade bs-example-modal-lg show-desc1>.modal-dialog modal-lg>.modal-content>.modal-body>.span{
+    position: absolute;left:0;top:0;
+}
 
-
+.content>.col-md-12>.form>.div{
+    margin-top: 20px;
+}
 .content .col-md-10{
     padding-left: 0px;
 
@@ -60,6 +65,32 @@ section > div{
     padding:10px;
     height: 660px;
 }
+.content>.col-md-12
+{background-color: #fff;
+    box-shadow: darkgrey 0px 0px 30px 5px ;/* 边框阴影 */
+    border-radius: 5px;/* 圆角矩形 */
+    border: 2px solid #f5f5f5;
+    margin-top: 20px;
+    padding:10px;
+    height: 660px;
+}
+.content>.col-md-12>.form>.fieldest>.col-md-4>.name{
+    align-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.content>.col-md-12>.form>.fieldest{
+    margin-top: 20px;
+}
+.content>.col-md-12>.form>.formsubmit{
+    text-align: center;
+    margin-top: 20px;
+}
+.content>.col-md-12>.form>.fieldest>.col-md-12{
+    margin-top: 10px;
+}
+
 .tabContent{
     background-color: #fff;
     box-shadow: darkgrey 0px 0px 30px 5px ;/* 边框阴影 */

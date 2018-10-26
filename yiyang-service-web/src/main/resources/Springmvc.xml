@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
@@ -23,42 +23,46 @@
 	<mvc:resources location="/WEB-INF/img/" mapping="/img/**"/>
 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+	<mvc:resources location="/WEB-INF/lib/" mapping="/lib/**"/>
 	<mvc:resources location="/WEB-INF/jsp/" mapping="/jsp/**"/>
-    <mvc:resources location="/WEB-INF/lib/" mapping="/lib/**"/>
 	<!--  视图解析器-->
 	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+
 	<!--post乱码-->
 	<mvc:annotation-driven >
-	<mvc:message-converters register-defaults="true">
-        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-            <constructor-arg value="UTF-8"/>
-            <property name="supportedMediaTypes">
-                <list>
-                    <bean class="org.springframework.http.MediaType">
-                        <constructor-arg index="0" value="text"/>
-                        <constructor-arg index="1" value="plain"/>
-                        <constructor-arg index="2" value="UTF-8"/>
-                    </bean>
-                    <bean class="org.springframework.http.MediaType">
-                        <constructor-arg index="0" value="*"/>
-                        <constructor-arg index="1" value="*"/>
-                        <constructor-arg index="2" value="UTF-8"/>
-                    </bean>
-                </list>
-            </property>
-        </bean>
-    </mvc:message-converters>
-</mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8"/>
+				<property name="supportedMediaTypes">
+					<list>
+						<bean class="org.springframework.http.MediaType">
+							<constructor-arg index="0" value="text"/>
+							<constructor-arg index="1" value="plain"/>
+							<constructor-arg index="2" value="UTF-8"/>
+						</bean>
+						<bean class="org.springframework.http.MediaType">
+							<constructor-arg index="0" value="*"/>
+							<constructor-arg index="1" value="*"/>
+							<constructor-arg index="2" value="UTF-8"/>
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
-	
+
+
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="yiyang-service-web"/>
-	<dubbo:registry protocol="zookeeper" address="192.168.25.167:2181"/>
+	<dubbo:registry protocol="zookeeper" address="192.168.25.122:2181"/>
 
 	<dubbo:reference interface="com.yiyang.service.tservice.TpreService" id="tpreService"/>
     <dubbo:reference interface="com.yiyang.service.tservice.Serviceitem" id="serviceitem"/>
+	<dubbo:reference interface="com.yiyang.service.tservice.Tservice" id="tservice"/>
 	</beans>

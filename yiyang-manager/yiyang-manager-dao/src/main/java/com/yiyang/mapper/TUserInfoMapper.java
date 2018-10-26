@@ -7,6 +7,7 @@ import com.yiyang.pojo.TUserInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface TUserInfoMapper {
-    public void insertTUserInfo(TUserInfo tUserInfo);
-    public TUserInfo selectTUserInfoByTelnumber(String telnumber);
+     void insertTUserInfo(TUserInfo tUserInfo);
+     TUserInfo selectTUserInfoByTelnumber(String telnumber);
+     List<TUserInfo> SelectAllUser ();
     }

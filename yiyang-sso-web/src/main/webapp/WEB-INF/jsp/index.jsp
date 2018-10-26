@@ -76,7 +76,7 @@
                     </div>
                     <div class="form-group">
                         <label for="authority">选择用户</label>
-                        <select class="form-control" id="authority">
+                        <select class="form-control" id="authority" name="authorityGroup">
                             <option value="parent">老人</option>
                             <option value="doctor">医生</option>
                             <option value="service">服务商</option>

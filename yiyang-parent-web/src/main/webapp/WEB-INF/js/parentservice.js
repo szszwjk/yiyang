@@ -32,6 +32,7 @@ $(function () {
     $largelist.change(function () {
         var options=$("#littlelist option");
         nowpage=1;
+        pagenum=1;
         for(var i=1;i<options.length;i++)
         {
             options[i].remove();
@@ -51,6 +52,7 @@ $(function () {
     $littlelist=$("#littlelist");
     $littlelist.change(function () {
         nowpage=1;
+        pagenum=1;
     })
     //换页显示
     $showlist=$("#showlist");
@@ -75,15 +77,8 @@ $(function () {
         $.post("/item/list",{page:nowpage,rows:14,siLarge:largeval,siLittle:littleval},function(data){
             total=data.total;
             pagenum=total%14==0?total/14:Math.floor(total/14)+1;
-            if((pagenum-nowpage)>10)
-            {
-                tlength=10;
-            }
-            else{
-                tlength=pagenum-nowpage;
-            }
-            console.log(pagenum);
-            var string=" <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"待处理工单\">" +
+
+            var string=" <table class=\"table table-condensed table-striped table-bordered\" id=\"mytable\" title=\"待处理工单\">" +
                 "<thead id=\"thead\">" +
                 "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th >收费方式</th><th >操作</th></tr>" +
                 "</thead>";
@@ -98,64 +93,67 @@ $(function () {
                     "<td>"+list[i].siLittle+"</td>" +
                     "<td>"+list[i].siItem+"</td>" +
                     "<td>"+list[i].siPrice+"</td>" +
-                    "<td><a href=\"#\">查看详情</a> <a href=\"#\">预定</a></td>" +
+                    "<td><a href=\"#\" onclick=\"showdesc(this)\">查看详情</a> <a href=\"#\" onclick=\"acceptservices(this)\">预定</a></td>" +
                     "</tr>"
 
             }
             string+="</table>";
             $home.after(string);
-            var pagebt="<nav aria-label=\"Page navigation \" class=\"text-right\" id=\"pt\">" +
-                "<ul class=\"pagination \">" + "<li>" +
-                "<a   aria-label=\"Previous\" onclick=\"pageclick(this)\">" +
-                "<<" +
-                "</a>" + "</li>";
-            for (var i=1;i<=tlength;i++)
+
+            var pagebt=" <div style=\"float: right\" id=\"pt\">\n" + "<span style=\"margin-right: 10px\">第<select class=\"\" id=\"sel\" onchange=\"selchange()\">";
+            for(var i=1;i<=pagenum;i++)
             {
-                pagebt+="<li><a  href=\"#\" onclick=\"pageclick(this)\">"+i+"</a></li>"
+                if(i==nowpage)
+                {
+                    pagebt+="<option selected  value=\""+i+"\">"+i+"</option>";
+                }
+                else{
+                    pagebt+="<option value=\""+i+"\">"+i+"</option>";
+                }
             }
-            pagebt+="<li><a  >...</a></li>" + "<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
-                ">>" + "</a>" + "</li>" + "</ul>" + "</nav>"
+            pagebt+="</select >页/共"+pagenum+"页</span>"+"<button class=\"btn btn-default\" value=\"1\" onclick=\"pageclick(this)\">首页</button>\n" +
+                "<button class=\"btn btn-default\" value=\"2\" onclick=\"pageclick(this)\">上一页</button>\n" +
+                "<button class=\"btn btn-default\" value=\"3\" onclick=\"pageclick(this)\">下一页</button>\n" +
+                "<button class=\"btn btn-default\" value=\"4\" onclick=\"pageclick(this)\">尾页</button>"
             $("#mytable").after(pagebt)
         });
     })
+
+
 });
+function showdesc(obj) {
+    var rows=obj.parentNode.parentNode.rowIndex;
+    var recId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
+    console.log(recId)
+    $.post("/item/desc",{"itemId":recId},function (data) {
 
-
-
-function pageclick(obj) {
-    var flag =$(obj).text();
-    if(nowpage==flag)
-    {
-        return;
-    }
-    if(flag=="<<")
-    {
-
-        if(nowpage==1)
-        {
-            console.log(nowpage);
-            return;
-        }
-        nowpage--;
-
-    }else if(flag==">>")
-    {
-        if(nowpage==pagenum)
-        {
-            console.log(nowpage);
-            return;
-        }
-        nowpage++;
-    }else{
-        nowpage=flag;
-    }
+        $("#siName").text(data.siName);
+        $("#sAddress").text(data.sAddress);
+        $("#infoTel").text(data.infoTel);
+        $("#siItem").text(data.siItem);
+        $("#siPrice").text(data.siPrice);
+        $("#siType").text(data.siType);
+        $("#sInfo3").text(data.sInfo3);
+        $("#siDesc").text(data.siDesc);
+        $("#sNumber").text(data.sNumber);
+    })
+    $('.show-desc').modal('toggle');
+}
+function acceptservices(obj) {
+    var rows=obj.parentNode.parentNode.rowIndex;
+    var recId = $("#mytable tr:eq(" + rows + ") td:eq(1)").html();
+    console.log(recId)
+    $('.accept-services').modal('toggle');
+}
+function selchange() {
+    nowpage=$("#sel").val();
     $("#mytable").remove();
     var largeval=largedata[$largelist.val()]==null?"":largedata[$largelist.val()];
     var littleval=$littlelist.val();
     $.post("/item/list",{page:nowpage,rows:14,siLarge:largeval,siLittle:littleval},function(data){
 
 
-        var string=" <table class=\"table table-condensed table-striped\" id=\"mytable\" title=\"待处理工单\">" +
+        var string=" <table class=\"table table-condensed table-striped table-bordered\" id=\"mytable\" title=\"待处理工单\">" +
             "<thead id=\"thead\">" +
             "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th >收费方式</th><th >操作</th></tr>" +
             "</thead>";
@@ -170,38 +168,117 @@ function pageclick(obj) {
                 "<td>"+list[i].siLittle+"</td>" +
                 "<td>"+list[i].siItem+"</td>" +
                 "<td>"+list[i].siPrice+"</td>" +
-                "<td><a href=\"#\">查看详情</a> <a href=\"#\">预定</a></td>" +
+                "<td><a href=\"#\" onclick=\"showdesc(this)\">查看详情</a> <a href=\"#\">预定</a></td>" +
                 "</tr>"
 
         }
         string+="</table>";
         $home.after(string);
 
-            if((pagenum-nowpage)>10)
+
+        $("#pt").remove();
+
+        var pagebt=" <div style=\"float: right\" id=\"pt\">\n" + "<span style=\"margin-right: 10px\">第<select class=\"\" id=\"sel\" onchange=\"selchange()\">";
+        for(var i=1;i<=pagenum;i++)
+        {
+            if(i==nowpage)
             {
-                tlength=10;
+                pagebt+="<option selected  value=\""+i+"\">"+i+"</option>";
             }
             else{
-                tlength=pagenum-nowpage;
+                pagebt+="<option  value=\""+i+"\">"+i+"</option>";
             }
+        }
+        pagebt+="</select >页/共"+pagenum+"页</span>"+"<button class=\"btn btn-default\" value=\"1\" onclick=\"pageclick(this)\">首页</button>\n" +
+            "<button class=\"btn btn-default\" value=\"2\" onclick=\"pageclick(this)\">上一页</button>\n" +
+            "<button class=\"btn btn-default\" value=\"3\" onclick=\"pageclick(this)\">下一页</button>\n" +
+            "<button class=\"btn btn-default\" value=\"4\" onclick=\"pageclick(this)\">尾页</button>"
+
+        $("#mytable").after(pagebt)
+
+
+    });
+
+}
+
+
+function pageclick(obj) {
+    var flag =$(obj).val();
+    if(flag==1)
+    {
+        nowpage=1;
+    }
+    if(flag==2)
+    {
+
+        if(nowpage==1)
+        {
+            console.log(nowpage);
+            return;
+        }
+        nowpage--;
+
+    }else if(flag==3)
+    {
+        if(nowpage==pagenum)
+        {
+            console.log(nowpage);
+            return;
+        }
+        nowpage++;
+    }
+    if(flag==4){
+        nowpage=pagenum;
+
+    }
+    $("#mytable").remove();
+    var largeval=largedata[$largelist.val()]==null?"":largedata[$largelist.val()];
+    var littleval=$littlelist.val();
+    $.post("/item/list",{page:nowpage,rows:14,siLarge:largeval,siLittle:littleval},function(data){
+
+
+        var string=" <table class=\"table table-condensed table-striped table-bordered\" id=\"mytable\" title=\"待处理工单\">" +
+            "<thead id=\"thead\">" +
+            "<tr><th ><input type=\"checkbox\"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th >收费方式</th><th >操作</th></tr>" +
+            "</thead>";
+        var list=data.rows;
+        for(var i=0;i<list.length;i++)
+        {
+
+            string+="<tr>"+"<td ><input type=\"checkbox\"></td>\n"+
+                "<td>"+list[i].siId+"</td>" +
+                "<td>"+list[i].siName+"</td>" +
+                "<td>"+list[i].siLarge+"</td>" +
+                "<td>"+list[i].siLittle+"</td>" +
+                "<td>"+list[i].siItem+"</td>" +
+                "<td>"+list[i].siPrice+"</td>" +
+                "<td><a href=\"#\" onclick=\"showdesc(this)\">查看详情</a> <a href=\"#\">预定</a></td>" +
+                "</tr>"
+
+        }
+        string+="</table>";
+        $home.after(string);
+
+
             $("#pt").remove();
-            var pagebt="<nav aria-label=\"Page navigation \" class=\"text-right\" id=\"pt\">" +
-                "<ul class=\"pagination \">" + "<li>" +
-                "<a  aria-label=\"Previous\" onclick=\"pageclick(this)\">" +
-                "<<" +
-                "</a>" + "</li>";
-            for (var i=0;i<=tlength;i++)
+
+        var pagebt=" <div style=\"float: right\" id=\"pt\">\n" + "<span style=\"margin-right: 10px\">第<select class=\"\" id=\"sel\" onchange=\"selchange()\">";
+        for(var i=1;i<=pagenum;i++)
+        {
+            if(i==nowpage)
             {
-               var t=Number(nowpage)+Number(i);
-                pagebt+="<li><a  onclick=\"pageclick(this)\">"+t+"</a></li>"
+                pagebt+="<option selected  value=\""+i+"\">"+i+"</option>";
             }
-            if(tlength==10)
-            {
-                pagebt+="<li><a  >...</a></li>";
+            else{
+                pagebt+="<option  value=\""+i+"\">"+i+"</option>";
             }
-            pagebt+="<li>" + "<a  aria-label=\"Next\" onclick=\"pageclick(this)\">" +
-                ">>" + "</a>" + "</li>" + "</ul>" + "</nav>"
-            $("#mytable").after(pagebt)
+        }
+        pagebt+="</select >页/共"+pagenum+"页</span>"+"<button class=\"btn btn-default\" value=\"1\" onclick=\"pageclick(this)\">首页</button>\n" +
+            "<button class=\"btn btn-default\" value=\"2\" onclick=\"pageclick(this)\">上一页</button>\n" +
+            "<button class=\"btn btn-default\" value=\"3\" onclick=\"pageclick(this)\">下一页</button>\n" +
+            "<button class=\"btn btn-default\" value=\"4\" onclick=\"pageclick(this)\">尾页</button>"
+
+        $("#mytable").after(pagebt)
 
 
     });

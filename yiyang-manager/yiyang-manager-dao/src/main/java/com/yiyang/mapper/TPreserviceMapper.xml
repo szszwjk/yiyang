@@ -9,6 +9,7 @@
     </if>
     <if test="psTelnumber!=null and psTelnumber!=''" >
         and psTelnumber=#{psTelnumber}
+
     </if>
     </select>
 
@@ -45,6 +46,7 @@
 
     <resultMap id="preserviceAndItem" type="com.yiyang.pojo.TPreservice">
         <id  property="psId" column="psId"></id>
+        <result property="psUser" column="psUser"></result>
         <result property="psNumber" column="psNumber"></result>
         <result property="psUname" column="psUname"></result>
         <result property="psTime" column="psTime"></result>
@@ -53,18 +55,21 @@
         <result property="psTotime" column="psTotime"></result>
         <result property="psPeople" column="psPeople"></result>
         <result property="psDesc" column="psDesc"></result>
+        <result property="psFlag" column="psFlag"></result>
+        <result property="psFinishTime" column="psFinishTime"></result>
        <association property="tServiceitem" javaType="com.yiyang.pojo.TServiceitem">
            <id  property="siId" column="siId"></id>
            <result property="siUser" column="siUser"></result>
            <result property="siName" column="siName"></result>
+           <result property="siLarge" column="siLarge"></result>
+           <result property="siLittle" column="siLittle"></result>
            <result property="siItem" column="siItem"></result>
            <result property="siType" column="siType"></result>
            <result property="siPrice" column="siPrice"></result>
        </association>
     </resultMap>
     <select id="findByPsNumber" parameterType="String" resultMap="preserviceAndItem">
-       SELECT a.psNumber,a.psUname,a.psTime,a.psTelnumber,a.psAddres,a.psTotime,
-        b.siLarge,b.siItem,b.siType,b.siName,b.siPrice,a.psPeople,a.psDesc
+       SELECT a.*,b.*
        from tpreservice a left JOIN tserviceitem b on a.psPeople=b.siUser
        where a.psNumber=#{psNumber}
     </select>
@@ -74,17 +79,17 @@
     </select>
 
 
-    <update id="updateDCL2" parameterType="int">
+    <update id="updateFlag2" parameterType="string">
         UPDATE tpreservice SET psFlag=2
         where psNumber=#{psNumber}
     </update>
 
-    <update id="updateYJD2" parameterType="int">
+    <update id="updateFlag3" parameterType="string">
         UPDATE tpreservice SET psFlag=3
         where psNumber=#{psNumber}
     </update>
 
-    <update id="updateYWC2" parameterType="int">
+    <update id="updateFlag4" parameterType="string">
         UPDATE tpreservice SET psFlag=4
         where psNumber=#{psNumber}
     </update>

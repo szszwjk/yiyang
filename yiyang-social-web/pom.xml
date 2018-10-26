@@ -11,10 +11,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yiyang-social-web</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>../yiyang-familyDoctor-web</module>
-    </modules>
+    <packaging>war</packaging>
+
     <dependencies>
 
         <dependency>

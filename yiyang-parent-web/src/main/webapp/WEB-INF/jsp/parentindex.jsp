@@ -77,12 +77,21 @@
                         <col style="width: 15%" />
                         <col style="width: 42.5%" />
                         <col style="width: 42.5%" />
+<<<<<<< HEAD
                        <tr> <td>性别:${item.infoSex}</td><td>身份证:</td></tr>
                         <tr> <td>联系方式:${item.infoSex}</td><td>出生地:</td></tr>
                         <tr> <td>居住地:${item.infoSex}</td><td></td></tr>
                         <tr> <td>所属社区:${item.infoSex}</td><td>社保编号:</td></tr>
                         <tr> <td>姓名</td><td>有无过敏史:${item.infoSex}</td><td>有无手术史:</td></tr>
                         <tr><td>年龄</td> <td>有无外伤:${item.infoSex}</td><td>有无遗传病:</td></tr>
+=======
+                       <tr> <td rowspan="4"> 照片</td><td>性别:&nbsp;${item.infoSex}</td><td>身份证:&nbsp;${item.pIdnum}</td></tr>
+                        <tr> <td>联系方式:&nbsp;${item.infoTel}</td><td>出生地:&nbsp;${item.pBirthplace}</td></tr>
+                        <tr> <td>居住地:&nbsp;${item.pAddress}</td><td></td></tr>
+                        <tr> <td>所属社区:&nbsp;${item.cName}</td><td>社保编号:&nbsp;${item.pCno}</td></tr>
+                        <tr> <td>姓名:&nbsp;${item.infoName}</td><td>有无过敏史:&nbsp;${item.pInfo1}</td><td>有无手术史:&nbsp;${item.pInfo2}</td></tr>
+                        <tr><td>年龄:&nbsp;${item.age}</td> <td>有无外伤:&nbsp;${item.pInfo3}</td><td>有无遗传病:&nbsp;${item.pInfo4}</td></tr>
+>>>>>>> c8369b361cca3e0ba8af96ff9e35f0e47b9cd63f
                     </table>
 
                 </div>

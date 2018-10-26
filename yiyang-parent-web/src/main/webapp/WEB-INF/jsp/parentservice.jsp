@@ -143,24 +143,40 @@
 
                         </div>
                     </form>
-                    <%--<table class="table" id="" title="待处理工单">--%>
-                    <%--<thead id="thead">--%>
-                    <%--<tr><th ><input type="checkbox"></th><th>序号</th> <th>服务商</th><th >服务大类</th><th>服务小类</th><th>服务项</th><th >收费方式</th><th >操作</th></tr>--%>
-                    <%--</thead>--%>
-                    <%--<c:forEach items="${result.roes}" var="item">
-                        <tr>
-                            <th ><input type="checkbox"></th>
-                            <td>${item.siId }</td>
-                            <td>${item.siName}</td>
-                            <td>${item.siLarge}</td>
-                            <td>${item.siLittle}</td>
-                            <td>${item.siItem}</td>
-                            <td>${item.siPrice}</td>
-                            <td><a href="#">查看详情</a> <a href="#">预定</a></td>
-                            </tr>
-                    </c:forEach>--%>
-                    <%--</table>--%>
+                    <div class="modal fade bs-example-modal-lg show-desc" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                        <div class="modal-dialog modal-lg " role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <span class="modal-title " >详细信息</span>
+                                </div>
+                                <table class="table table-condensed table-striped table-bordered ">
+                                    <col style="width: 10%" />
+                                    <col style="width: 30%" />
+                                    <col style="width: 10%" />
+                                    <col style="width: 25%" />
+                                    <col style="width: 10%" />
+                                    <col style="width: 15%" />
 
+                                    <tr><td>商家名称:</td><td><span id="siName"></span></td><td>地址:</td><td><span id="sAddress"></span></td><td>服务电话:</td><td><span id="infoTel"></span></td></tr>
+                                    <tr><td>服务项目:</td><td><span id="siItem"></span></td><td>收费方式:</td><td><span id="siPrice"></span></td><td>周末服务:</td><td><span id="sInfo3"></span></td></tr>
+                                    <tr><td>内容简介:</td><td colspan="5"><span id="siDesc"></span></td></tr>
+                                    <tr><td>执照编号:</td><td colspan="5"><span id="sNumber"></span></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade bs-example-modal-lg accept-services" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <span class="modal-title " >服务预定</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="profile">2</div>
             </div>

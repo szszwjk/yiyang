@@ -3,7 +3,10 @@ package com.yiyang.service.impl.parent;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yiyang.common.utils.YiyangPageResult;
+import com.yiyang.mapper.TParentMapper;
 import com.yiyang.mapper.TServiceitemMapper;
+import com.yiyang.pojo.ParentInfo;
+import com.yiyang.pojo.ServiceDesc;
 import com.yiyang.pojo.TServiceitem;
 import com.yiyang.service.parent.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,8 @@ import java.util.List;
 public class ParentServiceImpl implements ParentService{
     @Autowired
     private TServiceitemMapper tServiceitemMapper;
+    @Autowired
+    private TParentMapper tParentMapper;
     @Override
     public YiyangPageResult getTserviceItem(int page,int rows) {
     //设置分页信息
@@ -45,6 +50,18 @@ public class ParentServiceImpl implements ParentService{
         result.setTotal(pageInfo.getTotal());
         result.setRows(list);
         return result;
+    }
+
+    @Override
+    public ParentInfo getParentInfo(String username) {
+        ParentInfo result = tParentMapper.getParentInfo(username);
+        return result;
+    }
+
+    @Override
+    public ServiceDesc getServicesDesc(String itemId) {
+        ServiceDesc desc = tParentMapper.getServicesDesc(itemId);
+        return desc;
     }
 
 

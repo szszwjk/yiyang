@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
@@ -17,7 +18,7 @@
     <title>服务预定</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css"  href="../lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../css/parentindex.css">
 
     <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
@@ -36,14 +37,14 @@
     <div class="row">
         <div class="col-md-2">.col-md-8</div>
         <div class="col-md-8">
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded" >
-                <span ><a href="/index">首页</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
-                <span><a href="#">信息管理</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
-                <span> <a href="/serviceitem">服务项目</a></span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
-                <span><a href="/preservice">工单管理</a></span></div>
+            <div class="col-md-1 text-center" ><a href="/index"><img content-type="image/jpeg" src="../img/layout_icon_home.jpg" alt="..." class="img-rounded" >
+                <span>首页</span></a></div>
+            <div class="col-md-1 text-center"><a href="/serviceinfo"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                <span>信息管理</span></a></div>
+            <div class="col-md-1 text-center"><a href="/serviceitem"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+                <span> 服务项目</span></a></div>
+            <div class="col-md-1 text-center"><a href="/preservice"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
+                <span>工单管理</span></a></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
                 <span>评价管理</span></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
@@ -63,6 +64,13 @@
             <ul class="nav nav-pills nav-stacked" role="tablist">
                 <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="info">个人基本信息</a></li>
             </ul>
+
+            <div> <span>名称：</span> <div class="sName" >${tService.sName}</div></div>
+               <div> <span>电话：</span> <div class="infoTel" >${tService.tUserInfo.infoTel}</div></div>
+                <div> <span>性别：</span> <div class="infoSex" >${tService.tUserInfo.infoSex}</div></div>
+                <div> <span>年龄：</span> <div class="infoAge">${tService.tUserInfo.infoAge}</div></div>
+                <div> <span>民族：</span> <div class="infoNation" >${tService.tUserInfo.infoNation}</div></div>
+                <div> <span>地址：</span> <div class="sAddress">${tService.sAddress}</div></div>
         </div>
     </div>
 
@@ -74,6 +82,9 @@
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <form class="form-horizontal">
                         <div class="form-group">
+                            <legend class="fieldest-legend">
+                                <span class="span">&nbsp&nbsp&nbsp&nbsp待处理工单</span>
+                            </legend>
                         </div>
                     </form>
                 </div>
@@ -83,8 +94,6 @@
 
 
 </section>
-
-
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

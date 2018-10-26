@@ -42,8 +42,8 @@
         <div class="col-md-8">
             <div class="col-md-1 text-center"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">
                 <span>首页</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
-                <span>档案管理</span></div>
+            <div class="col-md-1 text-center"><a href="/dangan" ><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                <span>档案管理</span></a></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
                 <span>工单管理</span></div>
             <div class="col-md-1 text-center"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
@@ -84,7 +84,7 @@
                         series: [{
                             name: '销量',
                             type: 'bar',
-                            data: [5, 20, 36, 10]
+                            data: [${list[0].flag},${list[1].flag},${list[2].flag},${list[3].flag}]
                         }]
                     };
 
@@ -114,12 +114,12 @@
                             },
                             series: [
                                 {
-                                    name: '访问来源',
+                                    name: '访问来源 后台数据库',
                                     type: 'pie',
                                     radius: '55%',
                                     center: ['50%', '60%'],
-                                    data: [ {value:335, name:'已回返'},
-                                            {value:310, name:'未回返'}],
+                                    data: [ {value:${list[1].flag}, name:'已回返'},
+                                            {value:${list[0].flag}, name:'未回返'}],
                                     itemStyle: {
                                         emphasis: {
                                             shadowBlur: 10,
@@ -169,38 +169,43 @@
                 </script>
             </div>
             <div class="row">
-                <div class="col-md-4" style="height: 320px ;width: 100%" id = "21"></div>
+
+
+
+
+
+                <div class="col-md-4" style="height: 320px ;width: 80%"   id = "21"></div>
 
                 <script type="text/javascript">
-                    // 基于准备好的dom，初始化echarts实例
-                    <%--var user='<%=request.getAttribute("list")%>';--%>
-                    <%--console.log(user);--%>
-                    var val= JSON.parse(${list}) ;
-                        console.log(val);
+
+
                     var myChart21 = echarts.init(document.getElementById('21'));
 
-                    // 指定图表的配置项和数据
-                    var  option = {
-                xAxis: {
-                type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-                },
-                yAxis: {
-                type: 'value'
-                },
-                series: [{
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                type: 'line'
-                }]
-                };myChart21.setOption(option);
-                </script>
+// 指定图表的配置项和数据
+var  option = {
+    title: {
+        text: '工单增长走向图'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2017-12', '2018-1', '2018-2', '2018-3', '2018-4', '2018-5', '2018-6', '2018-7', '2018-8', '2018-9']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 932, 901, 934, 1330, 1320],
+        type: 'line'
+    }]
+};myChart21.setOption(option);
+</script>
 
 
-    </div>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 </section>
 
 

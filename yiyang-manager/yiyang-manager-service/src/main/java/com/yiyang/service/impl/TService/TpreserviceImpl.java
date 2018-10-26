@@ -131,5 +131,20 @@ public class TpreServiceImpl implements TpreService {
         return tPreservice;
     }
 
+    @Override
+    public void updateFlag2(String psNumber) {
+       tPreserviceMapper.updateFlag2(psNumber);
+    }
+
+    @Override
+    public void updateFlag3(String psNumber) {
+        tPreserviceMapper.updateFlag3(psNumber);
+    }
+
+    @Override
+    public void updateFlag4(String psNumber) {
+        tPreserviceMapper.updateFlag4(psNumber);
+    }
+
 
 }

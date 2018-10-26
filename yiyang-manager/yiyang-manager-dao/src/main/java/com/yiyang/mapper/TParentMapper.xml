@@ -4,4 +4,13 @@
     <insert id="insertTParent" parameterType="string">
         INSERT INTO tparent(pUser) VALUE (#{username})
     </insert>
+    <select id="getParentInfo" parameterType="string" resultType="com.yiyang.pojo.ParentInfo">
+        SELECT a.infoSex,a.infoTel,c.cName,b.pIdnum,b.pBirthplace,b.pAddress,b.pCno,a.infoName,a.infoAge,b.pInfo1,b.pInfo2,b.pInfo3,b.pInfo4 FROM tuserinfo a LEFT JOIN tparent b ON a.infoUser=b.pUser
+        LEFT JOIN tcommunity c ON b.pCnum=c.cNum WHERE a.infoUser=#{username};
+    </select>
+    <select id="getServicesDesc" parameterType="string" resultType="com.yiyang.pojo.ServiceDesc">
+        SELECT a.siName,b.sAddress,c.infoTel,a.siItem,a.siPrice,a.siType,b.sInfo3,a.siDesc,b.sNumber
+        FROM tserviceitem a LEFT JOIN tservice b ON a.siUser=b.sUser LEFT JOIN tuserinfo c
+        ON a.siUser=c.infoUser where a.siId=#{itemId};
+    </select>
 </mapper>

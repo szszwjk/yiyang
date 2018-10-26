@@ -32,7 +32,8 @@ public class TPreservice implements Serializable {
 
     private String psPeople;
 
-    private Date finishTime;
+    private Date psFinishTime;
+
     private TServiceitem tServiceitem;
 
     public TServiceitem gettServiceitem() {
@@ -51,12 +52,12 @@ public class TPreservice implements Serializable {
         this.psPeople = psPeople;
     }
 
-    public Date getFinishTime() {
-        return finishTime;
+    public Date getPsFinishTime() {
+        return psFinishTime;
     }
 
-    public void setFinishTime(Date finishTime) {
-        this.finishTime = finishTime;
+    public void setPsFinishTime(Date psFinishTime) {
+        this.psFinishTime = psFinishTime;
     }
 
     public Integer getPsId() {
@@ -171,7 +172,7 @@ public class TPreservice implements Serializable {
                 ", psAddres='" + psAddres + '\'' +
                 ", psDesc='" + psDesc + '\'' +
                 ", psPeople='" + psPeople + '\'' +
-                ", finishTime=" + finishTime +
+                ", psFinishTime=" + psFinishTime +
                 ", tServiceitem=" + tServiceitem +
                 '}';
     }

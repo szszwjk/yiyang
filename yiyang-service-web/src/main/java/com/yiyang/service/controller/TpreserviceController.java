@@ -3,14 +3,18 @@ package com.yiyang.service.controller;
 import com.yiyang.common.utils.YiyangPageResult;
 import com.yiyang.common.utils.YiyangResult;
 import com.yiyang.pojo.TPreservice;
+import com.yiyang.pojo.TService;
 import com.yiyang.service.tservice.TpreService;
 
+import com.yiyang.service.tservice.Tservice;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +23,8 @@ public class TpreserviceController {
 
     @Autowired
     private TpreService tpreService;
+    @Autowired
+    private Tservice tservice;
     @RequestMapping("/item/dcllist")
     @ResponseBody
     public YiyangPageResult getTpreservicedcl(Integer page, Integer rows,TPreservice tPreservice){
@@ -78,11 +84,17 @@ public class TpreserviceController {
     }
 
     @RequestMapping("/")
-    public String index(){
-        return "index";
+    public ModelAndView index(){
+        String sUser="zs1";
+        TService tService=tservice.findInfoByUser(sUser);
+        System.out.println(tService);
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("tService",tService);
+        mv.setViewName("index");
+        return mv;
     }
 
-    @RequestMapping("/serviceitem")
+   @RequestMapping("/serviceitem")
     public String serviceitem(){
         return "serviceitem";
     }
@@ -91,18 +103,59 @@ public class TpreserviceController {
     public String preservice(){
         return "preservice";
     }
-    @RequestMapping("/jieshou")
-    public ModelAndView jieshou(@RequestParam("psNumber") String psNumber){
-        ModelAndView mv=new ModelAndView();
-        mv.addObject("psNumber",psNumber);
-        TPreservice tPreservice=tpreService.findByPsNumber(psNumber);
-        mv.addObject("data",tPreservice);
-        mv.setViewName("/jieshou");
-        return mv;
+
+   /* @RequestMapping("/serviceinfo")
+    public String serviceinfo(){
+        return "serviceinfo";
+    }*/
+    @RequestMapping("/jieshou/{psNumber}")
+    public String jieshou(@PathVariable String psNumber,Model model){
+       System.out.println(psNumber);
+        TPreservice  tPreservice=tpreService.findByPsNumber(psNumber);
+        System.out.println(tPreservice);
+        model.addAttribute("tPreservice",tPreservice);
+        return "jieshou";
     }
-    @RequestMapping("/index")
+    @RequestMapping(value = "/jieshou/",method = RequestMethod.POST)
+    public String jieshou1(@RequestParam String psNumber){
+        System.out.println(psNumber);
+        tpreService.updateFlag2(psNumber);
+        TPreservice tPreservice=tpreService.findByPsNumber(psNumber);
+        System.out.println(tpreService);
+        return "jieshou";
+    }
+    @RequestMapping("/chuli/{psNumber}")
+    public String chuli(@PathVariable String psNumber,Model model){
+        TPreservice tPreservice=tpreService.findByPsNumber(psNumber);
+        System.out.println(tPreservice);
+        model.addAttribute("tPreservice",tPreservice);
+        return "chuli";
+    }
+    @RequestMapping(value = "/chuli/",method = RequestMethod.POST)
+    public String chuli1(@RequestParam String psNumber){
+        tpreService.updateFlag3(psNumber);
+        TPreservice tPreservice =tpreService.findByPsNumber(psNumber);
+        System.out.println(tpreService);
+        return "chuli";
+    }
+    @RequestMapping("/show/{psNumber}")
+    public String show(@PathVariable String psNumber,Model model){
+        TPreservice tPreservice=tpreService.findByPsNumber(psNumber);
+       System.out.println(tPreservice);
+        model.addAttribute("tPreservice",tPreservice);
+        return "show";
+    }
+   /* @RequestMapping("/index")
      public String index1(){
     return "index";
-}
+}*/
+
+    @RequestMapping(value = "/item/refuse",method = RequestMethod.POST)
+    public String refuse(@RequestParam String psNumber){
+        System.out.println(psNumber);
+        tpreService.updateFlag4(psNumber);
+        return "preservice";
+    }
+
 
 }

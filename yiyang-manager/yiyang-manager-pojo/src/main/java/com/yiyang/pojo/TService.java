@@ -23,6 +23,16 @@ public class TService implements Serializable {
 
     private String sFlag;
 
+    private TUserInfo tUserInfo;
+
+    public TUserInfo gettUserInfo() {
+        return tUserInfo;
+    }
+
+    public void settUserInfo(TUserInfo tUserInfo) {
+        this.tUserInfo = tUserInfo;
+    }
+
     public Integer getsId() {
         return sId;
     }
@@ -101,5 +111,22 @@ public class TService implements Serializable {
 
     public void setsFlag(String sFlag) {
         this.sFlag = sFlag == null ? null : sFlag.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TService{" +
+                "sId=" + sId +
+                ", sUser='" + sUser + '\'' +
+                ", sName='" + sName + '\'' +
+                ", sNumber='" + sNumber + '\'' +
+                ", sCnum='" + sCnum + '\'' +
+                ", sDescribe='" + sDescribe + '\'' +
+                ", sInfo2='" + sInfo2 + '\'' +
+                ", sInfo3='" + sInfo3 + '\'' +
+                ", sAddress='" + sAddress + '\'' +
+                ", sFlag='" + sFlag + '\'' +
+                ", tUserInfo=" + tUserInfo +
+                '}';
     }
 }

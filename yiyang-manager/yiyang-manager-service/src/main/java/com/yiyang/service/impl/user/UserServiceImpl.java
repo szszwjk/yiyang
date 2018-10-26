@@ -5,7 +5,7 @@ import com.yiyang.common.utils.JsonUtils;
 import com.yiyang.common.utils.YiyangResult;
 import com.yiyang.mapper.*;
 
-import com.yiyang.pojo.TAuthority;
+
 import com.yiyang.pojo.TUser;
 import com.yiyang.pojo.TUserInfo;
 import com.yiyang.pojo.UserAuthorityKey;
@@ -18,6 +18,7 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService{
+
     @Value("${USER_INFO}")
     private String USER_INFO;
     @Value("${SESSION_EXPIRE}")
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService{
                 YiyangResult yiyangResult=new YiyangResult();
                 yiyangResult.setStatus(200);
                 yiyangResult.setMsg(token);
-                yiyangResult.setData("http://localhost:8088/");
+                yiyangResult.setData("http://localhost:8081/");
                 jedisClient.set(USER_INFO+":"+token,JsonUtils.objectToJson(user));
                 jedisClient.expire(USER_INFO + ":" + token, SESSION_EXPIRE);
                 return yiyangResult;
@@ -86,7 +87,7 @@ public class UserServiceImpl implements UserService{
             userInfo = tUserInfoMapper.selectTUserInfoByTelnumber(telnumber);
         } catch (Exception e) {
             e.printStackTrace();
-            YiyangResult.build(500,"此电话已被使用");
+            return YiyangResult.build(500,"此电话已被使用");
         }
         if(userInfo!=null)
         {
