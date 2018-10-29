@@ -32,6 +32,8 @@ public class ParentDataImpl implements ParentData {
     private TDsuggestMapper tDsuggestMapper;
     @Autowired
     private TParentMapper tParentMapper;
+    @Autowired
+    private UserAuthorityMapper userAuthorityMapper;
     @Override
     public List<TData> selectDataByWeekOrMonth(int flag, String item, String username) {
         List<TData> tData = tDataMapper.selectDataByWeekOrMonth(flag, item, username);
@@ -249,6 +251,12 @@ public class ParentDataImpl implements ParentData {
     public List<TDoctor> getDoctor(String dname) {
         List<TDoctor> result = tParentMapper.getDoctor(dname);
         return result;
+    }
+
+    @Override
+    public List<TAuthority> getAuthorityByUser(String username) {
+        List<TAuthority> authorityByUser = userAuthorityMapper.getAuthorityByUser(username);
+        return authorityByUser;
     }
 
     //检验操作end

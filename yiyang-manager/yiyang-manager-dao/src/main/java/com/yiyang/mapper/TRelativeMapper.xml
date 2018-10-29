@@ -45,4 +45,7 @@
         </if>
         ORDER BY a.dsId DESC
     </select>
+    <insert id="insertRelation" parameterType="string">
+        INSERT  INTO trelative(rUser) VALUE (#{rUser})
+    </insert>
 </mapper>

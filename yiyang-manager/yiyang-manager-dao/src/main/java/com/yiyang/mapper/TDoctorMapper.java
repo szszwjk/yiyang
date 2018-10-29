@@ -5,6 +5,7 @@ import com.yiyang.pojo.TDoctor;
 import java.util.List;
 
 public interface TDoctorMapper {
+   void insertDoctor2(String username);
    void insertDoctor(TDoctor doctor);
    List<TDoctor> findDoctorByName(String Name);
    TDoctor findDoctorByName1(String Name);

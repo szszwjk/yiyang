@@ -3,9 +3,11 @@ package com.yiyang.parent.controller;
 import com.yiyang.common.jedis.JedisClient;
 import com.yiyang.common.utils.CookieUtils;
 import com.yiyang.common.utils.JsonUtils;
+import com.yiyang.mapper.UserAuthorityMapper;
 import com.yiyang.pojo.*;
 import com.yiyang.service.parent.ParentData;
 import com.yiyang.service.parent.ParentService;
+import com.yiyang.service.yunadmin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,30 +22,31 @@ import java.util.List;
 public class ParentPageController {
     @Autowired
     private ParentService parentService;
-    @Autowired
-    private JedisClient jedisClient;
+
     @Autowired
     private ParentData parentData;
+    @Autowired
+    private AdminService adminService;
+    @Autowired
+    private JedisClient jedisClient;
     @RequestMapping("/")
     public String index(Model model, HttpServletRequest request, HttpServletResponse response)
     {
-//        String cookie_token_key = CookieUtils.getCookieValue(request, "COOKIE_TOKEN_KEY");
-//        String json = jedisClient.get("USER_INFO" + ":" + cookie_token_key);
-//        TUser tUser = JsonUtils.jsonToPojo(json, TUser.class);
-//        ParentInfo info = parentService.getParentInfo(tUser.getUsername());
+        setAuthorityAndUsername(model,request);
         ParentInfo info = parentService.getParentInfo("szszwjk");
-        System.out.println(info);
         model.addAttribute("item",info);
         return "parentindex";
     }
     @RequestMapping("/parent/parentservice")
-    public String service()
+    public String service(Model model, HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         return "parentservice";
     }
     @RequestMapping("/parent/parentaccount")
-    public String parentaccount(Model model)
+    public String parentaccount(Model model, HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         List<TCommunity> community = parentService.getCommunity();
         TParent result = parentService.getParent("szszwjk");
         String json = JsonUtils.objectToJson(result);
@@ -53,14 +56,15 @@ public class ParentPageController {
         return "parentaccount";
     }
     @RequestMapping("/parent/parentdetction")
-    public String parentdetction()
+    public String parentdetction(Model model, HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         return "parentdetction";
     }
     @RequestMapping("/parent/parentcustody")
-    public String parentcustody(Model model)
+    public String parentcustody(Model model, HttpServletRequest request)
     {
-
+        setAuthorityAndUsername(model,request);
         List<TPreoption> list = parentData.getTPreoptionforUsername("szszwjk");
         for(int i=0;i<list.size();i++)
         {
@@ -76,14 +80,25 @@ public class ParentPageController {
         return "parentcustody";
     }
     @RequestMapping("/parent/parentdocument")
-    public String parentDocument()
+    public String parentDocument(Model model, HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         return "parentdocument";
     }
     @RequestMapping("/parent/parentdoctor")
-    public String parentDoctor()
+    public String parentDoctor(Model model, HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         return "parentdoctor";
+    }
+    public void setAuthorityAndUsername(Model model, HttpServletRequest request)
+    {
+        String cookie_token_key = CookieUtils.getCookieValue(request, "COOKIE_TOKEN_KEY");
+        String json = jedisClient.get("USER_INFO" + ":" + cookie_token_key);
+        TUser tUser = JsonUtils.jsonToPojo(json, TUser.class);
+        List<UserAuthorityKey> list = adminService.getUserAuthorityKeyByUser(tUser.getUsername());
+        model.addAttribute("username",tUser.getUsername());
+        model.addAttribute("authorityjson",JsonUtils.objectToJson(list));
     }
 
 }

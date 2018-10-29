@@ -57,7 +57,7 @@ function onSubmitfun() {
                 } else {
                     console.log(redirectUrl);
                     console.log(data);
-                    //location.href = redirectUrl;
+                    location.href = redirectUrl;
                 }
             } else {
                 alert("登录失败，原因是：" + data.msg);

@@ -45,10 +45,6 @@
         </trim>
         where sUser=#{sUser}
     </update>
-
-
-
-
     <select id="selectAllService" resultType="com.yiyang.pojo.TService">
         SELECT  * from tservice
 
@@ -56,6 +52,9 @@
     <select id="selectServiceByName" parameterType="String" resultType="com.yiyang.pojo.TService">
         SELECT * FROM tservice where sUser = #{sUser}
     </select>
+    <insert id="insertService" parameterType="string">
+        INSERT INTO tservice(sUser) VALUE (#{sUser})
+    </insert>
 
 
 </mapper>

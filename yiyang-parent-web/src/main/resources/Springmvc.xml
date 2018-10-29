@@ -80,6 +80,17 @@
 		</bean>
 	</mvc:message-converters>
 </mvc:annotation-driven>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截所有的请求，这个必须写在前面，也就是写在【不拦截】的上面 -->
+			<mvc:mapping path="/**" />
+			<!-- 但是排除下面这些，也就是不拦截请求 -->
+			<!--<mvc:exclude-mapping path="/login.html" />-->
+			<!--<mvc:exclude-mapping path="/account/login.do" />-->
+			<!--<mvc:exclude-mapping path="/account/regist.do" />-->
+			<bean class="com.yiyang.parent.interceptor.parentInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	
 	<!-- 引用dubbo服务 -->
@@ -90,5 +101,5 @@
 	<dubbo:reference interface="com.yiyang.service.parent.ParentService" id="parentService" />
 	<dubbo:reference interface="com.yiyang.service.parent.ParentData" id="parentData" />
 	<dubbo:reference interface="com.yiyang.service.parent.PictureService" id="pictureService" />
-
+	<dubbo:reference interface="com.yiyang.service.yunadmin.AdminService" id="adminService" />
 </beans>

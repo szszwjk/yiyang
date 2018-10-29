@@ -1,13 +1,14 @@
 package com.yiyang.social.controller;
 
+import com.yiyang.common.jedis.JedisClient;
+import com.yiyang.common.utils.CookieUtils;
 import com.yiyang.common.utils.JsonUtils;
-import com.yiyang.pojo.TDoctor;
-import com.yiyang.pojo.TParent;
-import com.yiyang.pojo.TService;
-import com.yiyang.pojo.TUserInfo;
+import com.yiyang.pojo.*;
 import com.yiyang.service.social.*;
+import com.yiyang.service.yunadmin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +28,14 @@ public class AllUserController {
             public SelectAllDocService selectAllDocService;
     @Autowired
             public  SelectAllServiceService selectAllServiceService;
+    @Autowired
+    private AdminService adminService;
+    @Autowired
+    private JedisClient jedisClient;
     String id ;
     @RequestMapping(value = "/dangan")
-    public String chart1(HttpServletRequest request, HttpServletResponse response) {
+    public String chart1(Model model,HttpServletRequest request, HttpServletResponse response) {
+        setAuthorityAndUsername(model,request);
         List< TUserInfo > list = selectAllUserService.SelectAllUser();
         request.setAttribute( "list",list );
         TParent tParent = selectUserByIdnumService.SelectUserByIdnum( request.getParameter( "ID" ));
@@ -58,6 +64,15 @@ public class AllUserController {
                 request.getParameter( "shequhao" ));
 
         return "success";
+    }
+    public void setAuthorityAndUsername(Model model, HttpServletRequest request)
+    {
+        String cookie_token_key = CookieUtils.getCookieValue(request, "COOKIE_TOKEN_KEY");
+        String json = jedisClient.get("USER_INFO" + ":" + cookie_token_key);
+        TUser tUser = JsonUtils.jsonToPojo(json, TUser.class);
+        List<UserAuthorityKey> list = adminService.getUserAuthorityKeyByUser(tUser.getUsername());
+        model.addAttribute("username",tUser.getUsername());
+        model.addAttribute("authorityjson",JsonUtils.objectToJson(list));
     }
 
 

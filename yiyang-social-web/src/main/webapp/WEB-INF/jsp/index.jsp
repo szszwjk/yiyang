@@ -53,7 +53,7 @@
                     <%--<span>预警管理</span></a></div>--%>
 
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-2"><jsp:include  page="include.jsp"/></div>
     </div>
     </div>
 </header>

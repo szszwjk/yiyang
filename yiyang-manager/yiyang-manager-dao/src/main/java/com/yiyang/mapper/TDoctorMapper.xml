@@ -27,5 +27,8 @@
 
 		SELECT  * from tdoctor WHERE dUser = #{dUser}
 	</select>
+	<insert id="insertDoctor2" parameterType="string">
+		INSERT  INTO tdoctor(dUser) VALUE (#{dUser})
+	</insert>
 
 </mapper>

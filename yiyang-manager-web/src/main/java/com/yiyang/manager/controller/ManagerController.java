@@ -1,5 +1,7 @@
 package com.yiyang.manager.controller;
 
+import com.yiyang.common.jedis.JedisClient;
+import com.yiyang.common.utils.CookieUtils;
 import com.yiyang.common.utils.JsonUtils;
 import com.yiyang.common.utils.YiyangPageResult;
 import com.yiyang.common.utils.YiyangResult;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,9 +22,12 @@ import java.util.List;
 public class ManagerController {
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private JedisClient jedisClient;
     @RequestMapping("/")
-    public String index(Model model)
+    public String index(Model model,HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         TYunadmin adminInfo = adminService.getAdminInfo("szszwjkyun");
         List<UserType> userType = adminService.getUserType();
         List<UserType> comunityType = adminService.getComunity();
@@ -104,5 +110,14 @@ public class ManagerController {
     {
         YiyangResult yiyangResult = adminService.addAuthority(tAuthority);
         return yiyangResult;
+    }
+    public void setAuthorityAndUsername(Model model, HttpServletRequest request)
+    {
+        String cookie_token_key = CookieUtils.getCookieValue(request, "COOKIE_TOKEN_KEY");
+        String json = jedisClient.get("USER_INFO" + ":" + cookie_token_key);
+        TUser tUser = JsonUtils.jsonToPojo(json, TUser.class);
+        List<UserAuthorityKey> list = adminService.getUserAuthorityKeyByUser(tUser.getUsername());
+        model.addAttribute("username",tUser.getUsername());
+        model.addAttribute("authorityjson",JsonUtils.objectToJson(list));
     }
 }

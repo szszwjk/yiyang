@@ -16,7 +16,6 @@ $(function () {
     })
     $("#selectConsult").click(function () {
         nowpage_i=1;
-
         $("#mytable_i").remove();
         $("#pt_i").remove();
         var cFlag=$("#cFlag").val();
@@ -86,6 +85,7 @@ function pageclick_i(obj) {
 
 }
 function addelement_i(data) {
+    console.log(data)
     var total=data.total;
     pagenum_i=total%8==0?total/8:Math.floor(total/8)+1;
 
@@ -104,7 +104,7 @@ function addelement_i(data) {
                 "                                                <div class=\"media-body\">\n" +
                 "                                                    <h4 class=\"media-heading\">"+list[i].doctorUser.infoName+"</h4>\n" +
                 "                                                    <p>\n" +
-                                                                            list[i].cAnswer+
+                list[i].cAnswer+
                 "                                                    </p>\n" +
                 "                                                </div>\n" +
                 "                                            </div>"
@@ -124,7 +124,7 @@ function addelement_i(data) {
             "                                    <span>\n" +
             "                                        "+list[i].cDesc.substr(0,6)+"....." +
             "                                    </span>\n" +
-                                                    descflag+
+            descflag+
             "                                    <span style=\"float: right\">"+list[i].cDate+"</span>" +
             "                                </h4>\n" +
             "                            </div>\n" +
@@ -138,18 +138,18 @@ function addelement_i(data) {
             "                                        <div class=\"media-body\">\n" +
             "                                            <h4 class=\"media-heading\">"+list[i].consultUser.infoName+"</h4>\n" +
             "                                            <p >" +
-                                                            list[i].cDesc+
+            list[i].cDesc+
             "                                            </p>" +
-                                                            aser+
+            aser+
             "                                            " +
             "                                        </div>" +
             "                                    </div>\n" +
             "                                   \n" +
-            "                                </div>\n" +q
-            "                            </div>\n" +
-            "                        </div>\n" +
-            "                    </div>\n" +
-            "                   "
+            "                                </div>\n"+
+        "                            </div>\n" +
+        "                        </div>\n" +
+        "                    </div>\n" +
+        "                   "
 
 
     }
@@ -193,7 +193,7 @@ function selectdoctor() {
                 "<button type=\"button\" class=\"btn btn-info\" style=\"width:70px\" onclick='consult(this)'>咨询</button>" +
                 "<input class=\"hidden\" value='"+data[i].infoTel+"'>" +
                 "<input class=\"hidden\" value='"+data[i].dUser+"'>" +
-                 "</div>"
+                "</div>"
         }
         $(".doctorcss").append(string);
     })

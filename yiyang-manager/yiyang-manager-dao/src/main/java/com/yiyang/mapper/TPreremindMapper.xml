@@ -37,6 +37,6 @@
     </select>
 
     <select id="findPreremindAll" parameterType="String" resultType="com.yiyang.pojo.TPreremind">
-        select * from tpreremind where prUser in (select pUser from doctorparent where dUser = #{dUser})ORDER BY prTime DESC
+        select * from tpreremind where prUser in (select pUser from doctorparent where dUser = #{dUser})  ORDER BY prTime DESC LIMIT 1,14
     </select>
 </mapper>

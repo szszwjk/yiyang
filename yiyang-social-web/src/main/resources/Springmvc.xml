@@ -30,6 +30,14 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="host" value="192.168.25.153"/>
+		<constructor-arg name="port" value="6379"/>
+	</bean>
+	<bean id="jedisClientPool" class="com.yiyang.common.jedis.JedisClientPool">
+
+	</bean>
 	<!--post乱码-->
 	<mvc:annotation-driven >
 	<mvc:message-converters register-defaults="true">
@@ -70,4 +78,5 @@
 	<dubbo:reference interface="com.yiyang.service.social.SelectAllPreserviceService" id="selectAllPreserviceService"/>
 	<dubbo:reference interface="com.yiyang.service.social.DeletePreserviceByNumService" id="deletePreserviceByNumService"/>
 	<dubbo:reference interface="com.yiyang.service.social.SelectPreserviceByNameService" id="selectPreserviceByNameService"/>
+	<dubbo:reference interface="com.yiyang.service.yunadmin.AdminService" id="adminService" />
 </beans>

@@ -89,5 +89,5 @@
 	<dubbo:reference interface="com.yiyang.service.parent.ParentService" id="parentService" />
 	<dubbo:reference interface="com.yiyang.service.relation.RelationService" id="relationService" />
 	<dubbo:reference interface="com.yiyang.service.parent.PictureService" id="pictureService" />
-
+	<dubbo:reference interface="com.yiyang.service.yunadmin.AdminService" id="adminService" />
 </beans>

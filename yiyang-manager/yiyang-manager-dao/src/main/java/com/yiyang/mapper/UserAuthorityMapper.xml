@@ -61,4 +61,19 @@
             ( #{user.username}, #{user.authorityGroup})
         </foreach >
     </insert>
+    <select id="getAuthorityByUser" parameterType="string" resultType="com.yiyang.pojo.TAuthority">
+        SELECT
+            *
+        FROM
+            tauthority
+        WHERE
+            authorityGroup IN (
+                SELECT
+                    authorityGroup
+                FROM
+                    `userauthority`
+                WHERE
+                    username = #{username}
+            );
+    </select>
 </mapper>

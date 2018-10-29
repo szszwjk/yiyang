@@ -31,7 +31,13 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="host" value="192.168.25.153"/>
+		<constructor-arg name="port" value="6379"/>
+	</bean>
+	<bean id="jedisClientPool" class="com.yiyang.common.jedis.JedisClientPool">
 
+	</bean>
 
 	<!--post乱码-->
 	<mvc:annotation-driven >
@@ -65,4 +71,5 @@
 	<dubbo:reference interface="com.yiyang.service.tservice.TpreService" id="tpreService"/>
     <dubbo:reference interface="com.yiyang.service.tservice.Serviceitem" id="serviceitem"/>
 	<dubbo:reference interface="com.yiyang.service.tservice.Tservice" id="tservice"/>
+	<dubbo:reference interface="com.yiyang.service.yunadmin.AdminService" id="adminService" />
 	</beans>

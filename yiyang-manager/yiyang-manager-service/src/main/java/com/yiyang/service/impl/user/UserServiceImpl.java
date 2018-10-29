@@ -34,6 +34,14 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private TAuthorityMapper authorityMapper;
     @Autowired
+    private TDoctorMapper tDoctorMapper;
+    @Autowired
+    private TServiceMapper tServiceMapper;
+    @Autowired
+    private TRelativeMapper tRelativeMapper;
+    @Autowired
+    private TComadminMapper tComadminMapper;
+    @Autowired
     private JedisClient jedisClient;
 
 
@@ -50,7 +58,16 @@ public class UserServiceImpl implements UserService{
                 YiyangResult yiyangResult=new YiyangResult();
                 yiyangResult.setStatus(200);
                 yiyangResult.setMsg(token);
-                yiyangResult.setData("http://localhost:8081/");
+                switch (tUser.getAuthorityGroup())
+                {
+                    case "parent":yiyangResult.setData("http://localhost:8081/");break;
+                    case "doctor":yiyangResult.setData("http://localhost:8087/");break;
+                    case "service":yiyangResult.setData("http://localhost:8090/");break;
+                    case "relation":yiyangResult.setData("http://localhost:8085/");break;
+                    case "cadmin":yiyangResult.setData("http://localhost:8089/");break;
+                    case "admin":yiyangResult.setData("http://localhost:8083/");break;
+                }
+
                 jedisClient.set(USER_INFO+":"+token,JsonUtils.objectToJson(user));
                 jedisClient.expire(USER_INFO + ":" + token, SESSION_EXPIRE);
                 return yiyangResult;
@@ -105,7 +122,10 @@ public class UserServiceImpl implements UserService{
         switch (tUser.getAuthorityGroup())
         {
             case "parent":tParentMapper.insertTParent(tUser.getUsername()); return YiyangResult.ok();
-
+            case "doctor":tDoctorMapper.insertDoctor2(tUser.getUsername()); return YiyangResult.ok();
+            case "service":tServiceMapper.insertService(tUser.getUsername()); return YiyangResult.ok();
+            case "relation":tRelativeMapper.insertRelation(tUser.getUsername()); return YiyangResult.ok();
+            case "cadmin":tComadminMapper.insertCadmin(tUser.getUsername()); return YiyangResult.ok();
         }
         return YiyangResult.build(500,"数据错误");
     }

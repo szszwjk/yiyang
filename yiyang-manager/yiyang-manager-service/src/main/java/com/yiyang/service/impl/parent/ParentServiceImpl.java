@@ -161,6 +161,7 @@ public class ParentServiceImpl implements ParentService{
     public YiyangPageResult getConsult(Integer page, Integer rows,TConsult tConsult) {
         PageHelper.startPage(page, rows);
         List<TConsult> list = tConsultMapper.getConsult(tConsult);
+        System.out.println("list="+list.size());
         return getPage(list);
     }
 

@@ -172,4 +172,5 @@ public interface ParentData {
      * @return
      */
     public List<TDoctor> getDoctor(String dname);
+    public List<TAuthority> getAuthorityByUser(String username);
 }

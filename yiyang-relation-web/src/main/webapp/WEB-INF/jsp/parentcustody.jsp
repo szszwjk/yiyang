@@ -48,7 +48,7 @@
             <div class="col-md-1 text-center"><a href="/relation/locationmap"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
                 <span>地图定位</span></a></div>
         </div>
-        <div class="col-md-2">.col-md-4</div>
+        <div class="col-md-2"><jsp:include  page="include.jsp"/></div>
     </div>
 </header>
 <section class="content">

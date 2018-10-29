@@ -52,7 +52,7 @@
             <div class="col-md-1 text-center"><a href="/parent/parentaccount"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
                 <span>个人账户</span></a></div>
         </div>
-        <div class="col-md-2">.col-md-4</div>
+        <div class="col-md-2"><jsp:include  page="include.jsp"/></div>
     </div>
 
 </header>

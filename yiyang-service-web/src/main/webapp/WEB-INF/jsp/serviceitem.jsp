@@ -43,14 +43,9 @@
                 <span> 服务项目</span></a></div>
             <div class="col-md-1 text-center"><a href="/preservice"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
                 <span>工单管理</span></a></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
-                <span>评价管理</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
-                <span>投诉管理</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
-                <span>订单流水</span></div>
+
         </div>
-        <div class="col-md-2">.col-md-4</div>
+        <div class="col-md-2"><jsp:include  page="include.jsp"/></div>
     </div>
 
 </header>

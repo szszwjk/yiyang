@@ -45,14 +45,9 @@
                 <span> 服务项目</span></a></div>
             <div class="col-md-1 text-center"><a href="/preservice"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
                 <span>工单管理</span></a></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
-                <span>评价管理</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
-                <span>投诉管理</span></div>
-            <div class="col-md-1 text-center"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
-                <span>订单流水</span></div>
+
         </div>
-        <div class="col-md-2">.col-md-4</div>
+        <div class="col-md-2"><jsp:include  page="include.jsp"/></div>
     </div>
 
 </header>
@@ -65,12 +60,7 @@
                 <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" id="info">个人基本信息</a></li>
             </ul>
 
-            <div> <span>名称：</span> <div class="sName" >${tService.sName}</div></div>
-               <div> <span>电话：</span> <div class="infoTel" >${tService.tUserInfo.infoTel}</div></div>
-                <div> <span>性别：</span> <div class="infoSex" >${tService.tUserInfo.infoSex}</div></div>
-                <div> <span>年龄：</span> <div class="infoAge">${tService.tUserInfo.infoAge}</div></div>
-                <div> <span>民族：</span> <div class="infoNation" >${tService.tUserInfo.infoNation}</div></div>
-                <div> <span>地址：</span> <div class="sAddress">${tService.sAddress}</div></div>
+
         </div>
     </div>
 
@@ -80,14 +70,15 @@
             <!-- 面板区 -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <legend class="fieldest-legend">
-                                <span class="span">&nbsp&nbsp&nbsp&nbsp待处理工单</span>
-                            </legend>
-                        </div>
-                    </form>
-                </div>
+                    <table class="table table-striped">
+
+                        <tr> <td><span>名称：</span></td><td> <div class="sName" >${tService.sName}</div></td></tr>
+                        <tr> <td><span>电话：</span></td><td> <div class="infoTel" >${tService.tUserInfo.infoTel}</div></td></tr>
+                        <tr> <td><span>性别：</span></td><td> <div class="infoSex" >${tService.tUserInfo.infoSex}</div></td></tr>
+                        <tr> <td><span>年龄：</span></td><td> <div class="infoAge">${tService.tUserInfo.infoAge}</div></td></tr>
+                        <tr> <td><span>民族：</span></td><td> <div class="infoNation" >${tService.tUserInfo.infoNation}</div></td></tr>
+                        <tr> <td><span>地址：</span></td><td> <div class="sAddress">${tService.sAddress}</div></td></tr>
+                    </table></div>
             </div>
         </div>
     </div>

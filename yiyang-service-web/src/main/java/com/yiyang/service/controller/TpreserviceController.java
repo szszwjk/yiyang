@@ -1,12 +1,18 @@
 package com.yiyang.service.controller;
 
+import com.yiyang.common.jedis.JedisClient;
+import com.yiyang.common.utils.CookieUtils;
+import com.yiyang.common.utils.JsonUtils;
 import com.yiyang.common.utils.YiyangPageResult;
 import com.yiyang.common.utils.YiyangResult;
 import com.yiyang.pojo.TPreservice;
 import com.yiyang.pojo.TService;
+import com.yiyang.pojo.TUser;
+import com.yiyang.pojo.UserAuthorityKey;
 import com.yiyang.service.tservice.TpreService;
 
 import com.yiyang.service.tservice.Tservice;
+import com.yiyang.service.yunadmin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -25,6 +32,10 @@ public class TpreserviceController {
     private TpreService tpreService;
     @Autowired
     private Tservice tservice;
+    @Autowired
+    private AdminService adminService;
+    @Autowired
+    private JedisClient jedisClient;
     @RequestMapping("/item/dcllist")
     @ResponseBody
     public YiyangPageResult getTpreservicedcl(Integer page, Integer rows,TPreservice tPreservice){
@@ -84,7 +95,8 @@ public class TpreserviceController {
     }
 
     @RequestMapping("/")
-    public ModelAndView index(){
+    public ModelAndView index(Model model, HttpServletRequest request){
+        setAuthorityAndUsername(model,request);
         String sUser="zs1";
         TService tService=tservice.findInfoByUser(sUser);
         System.out.println(tService);
@@ -95,12 +107,14 @@ public class TpreserviceController {
     }
 
    @RequestMapping("/serviceitem")
-    public String serviceitem(){
+    public String serviceitem(Model model, HttpServletRequest request){
+       setAuthorityAndUsername(model,request);
         return "serviceitem";
     }
 
     @RequestMapping("/preservice")
-    public String preservice(){
+    public String preservice(Model model, HttpServletRequest request){
+        setAuthorityAndUsername(model,request);
         return "preservice";
     }
 
@@ -109,7 +123,8 @@ public class TpreserviceController {
         return "serviceinfo";
     }*/
     @RequestMapping("/jieshou/{psNumber}")
-    public String jieshou(@PathVariable String psNumber,Model model){
+    public String jieshou(@PathVariable String psNumber,Model model, HttpServletRequest request){
+        setAuthorityAndUsername(model,request);
        System.out.println(psNumber);
         TPreservice  tPreservice=tpreService.findByPsNumber(psNumber);
         System.out.println(tPreservice);
@@ -117,7 +132,8 @@ public class TpreserviceController {
         return "jieshou";
     }
     @RequestMapping(value = "/jieshou/",method = RequestMethod.POST)
-    public String jieshou1(@RequestParam String psNumber){
+    public String jieshou1(@RequestParam String psNumber,Model model, HttpServletRequest request){
+        setAuthorityAndUsername(model,request);
         System.out.println(psNumber);
         tpreService.updateFlag2(psNumber);
         TPreservice tPreservice=tpreService.findByPsNumber(psNumber);
@@ -125,21 +141,24 @@ public class TpreserviceController {
         return "jieshou";
     }
     @RequestMapping("/chuli/{psNumber}")
-    public String chuli(@PathVariable String psNumber,Model model){
+    public String chuli(@PathVariable String psNumber,Model model, HttpServletRequest request){
+        setAuthorityAndUsername(model,request);
         TPreservice tPreservice=tpreService.findByPsNumber(psNumber);
         System.out.println(tPreservice);
         model.addAttribute("tPreservice",tPreservice);
         return "chuli";
     }
     @RequestMapping(value = "/chuli/",method = RequestMethod.POST)
-    public String chuli1(@RequestParam String psNumber){
+    public String chuli1(@RequestParam String psNumber,Model model, HttpServletRequest request){
+        setAuthorityAndUsername(model,request);
         tpreService.updateFlag3(psNumber);
         TPreservice tPreservice =tpreService.findByPsNumber(psNumber);
         System.out.println(tpreService);
         return "chuli";
     }
     @RequestMapping("/show/{psNumber}")
-    public String show(@PathVariable String psNumber,Model model){
+    public String show(@PathVariable String psNumber,Model model, HttpServletRequest request){
+        setAuthorityAndUsername(model,request);
         TPreservice tPreservice=tpreService.findByPsNumber(psNumber);
        System.out.println(tPreservice);
         model.addAttribute("tPreservice",tPreservice);
@@ -151,10 +170,20 @@ public class TpreserviceController {
 }*/
 
     @RequestMapping(value = "/item/refuse",method = RequestMethod.POST)
-    public String refuse(@RequestParam String psNumber){
+    public String refuse(@RequestParam String psNumber,Model model, HttpServletRequest request){
+        setAuthorityAndUsername(model,request);
         System.out.println(psNumber);
         tpreService.updateFlag4(psNumber);
         return "preservice";
+    }
+    public void setAuthorityAndUsername(Model model, HttpServletRequest request)
+    {
+        String cookie_token_key = CookieUtils.getCookieValue(request, "COOKIE_TOKEN_KEY");
+        String json = jedisClient.get("USER_INFO" + ":" + cookie_token_key);
+        TUser tUser = JsonUtils.jsonToPojo(json, TUser.class);
+        List<UserAuthorityKey> list = adminService.getUserAuthorityKeyByUser(tUser.getUsername());
+        model.addAttribute("username",tUser.getUsername());
+        model.addAttribute("authorityjson",JsonUtils.objectToJson(list));
     }
 
 

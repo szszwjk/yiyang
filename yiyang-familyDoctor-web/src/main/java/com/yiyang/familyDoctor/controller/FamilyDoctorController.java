@@ -1,12 +1,12 @@
 package com.yiyang.familyDoctor.controller;
 
+import com.yiyang.common.jedis.JedisClient;
+import com.yiyang.common.utils.CookieUtils;
 import com.yiyang.common.utils.JsonUtils;
 import com.yiyang.common.utils.YiyangResult;
-import com.yiyang.pojo.TConsult;
-import com.yiyang.pojo.TDoctor;
-import com.yiyang.pojo.TDsuggest;
-import com.yiyang.pojo.TPreremind;
+import com.yiyang.pojo.*;
 import com.yiyang.service.doctor.DoctorService;
+import com.yiyang.service.yunadmin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,17 +15,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 public class FamilyDoctorController {
     @Autowired
     DoctorService doctorService;
+    @Autowired
+    private AdminService adminService;
+    @Autowired
+    private JedisClient jedisClient;
 
     @RequestMapping("/")
     @ResponseBody
-    public ModelAndView index()
+    public ModelAndView index(Model model, HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         TDoctor tDoctor= doctorService.findDoctorByName1("szszwjk123");
         List<TPreremind> list= doctorService.getPreremind("szszwjk123");
         System.out.print(list.size());
@@ -39,10 +45,11 @@ public class FamilyDoctorController {
     }
     @RequestMapping("/consult")
     @ResponseBody
-    public ModelAndView consult()
+    public ModelAndView consult(Model model, HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         ModelAndView modelAndView = new ModelAndView();
-        List<TConsult> list= doctorService.getConsult("szszwjk123");
+        List<TConsult> list= doctorService.getConsult("szszwjk3");
         modelAndView.addObject("conList",list);
         modelAndView.addObject("listjson", JsonUtils.objectToJson(list));
         // 视图
@@ -51,10 +58,11 @@ public class FamilyDoctorController {
     }
     @RequestMapping("/evaluate")
     @ResponseBody
-    public ModelAndView evaluate()
+    public ModelAndView evaluate(Model model, HttpServletRequest request)
     {
+        setAuthorityAndUsername(model,request);
         ModelAndView modelAndView = new ModelAndView();
-        List<TDsuggest> list= doctorService.getSuggest("张三");
+        List<TDsuggest> list= doctorService.getSuggest("szszwjk");
         modelAndView.addObject("evaList",list);
         // 视图
         modelAndView.setViewName("evaluate");
@@ -74,6 +82,15 @@ public class FamilyDoctorController {
         System.out.println(tConsult.getcId());
        YiyangResult yiyangResult= doctorService.updateConsult(tConsult);
         return yiyangResult;
+    }
+    public void setAuthorityAndUsername(Model model, HttpServletRequest request)
+    {
+        String cookie_token_key = CookieUtils.getCookieValue(request, "COOKIE_TOKEN_KEY");
+        String json = jedisClient.get("USER_INFO" + ":" + cookie_token_key);
+        TUser tUser = JsonUtils.jsonToPojo(json, TUser.class);
+        List<UserAuthorityKey> list = adminService.getUserAuthorityKeyByUser(tUser.getUsername());
+        model.addAttribute("username",tUser.getUsername());
+        model.addAttribute("authorityjson",JsonUtils.objectToJson(list));
     }
 
 }

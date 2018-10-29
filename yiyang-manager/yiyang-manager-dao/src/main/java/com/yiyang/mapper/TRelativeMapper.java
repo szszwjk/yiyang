@@ -13,5 +13,5 @@ public interface TRelativeMapper {
     public void updateRelative(TRelative tRelative);
     public List<TUserInfo> getParentInfo(TUserInfo tUserInfo);
     public List<TDsuggest> getSuggest(TDsuggest tDsuggest);
-
+    public void insertRelation(String username);
     }

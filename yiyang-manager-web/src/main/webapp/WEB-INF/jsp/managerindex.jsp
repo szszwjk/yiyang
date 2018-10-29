@@ -32,30 +32,30 @@
 
 
 <body>
-<%--<header>--%>
+<header>
 
-    <%--<div class="row">--%>
-        <%--<div class="col-md-2">.col-md-8</div>--%>
-        <%--<div class="col-md-8">--%>
-            <%--<div class="col-md-1 text-center"><a href="/"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">--%>
-                <%--<span>首页</span></a></div>--%>
-            <%--<div class="col-md-1 text-center"><a href="/parent/parentdetction"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">--%>
-                <%--<span>健康检测</span></a></div>--%>
-            <%--<div class="col-md-1 text-center"><a href="/parent/parentcustody"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">--%>
-                <%--<span>健康监护</span></a></div>--%>
-            <%--<div class="col-md-1 text-center"><a href="/parent/parentdocument"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">--%>
-                <%--<span>健康档案</span></a></div>--%>
-            <%--<div class="col-md-1 text-center"><a href="/parent/parentservice"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">--%>
-                <%--<span>服务预定</span></a></div>--%>
-            <%--<div class="col-md-1 text-center"><a href="/parent/parentdoctor"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">--%>
-                <%--<span>家庭医生</span></a></div>--%>
-            <%--<div class="col-md-1 text-center"><a href="/parent/parentaccount"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">--%>
-                <%--<span>个人账户</span></a></div>--%>
-        <%--</div>--%>
-        <%--<div class="col-md-2">.col-md-4</div>--%>
-    <%--</div>--%>
+    <div class="row">
+        <div class="col-md-2">.col-md-8</div>
+        <div class="col-md-8">
+           <%-- <div class="col-md-1 text-center"><a href="/"><img src="../img/layout_icon_home.jpg" alt="..." class="img-rounded">
+                <span>首页</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentdetction"><img src="../img/layout_icon_jiance.jpg" alt="..." class="img-rounded">
+                <span>健康检测</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentcustody"><img src="../img/layout_icon_jianhu.jpg" alt="..." class="img-rounded">
+                <span>健康监护</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentdocument"><img src="../img/layout_icon_doc.jpg" alt="..." class="img-rounded">
+                <span>健康档案</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentservice"><img src="../img/layout_icon_service.jpg" alt="..." class="img-rounded">
+                <span>服务预定</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentdoctor"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
+                <span>家庭医生</span></a></div>
+            <div class="col-md-1 text-center"><a href="/parent/parentaccount"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
+                <span>个人账户</span></a></div>--%>
+        </div>
+        <div class="col-md-2"><jsp:include  page="include.jsp"/></div>
+    </div>
 
-<%--</header>--%>
+</header>
 <section class="content">
 
 

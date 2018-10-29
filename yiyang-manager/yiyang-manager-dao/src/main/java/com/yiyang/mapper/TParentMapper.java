@@ -19,7 +19,6 @@ public interface TParentMapper {
       public TParent getParent(String username);
       public void updateParent(TParent tParent);
       public List<TDoctor> getDoctor(String dname);
-
       TParent SelectUserByIdnum(String Idnum);
       void UpdateTParent(String id,String juzhudi ,String xueli,String chushengdi,String xuexing,String guoji,String guominshi,String waishang ,String shoushushi,String yichuanbing,String shequhao);
 

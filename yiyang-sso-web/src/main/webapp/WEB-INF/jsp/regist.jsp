@@ -81,7 +81,8 @@
                     <option value="doctor">医生</option>
                     <option value="service">服务商</option>
                     <option value="relation">亲人</option>
-                    <option value="comadmin">社区管理员</option>
+                    <option value="cadmin">社区管理员</option>
+
                 </select>
             </div>
 

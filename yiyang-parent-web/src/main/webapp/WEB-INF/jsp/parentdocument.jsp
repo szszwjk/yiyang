@@ -15,7 +15,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>首页</title>
+
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css">
@@ -54,7 +54,7 @@
             <div class="col-md-1 text-center"><a href="/parent/parentaccount"><img src="../img/layout_icon_user.jpg" alt="..." class="img-rounded">
                 <span>个人账户</span></a></div>
         </div>
-        <div class="col-md-2">.col-md-4</div>
+        <div class="col-md-2"><jsp:include  page="include.jsp"/></div>
     </div>
 
 </header>

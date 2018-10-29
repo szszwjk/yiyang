@@ -46,7 +46,7 @@
             <div class="col-md-1 text-center"><a href="/evaluate"><img src="../img/layout_icon_doctor.jpg" alt="..." class="img-rounded">
                 <span>医生评估</span></a></div>
         </div>
-        <div class="col-md-2">.col-md-4</div>
+        <div class="col-md-2"><jsp:include  page="include.jsp"/></div>
     </div>
 
 </header>

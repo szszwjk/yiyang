@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-md-8 bord"><img src="../img/bg1.jpg" alt="..." class="img-rounded "></div>
             <div class="col-md-4 bord ">
-                <form class="myform" method="post" action="/login" id="logform">
+                <form class="myform" method="post" id="logform">
                     <div class="form-group" id="user">
                         <label for="inputusername">用户名</label>
                         <input type="text" class="form-control" id="inputusername" name="username" placeholder="" aria-describedby="inputError2Status">
@@ -81,7 +81,8 @@
                             <option value="doctor">医生</option>
                             <option value="service">服务商</option>
                             <option value="relation">亲人</option>
-                            <option value="comadmin">社区管理员</option>
+                            <option value="cadmin">社区管理员</option>
+                            <option value="admin">后台管理员</option>
                         </select>
                     </div>
 
